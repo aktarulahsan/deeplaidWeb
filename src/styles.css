@@ -1,1 +1,79 @@
 /* You can add global styles to this file, and also import other style files */
+/* header
+ */
+ @import "~@ng-select/ng-select/themes/default.theme.css";
+ /* @import "~@ng-select/ng-select/themes/default.theme.css";
+ @import "assets/fontawesome/css/all.min.css";
+ @import "assets/css/nav.css";
+ /* @import "assets/css/custom.css"; */
+
+    @import "https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css";
+
+ /* @import "assets/css/responsive.css";
+ 
+ @import "assets/css/custom.css";
+ @import "assets/fontawesome/css/all.min.css";
+ @import "assets/css/nav.css"; */ 
+ /* @import "assets/css/bs-datepicker.css" ; */
+ /* @import "assets/css/fullcalendar.css" ; */
+ 
+ 
+ 
+ 
+ 
+ 
+ .simple-notification-wrapper {
+   position: fixed;
+   width: 300px;
+   z-index: 10000 !important;
+   top: 0px;
+ }
+ .simple-notification-wrapper.bottom {
+   height: 27px;
+ }
+ 
+ .allInner {
+   width: 98%;
+   margin: 0px auto;
+ }
+ /*
+    src/styles.css (i.e. your global style)
+ */
+ .dataTables_empty {
+   display: none;
+ }
+ 
+ .simple-notification-wrapper.right {
+   right: 63px !important;
+ }
+ 
+ .simple-notification-wrapper {
+   position: fixed;
+   width: 300px;
+   z-index: 10000 !important;
+   top: 0px;
+ }
+ .simple-notification-wrapper.bottom {
+   height: 27px;
+ }
+ 
+ /*
+      src/styles.css (i.e. your global style)
+   */
+ .dataTables_empty {
+   display: none;
+ }
+ 
+ .simple-notification-wrapper.right {
+   right: 63px !important;
+ }
+ 
+ 
+ .table-responsive {
+   display: block;
+   width: 100%;
+   overflow-x: auto;
+   -webkit-overflow-scrolling: touch;
+   padding-bottom: 10px;
+ }
+ 

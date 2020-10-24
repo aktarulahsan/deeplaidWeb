@@ -1,0 +1,13 @@
+.ng-select  {
+    border:0px;
+    min-height: 0px;
+    border-radius: 0;
+}
+.ng-control  {            
+    min-height: 0px;
+    border-radius: 0;
+}
+:host-context(.selectcustom) .ng-control {                    
+    min-height: 0px;
+    border-radius: 0;
+}

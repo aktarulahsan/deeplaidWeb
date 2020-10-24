@@ -1,0 +1,137 @@
+<div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">
+        {{title}}
+      </h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="bsModalRef.hide()"
+      >
+        <span>&times;</span>
+      </button>
+    </div>
+  
+    <div class="modal-body crudForm">
+      <div class="persoanlInfoArea">
+        <!-- <form class="ng-pristine ng-valid" name="form" novalidate> -->
+        <form
+          class="ng-pristine ng-valid"
+          (ngSubmit)="onSaveOrUpdate(f)"
+          name="form"
+          #f="ngForm"
+          novalidate
+        >
+          <div class="row">
+            <div class="col-sm-4 form-group">
+                <label for="id">Doctor</label>
+                <ng-select 
+                    [items]="customer"
+                    placeholder="Choose Customer"
+                    notFoundText="No id found"
+                    bindLabel="cname"
+                    bindValue= "id"
+                   
+                    name="id"
+                    >
+                </ng-select>
+            </div>
+            <div class="col-sm-4 form-group">
+                <label for="id">Group</label>
+                <ng-select 
+                    [items]="groups"
+                    placeholder="Choose prod labe1"
+                    notFoundText="No id found"
+                    bindLabel="gname"
+                    bindValue= "id"
+                   
+                    name="id"
+                    >
+                </ng-select>
+            </div>
+
+            <div class="col-sm-4 form-group">
+                <label for="id">Item</label>
+                <ng-select 
+                    [items]="itemss"
+                    placeholder="Choose prod labe1"
+                    notFoundText="No id found"
+                    bindLabel="name"
+                    bindValue= "id"
+                   
+                    name="id"
+                    >
+                </ng-select>
+            </div>
+          </div>
+          <div>
+            <div class="col-sm-3 form-group">
+                <label for="exampleFormControlInput1">Qty</label>
+                <input
+                  class="form-control"
+                  id=""
+                  placeholder="123"
+                  type="text"
+                  name="roleName"
+                  required
+                />
+              </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-danger"
+        data-dismiss="modal"
+        (click)="bsModalRef.hide()"
+      >
+        Close
+      </button>
+      <button type="button" class="btn btn-primary" (click)="onSaveOrUpdate(f)">
+        Save
+      </button>
+    </div>
+    <br>
+    <br>
+    <div>
+        <table class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions">
+            <thead>
+              <tr>
+                <th>Group</th>
+                <th>Item Name</th>
+                <th>Qty</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+             <tr *ngFor="let group of data">
+                   <td>{{group.group}}</td>
+                   <td>{{group.itemn}}</td>
+                   <td>{{group.qty}}</td>
+                   <td>{{group.total}}</td>
+               </tr>
+            </tbody>
+          </table>
+    </div>
+    <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger"
+          data-dismiss="modal"
+          (click)="bsModalRef.hide()"
+        >
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSaveOrUpdate(f)">
+          Save
+        </button>
+      </div>
+
+
+  </div>
+  
