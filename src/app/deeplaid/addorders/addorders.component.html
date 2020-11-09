@@ -1,0 +1,162 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+       Add order
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        
+        >
+          <span>&times;</span>
+        </button>
+      </div>
+  
+   
+  
+  
+  <div class="modal-body crudForm">
+      <div class="persoanlInfoArea">
+  
+        <form
+        class="form-horizontal form-signin"
+        (ngSubmit)="f.form.valid && onSaveOrUpdate(f)"
+        #f="ngForm"
+        novalidate
+        action="index.html"
+      >
+      
+        <div class="row">
+          <div class="col-sm-3 form-group">
+              <label for="groupName">groupName</label>
+              <ng-select 
+                  [items]="groupList"
+                  placeholder="Choose prod labe3"
+                  notFoundText="No groupName found"
+                  bindLabel="groupName"
+                  bindValue= "groupName"
+                  
+                  (change)="selectL1Item($event)"
+                  name="groupName"
+                 
+                  [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
+              </ng-select>
+          </div>
+  
+  
+  
+            <div class="form-group col-md-3 ">
+                <label for="productName">productname</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="productName"
+               
+                  readonly
+                   
+                  
+                />
+                <!-- <div *ngIf="f.submitted && productName.invalid">
+                  <div *ngIf="productName.errors.required">
+                      productName is required
+                  </div>
+                </div> -->
+              </div>
+              <div class="form-group col-md-3">
+                  <label for="qty">qty</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="qty"
+                 
+                  
+                    required
+                  />
+                  <!-- <div *ngIf="f.submitted && qty.invalid">
+                    <div *ngIf="qty.errors.required">
+                      qty Id is required
+                    </div>
+                  </div> -->
+                </div>
+                <div class="form-group col-md-3 ">
+                  <label for="purchaseRate">purchaseRate</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="purchaseRate"
+                 
+                    readonly
+                   
+                    required
+                  />
+                  <!-- <div *ngIf="f.submitted && purchaseRate.invalid">
+                    <div *ngIf="purchaseRate.errors.required">
+                        purchaseRate is required
+                    </div>
+                  </div> -->
+                </div>
+        </div>
+        
+        <div class="form-group">
+          <!-- <a href="" routerLink="/dashboard"></a> -->
+          <!-- <button class="btn-gradient-primary btn-block my-1 loginBtn">
+            Submit
+          </button> -->
+          <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i> Add to List</button>
+         
+        </div>
+       
+      </form>
+  
+  
+      </div>
+  
+  
+  </div>
+  
+  <div>
+      <table class="table table-borderless">
+          <thead class="thead-light">
+            <th>sl</th>
+            <!-- <th>productName</th> -->
+            <th>Product Code</th>
+            <th>Qty</th>
+            <th>Rate</th>
+            <th>Total</th>
+            <th></th>
+            <th>{{grandTotal}}</th>
+            <th>
+              <a class="btn btn-sm btn-success text-white"  ><i class="fa fa-database"></i> Add Item</a>
+            </th>
+          </thead>
+          <tbody>
+            <tr *ngIf="purchaseDetailList.length==0" [class.text-danger]="!isValid && purchaseDetailList.length==0">
+              <td class="font-italic text-center" colspan="5">
+                No food item selected for this order.
+              </td>
+            </tr>
+      
+            <tr *ngFor="let item of purchaseDetailList;let i=index;">
+              <td>{{item.id}}</td>
+              <!-- <td>{{item.productName}}</td> -->
+              <td>{{item.l4code}}</td>
+              <td>{{item.qty}}</td>
+              <td>{{item.purchaseRate}}</td>
+              <td>{{item.purchaseRate*item.qty}}</td>
+             
+              <td>
+                <a class="btn btn-sm btn-info text-white" (click)="editData(item,this)" ><i class="fa fa-pencil">Edit</i></a>
+                <a class="btn btn-sm btn-danger text-white ml-1"  (click)='deleteitem(item.id)' ><i class="fa fa-trash">delete</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="form-group">
+          <button type="submit" class="btn btn-dark" (click)="submitPurchase()"><i class="fa fa-database"></i> Submit</button>
+          <a class="btn btn-outline-dark ml-1"  routerLink="/purchase"><i class="fa fa-table"></i> View Orders</a>
+        </div>
+  </div>
+  </div>

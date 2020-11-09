@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AddorderComponent } from '../addorder/addorder.component';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-home-page',
@@ -11,19 +12,20 @@ export class HomePageComponent implements OnInit {
 
   bsModalRef: BsModalRef;
   constructor(
-    private modalService    : BsModalService,
+    private modalService: BsModalService,
+    public http: HttpClient,
   ) { }
   public data = [
-    {tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty:'12', total:'22991'},
-    {tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty:'12', total:'22991'},
-    {tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty:'12', total:'22991'},
-    {tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty:'12', total:'22991'},
-    {tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty:'12', total:'22991'},
-    {tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty:'12', total:'22991'},
-    {tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty:'12', total:'22991'},
-     
-     
-];
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+
+
+  ];
   title = 'angulardatatables';
   dtOptions: DataTables.Settings = {};
   ngOnInit() {
@@ -32,9 +34,24 @@ export class HomePageComponent implements OnInit {
       pageLength: 5,
       processing: true
     };
-}
+  }
 
-addRole() {
+  public getUsers() {
+    this.http.get('https://jsonplaceholder.typicode.com/todos').subscribe(res => {
+      // this.users = res;
+      // console.log(this.users);
+      console.log(res);
+      // data contains actual array of users
+    }, err => {
+      console.log(err);
+    }, () => {
+      console.log('completed');
+    }
+    );
+  }
+
+  addRole() {
+    // this.getUsers();
     const initialState = {
       title: 'Add Role',
     };

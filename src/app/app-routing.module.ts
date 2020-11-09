@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AddorderComponent } from './deeplaid/addorder/addorder.component';
+import { AddordersComponent } from './deeplaid/addorders/addorders.component';
 import { DeeplaidComponent } from './deeplaid/deeplaid.component';
 import { HomePageComponent } from './deeplaid/home-page/home-page.component';
 import { LoginPageComponent } from './login/login-page/login-page.component';
@@ -33,6 +35,11 @@ const routes: Routes = [
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
+      },
+      {
+        path: 'addorder',
+        component: AddordersComponent,
+     
       },
     ],
   },

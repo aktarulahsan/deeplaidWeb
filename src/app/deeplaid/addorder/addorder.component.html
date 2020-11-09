@@ -39,15 +39,15 @@
                 </ng-select>
             </div>
             <div class="col-sm-4 form-group">
-                <label for="id">Group</label>
+                <label for="GroupName">Group</label>
                 <ng-select 
-                    [items]="groups"
+                    [items]="groupList"
                     placeholder="Choose prod labe1"
                     notFoundText="No id found"
-                    bindLabel="gname"
-                    bindValue= "id"
+                    bindLabel="groupName"
+                    bindValue= "groupName"
                    
-                    name="id"
+                    name="groupName"
                     >
                 </ng-select>
             </div>
@@ -109,7 +109,7 @@
               </tr>
             </thead>
             <tbody>
-             <tr *ngFor="let group of data">
+             <tr *ngFor="let group of datasse">
                    <td>{{group.group}}</td>
                    <td>{{group.itemn}}</td>
                    <td>{{group.qty}}</td>
