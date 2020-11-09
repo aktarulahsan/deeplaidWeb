@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Subject } from 'rxjs';
 import { OrderService } from 'src/app/service/order.service';
 import { StockGroup } from '../model/stockGroup.Model';
 
@@ -10,16 +12,18 @@ import { StockGroup } from '../model/stockGroup.Model';
 })
 export class AddordersComponent implements OnInit {
 
-
+  onClose: Subject<boolean>;
   purchaseDetailList: any[]=new Array();
   grandTotal= 0;
   groupList: StockGroup[];
   groupName: any;
   constructor(
+    public bsModalRef: BsModalRef,
     public apiService: OrderService,
   ) { }
 
   ngOnInit(): void {
+    this.onClose = new Subject();
     this.getgList();
     this.getProdoneList();
     
@@ -27,7 +31,7 @@ export class AddordersComponent implements OnInit {
 
   getgList() {
     this.apiService.getProductGList().subscribe((data) => {
-      console.log(data.results);
+      console.log(data);
       // this.groupList = JSON.parse(data.results);
       this.groupList= data['results'];
       console.log(this.groupList);

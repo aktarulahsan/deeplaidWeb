@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AddorderComponent } from '../addorder/addorder.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AddordersComponent } from '../addorders/addorders.component';
 
 @Component({
   selector: 'app-home-page',
@@ -19,7 +20,7 @@ export class HomePageComponent implements OnInit {
     { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
     { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
     { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
-    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
+    { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '66', total: '22991' },
     { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
     { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
     { tc: '255', doctorname: 'cp-1323-subratohomoeo hall. bongkim chandra adhikari', qty: '12', total: '22991' },
@@ -55,7 +56,7 @@ export class HomePageComponent implements OnInit {
     const initialState = {
       title: 'Add Role',
     };
-    this.bsModalRef = this.modalService.show(AddorderComponent, {
+    this.bsModalRef = this.modalService.show(AddordersComponent, {
       class: 'modal-lg',
       initialState,
       backdrop: 'static',

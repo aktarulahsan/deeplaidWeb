@@ -10,7 +10,8 @@ export class OrderService {
 
   
   constructor(
-    private httpClient: HttpClient, private http: HttpClient
+    
+     private http: HttpClient
   ) { }
 
    
