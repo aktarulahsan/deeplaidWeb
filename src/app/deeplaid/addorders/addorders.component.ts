@@ -24,7 +24,7 @@ export class AddordersComponent implements OnInit {
 
   ngOnInit(): void {
     this.onClose = new Subject();
-    this.getgList();
+    this.getgList();   
     this.getProdoneList();
     
   }
