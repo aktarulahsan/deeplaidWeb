@@ -39,7 +39,7 @@ export class AddordersComponent implements OnInit {
     })
   }
 
-  selectL1Item(getItem):any{
+  selectL1Item(getItem):any{  
     // console.log('data list', getItem);
     // if(getItem !=null){
     //     this.model.productName = getItem.productname;

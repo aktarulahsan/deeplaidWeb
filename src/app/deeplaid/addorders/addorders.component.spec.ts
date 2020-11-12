@@ -11,7 +11,7 @@ describe('AddordersComponent', () => {
       declarations: [ AddordersComponent ]
     })
     .compileComponents();
-  });
+  });  
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AddordersComponent);
