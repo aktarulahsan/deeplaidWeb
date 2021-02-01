@@ -42,15 +42,15 @@
               </ng-select>
           </div> -->
 
-                    <div class="form-group col-md-3 ">
+                    <!-- <div class="form-group col-md-3 ">
                         <label for="productName">কাস্টমার কোড</label>
-                        <input type="text" class="form-control" name="productName" />
+                        <input type="text" class="form-control" name="productName" /> -->
                         <!-- <div *ngIf="f.submitted && productName.invalid">
               <div *ngIf="productName.errors.required">
                   productName is required
               </div>
             </div> -->
-                    </div>
+                    <!-- </div> -->
 
 
                     <div class="form-group col-md-7 ">
@@ -63,9 +63,29 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group col-md-3 ">
+                        <label for="branchId">ব্রাঞ্চ   </label>
+                        <input type="text" class="form-control" name="branchId"
+                            [(ngModel)]="customer.branchId" #branchId="ngModel" />
+                        <div *ngIf="f.submitted && branchId.invalid">
+                            <div *ngIf="branchId.errors.required">
+                                branchId is required
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <div class="row">
+                    <div class="form-group col-md-3 ">
+                        <label for="gender">জেন্ডার    </label>
+                        <input type="text" class="form-control" name="gender"
+                            [(ngModel)]="customer.gender" #gender="ngModel" />
+                        <div *ngIf="f.submitted && gender.invalid">
+                            <div *ngIf="gender.errors.required">
+                                gender is required
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group col-md-3">
                         <label for="mobile">মোবাইল নাম্বার </label>
                         <input type="number" class="form-control" name="mobile" [(ngModel)]="customer.mobile"
@@ -95,7 +115,7 @@
                     <!-- <button class="btn-gradient-primary btn-block my-1 loginBtn">
             Submit
           </button> -->
-                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i> সেভ </button>
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i>সেভ </button>
 
                 </div>
 
