@@ -1,0 +1,112 @@
+<div class="modal-content">
+
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            কাস্টমার অ্যাড
+        </h5>
+        <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="bsModalRef.hide()"
+      >
+        <span>&times;</span>
+      </button>
+    </div>
+
+
+
+
+    <div class="modal-body crudForm">
+        <div class="persoanlInfoArea">
+
+            <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm"
+                novalidate action="index.html">
+
+                <div class="row">
+                    <!-- <div class="col-sm-3 form-group">
+              <label for="groupName">কাস্টমার কোড </label>
+              <ng-select 
+                  [items]="groupList"
+                  placeholder="Choose prod labe3"
+                  notFoundText="No groupName found"
+                  bindLabel="groupName"
+                  bindValue= "groupName"
+                  
+                  (change)="selectL1Item($event)"
+                  name="groupName"
+                 
+                  [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
+              </ng-select>
+          </div> -->
+
+                    <div class="form-group col-md-3 ">
+                        <label for="productName">কাস্টমার কোড</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+              <div *ngIf="productName.errors.required">
+                  productName is required
+              </div>
+            </div> -->
+                    </div>
+
+
+                    <div class="form-group col-md-7 ">
+                        <label for="customerName">কাস্টমার নাম </label>
+                        <input type="text" class="form-control" name="customerName"
+                            [(ngModel)]="customer.customerName" #customerName="ngModel" />
+                        <div *ngIf="f.submitted && customerName.invalid">
+                            <div *ngIf="customerName.errors.required">
+                                customerName is required
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label for="mobile">মোবাইল নাম্বার </label>
+                        <input type="number" class="form-control" name="mobile" [(ngModel)]="customer.mobile"
+                            #mobile="ngModel" required />
+                        <div *ngIf="f.submitted && mobile.invalid">
+                            <div *ngIf="mobile.errors.required">
+                                mobile is required
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form-group col-md-7 ">
+                <label for="address">ঠিকানা </label>
+                
+                <textarea class="form-control"
+                 rows="5" 
+                 id="address" 
+                 name="text"
+                 [(ngModel)]="customer.address"
+                  #address="ngModel"
+                 />
+               
+            </div> -->
+                </div>
+
+                <div class="form-group">
+                    <!-- <a href="" routerLink="/dashboard"></a> -->
+                    <!-- <button class="btn-gradient-primary btn-block my-1 loginBtn">
+            Submit
+          </button> -->
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i> সেভ </button>
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+ 
+
+</div>

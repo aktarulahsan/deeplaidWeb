@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {DataTablesModule} from 'angular-datatables';
 import { LoginModule } from './login/login.module';
-import { DeeplaidModule } from './deeplaid/deeplaid.module';
+ 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { DeeplaidModule } from './tms/deeplaid.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     DataTablesModule,
     LoginModule,
     DeeplaidModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

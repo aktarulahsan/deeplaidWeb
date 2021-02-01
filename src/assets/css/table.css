@@ -1,0 +1,54 @@
+table.table {
+  margin-bottom: 0px;
+}
+
+table.table > thead > tr > th {
+  background-color: #37a8e4;
+  color: #fff;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+table.table > tbody {
+  box-shadow: 0px 1px 5px 1px #ddd;
+}
+
+table.table > tbody > tr > td {
+  border-bottom: 1px solid #f2f3f8 !important;
+}
+
+table td,
+table th:not(.sorting_disabled) {
+    vertical-align: middle !important;
+    padding: 8px !important;
+}
+
+.scrollable-table {
+  max-height: 220px;
+  overflow: auto;
+  scrollbar-color: #aaa #f1f1f1; /*for mozilla*/
+  scrollbar-width: thin; /*for mozilla*/
+}
+
+.scrollable-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #37a8e4;
+  z-index: 9;
+}
+
+.scrollable-table::-webkit-scrollbar {
+  width: 7px;
+}
+
+.scrollable-table::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.scrollable-table::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  outline: 1px solid #aaa;
+}

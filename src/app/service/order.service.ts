@@ -15,7 +15,7 @@ export class OrderService {
   ) { }
 
    
-  private STOCK_GROUP_LIST = `http://localhost:3000/StockGroup`;
+  private STOCK_GROUP_LIST = `http://aborong.com/orderapi/orderapi/user/list`;
 
   
 

@@ -1,0 +1,7 @@
+table.table > thead > tr > th {
+    background-color: #37a8e4;
+    color: #fff;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+}

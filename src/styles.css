@@ -4,23 +4,48 @@
  @import "~@ng-select/ng-select/themes/default.theme.css";
  /* @import "~@ng-select/ng-select/themes/default.theme.css";
  @import "assets/fontawesome/css/all.min.css";
- @import "assets/css/nav.css";
- /* @import "assets/css/custom.css"; */
+ /* @import "assets/css/nav.css"; */
+ @import "assets/css/custom.css"; 
 
     @import "https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css";
 
- /* @import "assets/css/responsive.css";
- 
+ @import "assets/css/responsive.css";
+ /* @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"; */
  @import "assets/css/custom.css";
- @import "assets/fontawesome/css/all.min.css";
- @import "assets/css/nav.css"; */ 
+ /* @import "assets/fontawesome/css/all.min.css"; */
+ /* @import "assets/css/nav.css";  */
  /* @import "assets/css/bs-datepicker.css" ; */
  /* @import "assets/css/fullcalendar.css" ; */
  
+@import "assets/css/responsive.css";
+
+@import "assets/css/custom.css";
+/* @import "assets/css/font-awesome.min.css"; */
+/* @import "assets/css/nav.css"; */
+@import "assets/css/bs-datepicker.css" ;
+
+@import "assets/css/dashboard-widget.css";
+@import "assets/css/card_box.css";
+@import "assets/css/table.css";
+@import "assets/css/button.css";
+/* @import "assets/css/all.css"; */
+/* @import "assets/css/button.css";
+@import "assets/css/card_box.css";
+@import "assets/css/color.css";
+@import "assets/css/croppie.css";
+@import "assets/css/navbar.css"; */
+/* @import "assets/css/pihr.css"; 
+@import "assets/css/pihr-icon.css";  */
+
  
  
- 
- 
+table.table > thead > tr > th {
+  background-color: #37a8e4;
+  color: #fff;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
  
  .simple-notification-wrapper {
    position: fixed;

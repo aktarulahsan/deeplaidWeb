@@ -1,0 +1,337 @@
+/* @font-face {font-family: roboto;src: url(../font/RobotoCondensed-Light.ttf)}
+@font-face {font-family: dosisr;src: url(../font/Dosis-Regular.otf)}
+@font-face {font-family: dosisb;src: url(../font/Dosis-ExtraBold.otf)} */
+body {
+  background: #f5f6f9 !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+button.primaryCustom {
+  background: #194771;
+  border: solid 1px #123554;
+}
+.activeRow {
+  background-color: #607d8b !important;
+  color: #fff;
+}
+.margin10 {
+  margin-top: 10px;
+}
+.padding0 {
+  padding: 0px !important;
+}
+.paddingRight {
+  padding: 0px !important;
+  padding-right: 3% !important;
+}
+.all_content_wrapper {
+  width: 100%;
+  float: left;
+  border: solid 1px #b6e0f1;
+  margin-top: 30px;
+  min-height: 530px;
+  position: relative;
+}
+.allInner {
+  width: 98%;
+  margin: 40px auto;
+}
+.paddin4 {
+  padding-left: 4px !important;
+  padding-right: 4px !important;
+}
+.modalWidthCustom {
+  min-width: 81% !important;
+  float: right;
+  margin-top: 4px;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  color: #0594a7 !important;
+}
+.nav-tabs li a {
+  color: #000 !important;
+  font-size: 17px;
+}
+.modal-header {
+  background: #194771;
+  color: #fff;
+  padding: 6px 10px !important;
+}
+.modal-content {
+  border: 5px solid #d7d7d7 !important;
+  border-radius: 6px;
+}
+.modal-footer {
+  background-color: #f0f0f1;
+  padding: 8px 12px !important;
+}
+.modal-footer button {
+  padding: 3px 10px;
+}
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  border: solid 1px #b6e0f1 !important;
+  border-bottom: solid 1px #fff !important;
+}
+.tab-content {
+  border: solid 1px #b6e0f1;
+  border-top: 0px;
+  min-height: 450px;
+}
+.nav-tabs {
+  border-bottom: 1px solid #b6e0f1 !important;
+}
+.customForm {
+  padding-top: 13px;
+}
+
+/* .datePicker{ width: 20px; height: 20px;  background:url(../images/dateIcon.png) no-repeat center right;} */
+/* =======================dashboard css  =======================*/
+
+#apgeTitle {
+  position: absolute;
+  top: -37px;
+  left: -1px;
+  border: solid 1px #b6e0f1;
+  min-width: 193px;
+  font-family: dosisr;
+  text-align: center;
+  border-bottom: 0px;
+  color: #777070;
+  font-size: 22px;
+  background: #f5f6f9;
+  height: 37px;
+  line-height: 44px;
+  border-radius: 6px 6px 0 0;
+}
+/* =======================dashboard css  =======================*/
+
+/* crudArea */
+.crudArea {
+  width: 100%;
+  height: auto;
+  float: left;
+  border-bottom: solid 1px #b6e0f1;
+  background: #38658e;
+  min-height: 39px;
+  margin-top: -12px;
+}
+.crudArea button {
+  padding: 1px 17px;
+  margin-right: 0px;
+  margin-left: 5px;
+  top: 4px;
+  position: relative;
+  border: solid 1px #eeeeef;
+  box-shadow: 0px 0px 5px #000;
+}
+.customForm .form-control {
+  border: solid 1px #68bee0;
+  height: 28px;
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
+.customForm label {
+  margin-bottom: 3px;
+  font-size: 14px;
+}
+.customForm .form-group {
+  margin-bottom: 5px;
+}
+
+/*============================= data table custom css =============================*/
+.dataTables_filter {
+  margin-top: 10px;
+}
+.dataTables_wrapper select {
+  border: solid 1px #68bee0;
+  height: 28px;
+  border-radius: 4px;
+  width: 69px;
+}
+.dataTables_length {
+  margin-top: 10px;
+}
+.dataTables_wrapper input {
+  border: solid 1px #68bee0;
+  height: 28px;
+  border-radius: 40px;
+}
+.dataTables_info {
+  color: #076979 !important;
+}
+.dataTables_paginate {
+  border: solid 1px #d7d7d7;
+  border-radius: 4px !important;
+  top: 11px;
+  position: relative;
+  padding-top: 0px !important;
+}
+.paginate_button {
+  border-right: solid 1px #d7d7d7 !important;
+  padding: 3px 11px !important;
+}
+.next {
+  border-right: 0px !important;
+}
+
+a.paginate_button.current {
+  background: #c5dffb !important;
+  background: linear-gradient() !important;
+  border: 0px !important;
+  color: #fff !important;
+}
+.paginate_button {
+  color: #007bff;
+}
+table.dataTable thead th {
+  border-top: solid 1px #ffff !important;
+  border-left: solid 1px #ffff !important;
+  border-right: solid 1px #ffff !important;
+}
+.statusBtn {
+  padding: 0px 4px !important;
+  font-size: 13px !important;
+  line-height: 18px !important;
+  width: 57px;
+  margin-top: -4px !important;
+}
+.deleteNotification {
+  color: #cc0606;
+  font-size: 18px;
+  line-height: 58px;
+}
+
+/* table.dataTable thead th {
+  padding: 5px 18px !important;
+  background: #dff2f4 !important;
+  color: #0f8397 !important;
+  font-size: 14px !important;
+} */
+
+table.dataTable thead th {
+  padding: 5px 18px !important;
+  background-color: #37a8e4;
+  color: #fff !important;
+  font-size: 14px !important;
+}
+
+.employeeTable {
+  padding-left: 6px;
+  padding-right: 6px;
+}
+.employeeTable table {
+  border: solid 1px #dedede !important;
+}
+table.dataTable thead th {
+  border-bottom: solid 1px #dedede !important;
+}
+.paginate_button.current {
+  color: #fff !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  color: #007bff !important;
+}
+table.dataTable tbody th,
+table.dataTable tbody td {
+  padding: 3px 8px !important;
+}
+table.dataTable.display tbody tr.odd > .sorting_1 {
+  background-color: transparent !important;
+}
+table.dataTable.display tbody tr.even > .sorting_1 {
+  background-color: transparent !important;
+}
+
+/*============================= fullcalender =============================*/
+#calendar {
+  width: 98%;
+  margin: auto;
+}
+.fc-left button {
+  color: #fff !important;
+  background: #194771 !important;
+  border-color: #13385a !important;
+  text-transform: capitalize !important;
+  top: 0px;
+  padding: 3px 10px !important;
+  height: 28px !important;
+  font-size: 13px !important;
+  line-height: 19px;
+  text-shadow: none;
+}
+.fc-toolbar .fc-center {
+  display: inline-block;
+  color: #000;
+}
+.fc-toolbar .fc-state-active {
+  z-index: 4;
+  background: #3d51bf !important;
+  outline: 0px;
+  color: #fff;
+  text-shadow: none;
+  font-size: 13px;
+}
+.fc-agendaWeek-button,
+.fc-agendaDay-button {
+  top: 4px;
+  color: #fff !important;
+  background: #5e72e4 !important;
+  border-color: #5e72e4 !important;
+  text-shadow: none !important;
+  text-transform: capitalize !important;
+  border-left: solid 1px #4d60d2 !important;
+  border-right: solid 1px #4455b3 !important;
+}
+
+.fc-listWeek-button {
+  color: #fff !important;
+  background: #5e72e4 !important;
+  text-transform: capitalize !important;
+  text-shadow: none !important;
+  border-color: #4a5ed0 !important;
+  text-transform: capitalize !important;
+  top: 4px !important;
+}
+
+.fc-head-container th {
+  color: #026e7d !important;
+  font-weight: bold !important;
+  background: #cfebf1 !important;
+  font-size: 14px !important;
+}
+.fc-event {
+  color: #fff !important;
+}
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 3px !important;
+}
+
+.fc button {
+  height: 28px !important;
+  padding: 4px 10px !important;
+  font-size: 13px !important;
+}
+.fc-state-default {
+  color: #fff !important;
+  background: #5e72e4 !important;
+  border-color: #5e72e4 !important;
+  text-shadow: none !important;
+  text-transform: capitalize !important;
+  border-left: solid 1px #4d60d2 !important;
+  border-right: solid 1px #4455b3 !important;
+}
+.fc-toolbar button {
+  top: 4px !important;
+}
+.fc-toolbar .fc-left {
+  top: 7px;
+  position: relative;
+}
+.fc-toolbar .fc-right {
+  top: 7px;
+  position: relative;
+}

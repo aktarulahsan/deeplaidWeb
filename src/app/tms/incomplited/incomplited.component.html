@@ -1,0 +1,52 @@
+<div class="container">
+
+
+
+    <div class="table-responsive ">
+        <table class="table table-bordered table-hover " datatable [dtOptions]="dtOptions">
+            <thead>
+                <tr>
+                    <th>কাস্টমার কোড</th>
+                    <th>কাস্টমার নাম</th>
+                    <th>মোবাইল নাম্বার </th>
+                    <th>মোট টাকা </th>
+                    <th>ডিসকাউন্ট </th>
+                    <th>পরিশোধ </th>
+                    <th>বাকী </th>
+                    <th class="action-90x text-center"> Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let group of data">
+                    <td>{{group.tc}}</td>
+                    <td>{{group.doctorname}}</td>
+                    <td>{{group.qty}}</td>
+                    <td>{{group.total}}</td>
+                    <td>{{group.total}}</td>
+                    <td>{{group.total}}</td>
+                    <td>{{group.total}}</td>
+
+                    <td class="text-center action-90x action">
+                        <a href="javascript:;" class="btn btn-icon btnEdit" data-toggle="tooltip"
+                            data-original-title="Edit" data-id="1">
+                            <span class="icon icon-action-edit text-warning"></span>
+                        </a>
+
+                        <a href="javascript:;" class="btn btn-icon btnDelete" data-toggle="tooltip"
+                            data-original-title="Delete" data-id="1">
+                            <span class="icon icon-action-delete text-danger"></span>
+                        </a>
+
+                        <a data-policy="1" href="javascript:;" data-toggle="tooltip" title=""
+                            class="btnPolicyMapping t-btn" data-original-title="Policy Mapping">
+                            <i class="fa fa-chain" style="color:darkviolet"></i>
+                        </a>
+
+
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

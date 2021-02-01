@@ -1,0 +1,154 @@
+/**
+Core script to handle the entire theme and core functions
+**/
+var App = function () {
+
+    // IE mode
+    var isRTL = false;
+    var isIE8 = false;
+    var isIE9 = false;
+    var isIE10 = false;
+
+    // initializes main settings
+    var handleInit = function () {
+
+        if ($('body').css('direction') === 'rtl') {
+            isRTL = true;
+        }
+
+        isIE8 = !!navigator.userAgent.match(/MSIE 8.0/);
+        isIE9 = !!navigator.userAgent.match(/MSIE 9.0/);
+        isIE10 = !!navigator.userAgent.match(/MSIE 10.0/);
+
+        if (isIE10) {
+            $('html').addClass('ie10'); // detect IE10 version
+        }
+
+        if (isIE10 || isIE9 || isIE8) {
+            $('html').addClass('ie'); // detect IE10 version
+        }
+    };
+
+    // Handles portlet tools & actions
+    var handlePortletTools = function () {
+        // handle portlet fullscreen btn-circle 
+        $('body').on('click', '.card-box > .card-box-header .btn-fullscreen', function (e) {
+            e.preventDefault();
+
+            var portlet = $(this).closest(".card-box");
+            if (portlet.hasClass('card-box-fullscreen')) {
+                $(this).removeClass('on');
+                portlet.removeClass('card-box-fullscreen');
+                $('body').removeClass('page-card-box-fullscreen');
+                portlet.children('.card-box-content').css('height', 'auto');
+
+                if ($(".btn-fullscreen span").hasClass("fa-compress")) {                    
+                    $(".btn-fullscreen span").addClass("fa-expand");
+                    $(".btn-fullscreen span").removeClass("fa-compress");
+                }
+            } else {
+                var height = App.getViewPort().height -
+                    portlet.children('.card-box-header').outerHeight() -
+                    parseInt(portlet.children('.card-box-content').css('padding-top')) -
+                    parseInt(portlet.children('.card-box-content').css('padding-bottom'));
+
+                $(".btn-fullscreen span").addClass("fa-compress");
+                $(".btn-fullscreen span").removeClass("fa-expand");
+
+                $(this).addClass('on');
+                portlet.addClass('card-box-fullscreen');
+                $('body').addClass('page-card-box-fullscreen');
+                portlet.children('.card-box-content').css('height', height);
+            }
+        });
+
+        $('body').on('click', '.widget-card > .widget-card-header .btn-fullscreen', function (e) {
+            e.preventDefault();
+
+            var portlet = $(this).closest(".widget-card");
+            if (portlet.hasClass('card-box-fullscreen')) {
+                $(this).removeClass('on');
+                portlet.removeClass('card-box-fullscreen');
+                $('body').removeClass('page-card-box-fullscreen');
+                portlet.children('.card-box-content').css('height', 'auto');
+
+                if ($(".btn-fullscreen span").hasClass("fa-compress")) {
+                    $(".btn-fullscreen span").addClass("fa-expand");
+                    $(".btn-fullscreen span").removeClass("fa-compress");
+                }
+            } else {
+                var height = App.getViewPort().height -
+                    portlet.children('.widget-card-header').outerHeight() -
+                    parseInt(portlet.children('.card-box-content').css('padding-top')) -
+                    parseInt(portlet.children('.card-box-content').css('padding-bottom'));
+
+                $(".btn-fullscreen span").addClass("fa-compress");
+                $(".btn-fullscreen span").removeClass("fa-expand");
+
+                $(this).addClass('on');
+                portlet.addClass('card-box-fullscreen');
+                $('body').addClass('page-card-box-fullscreen');
+                portlet.children('.card-box-content').css('height', height);
+            }
+        });
+
+    };
+
+    //* END:CORE HANDLERS *//
+
+    return {
+
+        //main function to initiate the theme
+        init: function () {
+            //IMPORTANT!!!: Do not modify the core handlers call order.
+
+            //Core handlers
+            handleInit(); // initialize core variables
+            handlePortletTools();
+
+        },
+
+        // check IE8 mode
+        isIE8: function () {
+            return isIE8;
+        },
+
+        // check IE9 mode
+        isIE9: function () {
+            return isIE9;
+        },
+
+        //check RTL mode
+        isRTL: function () {
+            return isRTL;
+        },
+
+        // To get the correct viewport width based on  http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/
+        getViewPort: function () {
+            var e = window,
+                a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+
+            return {
+                width: e[a + 'Width'],
+                height: e[a + 'Height']
+            };
+        },
+    };
+
+}();
+
+
+jQuery(document).ready(function () {
+    App.init(); // init metronic core componets
+});
+
+//$(document).on('mouseup touchend', function (e) {
+//    var container = $('.bootstrap-datetimepicker-widget');
+//    if (!container.is(e.target) && container.has(e.target).length === 0) {
+//        container.parent().datetimepicker('hide');
+//    }
+//});

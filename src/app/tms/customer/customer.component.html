@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="all_content_wrapper card">
+        <!-- <div id="apgeTitle">Employee List</div> -->
+        <div class="allInner">
+          <div class="row">
+            <div class="col-lg-12 paddin4">
+              <!-- crudArea -->
+              <div class="card-header" style="background:  #194771; color: white;" >
+                <div class="row">
+                  <div class="col-md-8"><h4>কাস্টমার  ডিটেলস </h4></div>
+                  <div class="col-md-4" style="position: relative;">
+                    <div class="btnAllRow">
+                      <button
+                        title="Add Role"
+                        style="margin: 2px;"
+                        class="btn btn-success"
+                        
+                        (click)= "add()"
+                      >
+                        <i class="fa fa-plus-circle" aria-hidden="true"></i
+                        >&nbsp;Add
+                      </button>
+                      <button
+                        title="Edit Role"
+                        style="margin: 2px;"
+                        data-toggle="modal"
+                        data-target="#edit"
+                        class="btn btn-warning"
+                        (click)= "update()"
+                        
+                      >
+                        <i class="fas fa-edit" aria-hidden="true"></i>&nbsp;Edit
+                      </button>
+                      <button
+                        title="Delete Role"
+                        style="margin: 2px;"
+                        data-toggle="modal"
+                        data-target="#deleted"
+                        class="btn btn-danger"
+                      >
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i
+                        >&nbsp;Delete
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="employeeTable selectedTable">
+                <div class="table-responsive">
+                  <table
+                    datatable
+                    [dtOptions]="dtOptions"
+                    [dtTrigger]="dtTrigger"
+                    class="row-border hover"
+                  ></table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

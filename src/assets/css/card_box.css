@@ -1,0 +1,44 @@
+.card-box {
+    background-color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.card-box-header,
+.widget-card-header {
+    border-bottom: 1px solid #dddddd;
+    padding: 15px 15px 12px 15px;
+}
+
+.card-box-header .icon-plus:before {
+    font-size: 10px;
+}
+
+.card-title {
+    color: #676767;
+    font-size: 14px;
+    line-height: 26.5px;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+}
+
+.card-box-content,
+.widget-card-content {
+    padding: 10px 15px;
+}
+
+.card-box-fullscreen {
+    z-index: 10060;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+}
+
+.page-card-box-fullscreen {
+    overflow: hidden
+}

@@ -1,0 +1,308 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          কাস্টমার তথ্য 
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="bsModalRef.hide()"
+        >
+          <span>&times;</span>
+        </button>  
+      </div>
+  
+      <div class="modal-body crudForm">
+        <div class="persoanlInfoArea">
+
+            <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm"
+                novalidate action="index.html">
+
+                <div class="row">
+    <!-- <div class="col-sm-3 form-group">
+              <label for="groupName">কাস্টমার কোড </label>
+              <ng-select 
+                  [items]="groupList"
+                  placeholder="Choose prod labe3"
+                  notFoundText="No groupName found"
+                  bindLabel="groupName"
+                  bindValue= "groupName"
+                  
+                  (change)="selectL1Item($event)"
+                  name="groupName"
+                 
+                  [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
+              </ng-select>
+          </div> -->
+
+                    <div class="form-group col-md-4 ">
+                        <label for="productName">কাস্টমার কোড</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+              <div *ngIf="productName.errors.required">
+                  productName is required
+              </div>
+            </div> -->
+                    </div>
+
+
+                    <div class="form-group col-md-4 ">
+                        <label for="productName">কাস্টমার নাম </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                  <div *ngIf="productName.errors.required">
+                      productName is required
+                  </div>
+                </div> -->
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="productName">মোবাইল নাম্বার </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                  <div *ngIf="productName.errors.required">
+                      productName is required
+                  </div>
+                </div> -->
+                    </div>
+
+                </div>
+                <div class="row">
+                     
+                    <div class="form-group col-md-8 ">
+                        <label for="purchaseRate">ঠিকানা </label>
+                      
+                        <textarea class="form-control" rows="2" id="comment" name="text"></textarea>
+
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="qty">ডেলিভারি ডেট </label>
+                        <input type="number" class="form-control" name="qty" required />
+                        <!-- <div *ngIf="f.submitted && qty.invalid">
+                  <div *ngIf="qty.errors.required">
+                    qty Id is required
+                  </div>
+                </div> -->
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    
+
+                    <div class="form-group col-md-4 ">
+                        <label for="productName">অর্ডার নাম্বার </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+              <div *ngIf="productName.errors.required">
+                  productName is required
+              </div>
+            </div> -->
+                    </div>
+
+
+                    <div class="form-group col-md-4 ">
+                        <label for="productName">পোশাকের নাম </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                  <div *ngIf="productName.errors.required">
+                      productName is required
+                  </div>
+                </div> -->
+                    </div>
+                   <div class="col-sm-3 form-group">
+              <label for="groupName">চালান নাম্বার </label>
+              <ng-select 
+                  [items]="groupList"
+                  placeholder="Choose prod labe3"
+                  notFoundText="No groupName found"
+                  bindLabel="groupName"
+                  bindValue= "groupName"
+                  
+                  (change)="selectL1Item($event)"
+                  name="groupName"
+                 
+                  [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
+              </ng-select>
+          </div>
+
+                </div>
+
+
+                <div class="row">
+                
+                
+                    <div class="form-group col-md-1 ">
+                        <label for="productName">লম্বা</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label for="productName">বডি</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                
+                
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label for="productName">পুট </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label for="productName">হাতা</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label for="productName">কলার</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label for="productName"> মুহরি</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label for="productName">কফ </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-1 ">
+                        <label for="productName">বোতাম </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                
+                
+                    <div class="form-group col-md-4 ">
+                        <label for="productName">গলার কাজের মডেল </label>
+                        <ng-select [items]="groupList" placeholder="Choose prod labe3" notFoundText="No groupName found"
+                            bindLabel="groupName" bindValue="groupName" (change)="selectL1Item($event)" name="groupName"
+                            [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
+                        </ng-select>
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                  <div *ngIf="productName.errors.required">
+                                      productName is required
+                                  </div>
+                                </div> -->
+                    </div>
+                    <div class="col-sm-8 form-group">
+                        <label for="groupName">পোশাকের মডেল </label>
+                        <ng-select [items]="groupList" placeholder="Choose prod labe3" notFoundText="No groupName found"
+                            bindLabel="groupName" bindValue="groupName" (change)="selectL1Item($event)" name="groupName"
+                            [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
+                        </ng-select>
+                    </div>
+                
+                </div>
+
+                <div class="row">
+                
+                
+                    <div class="form-group col-md-2 ">
+                        <label for="productName">ডেলিভারী  তারিখ </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-2 ">
+                        <label for="productName">মূল্য  </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                
+                
+                    </div>
+                    <div class="form-group col-md-2 ">
+                        <label for="productName">পরিমান   </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-3 ">
+                        <label for="productName">মোটা মূল্য</label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    <div class="form-group col-md-2 ">
+                        <label for="productName">টাকা </label>
+                        <input type="text" class="form-control" name="productName" />
+                        <!-- <div *ngIf="f.submitted && productName.invalid">
+                                            <div *ngIf="productName.errors.required">
+                                                productName is required
+                                            </div>
+                                            </div> -->
+                    </div>
+                    
+                </div>
+
+
+
+                <div class="form-group">
+                   
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i>সেভ </button>
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+  
+  
+
+  
+
+  </div>

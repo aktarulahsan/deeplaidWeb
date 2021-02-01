@@ -4,14 +4,15 @@ import { HeaderComponent } from './header/header.component';
 
 import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [HeaderComponent,  SidebarComponent],
   imports: [
     CommonModule,
     RouterModule, 
     FlexLayoutModule
   ],
-  exports: [HeaderComponent],
+  exports: [HeaderComponent,SidebarComponent],
 })
 export class SharedModule { }
