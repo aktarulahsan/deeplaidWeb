@@ -24,6 +24,9 @@ import { AddCustomerComponent } from './customer/add-customer/add-customer.compo
 import { OrderComponent } from './order/order.component';
 import { AddOrdersComponent } from './order/add-orders/add-orders.component';
 import { ToastrModule } from 'ngx-toastr';
+import { BrowserModule } from '@angular/platform-browser';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+// import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [DeeplaidComponent,
@@ -36,6 +39,7 @@ import { ToastrModule } from 'ngx-toastr';
           AddOrdersComponent],
   imports: [
     FormsModule,
+    BrowserModule,
     CommonModule,
     HttpClientModule,
     RouterModule,
@@ -45,6 +49,7 @@ import { ToastrModule } from 'ngx-toastr';
     NgSelectModule,
     FontAwesomeModule,
     ToastrModule.forRoot(),
+    BsDatepickerModule,
     
   ]
 })

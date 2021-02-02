@@ -113,6 +113,11 @@ export class CustomerComponent implements OnInit {
           name: 'mobile',
         },
         {
+          title: 'জেন্ডার',
+          data: 'gender',
+          name: 'gender',
+        },
+        {
           title: 'ঠিকানা',
           data: 'address',
           name: 'address',
