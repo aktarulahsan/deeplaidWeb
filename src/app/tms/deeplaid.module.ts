@@ -26,6 +26,8 @@ import { AddOrdersComponent } from './order/add-orders/add-orders.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { AddcategoryComponent } from './setting/addcategory/addcategory.component';
+import { AddSubCatComponent } from './setting/add-sub-cat/add-sub-cat.component';
 // import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
@@ -36,7 +38,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
         DeliveryComponent, IncomplitedComponent,
          CompletedComponent, DeliveredOrderComponent,
           AddCustomerComponent, OrderComponent, 
-          AddOrdersComponent],
+          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent],
   imports: [
     FormsModule,
     BrowserModule,
