@@ -19,7 +19,8 @@ export class AddSubCatComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   title: any;
-  
+  // [items]="groupList"
+  categoryList : any;  
   sendData: any;
 
   customer: Customer = new Customer;

@@ -28,17 +28,18 @@
                 <div class="row">
                     <div class="col-sm-5 form-group">
                         <label for="groupName">পোশাকের  নাম  </label>
+                        <!-- [items]="categoryList" -->
                         <ng-select 
-                            [items]="groupList"
+                            
                             placeholder="Choose prod labe3"
                             notFoundText="No groupName found"
                             bindLabel="groupName"
                             bindValue= "groupName"
                             
-                            (change)="selectL1Item($event)"
+                         
                             name="groupName"
                            
-                            [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
+                            required>
                         </ng-select>
                     </div>
           

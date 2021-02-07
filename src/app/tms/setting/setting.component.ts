@@ -58,7 +58,7 @@ export class SettingComponent implements OnInit {
 
       ajax: {
 
-        url: `${environment.baseUrl}tms/customer/list`,
+        url: `${environment.baseUrl}tms/category/list`,
 
         type: 'GET',
 
