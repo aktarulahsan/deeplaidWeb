@@ -11,7 +11,9 @@ import { DeliveredOrderComponent } from './tms/delivered-order/delivered-order.c
 import { HomePageComponent } from './tms/home-page/home-page.component';
 import { IncomplitedComponent } from './tms/incomplited/incomplited.component';
 import { OrderComponent } from './tms/order/order.component';
+import { CategoryComponent } from './tms/setting/category/category.component';
 import { SettingComponent } from './tms/setting/setting.component';
+import { SubCategoryComponent } from './tms/setting/sub-category/sub-category.component';
  
 
 const routes: Routes = [
@@ -81,6 +83,21 @@ const routes: Routes = [
         component: OrderComponent,
      
       },
+
+      {
+        path: 'category',
+        component: CategoryComponent,
+     
+      },
+      {
+        path: 'subCategory',
+        component: SubCategoryComponent,
+     
+      },
+      
+      
+
+
     ],
   },
 ];

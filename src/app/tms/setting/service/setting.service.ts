@@ -17,7 +17,7 @@ export class SettingService {
   ) { }
   
   private END_POINT = `category`;
-  private END_POINT2 = `category`;
+  private END_POINT2 = `subCategory`;
 
   private SAVE_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/create`;
   private UPDATE_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/update`;

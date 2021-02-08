@@ -1,5 +1,5 @@
 <header class="headerTop">
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
@@ -57,78 +57,103 @@
        
       </div>
     </nav> -->
-    <div id="vut-navbar">
-        <nav class="navbar fixed-top navbar-expand-lg bg-default"><a href=""
-                class="navbar-brand"><img src="assets/images/logo.png" alt="logo" class="img-fluid"></a> <button type="button"
-                data-toggle="collapse" data-target="#mainNav" aria-controls="mainNav" aria-expanded="false"
-                aria-label="Toggle navigation" class="navbar-toggler"><span
-                    class="navbar-toggler-icon fa fa-bars"></span></button>
-            <div id="mainNav" class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                     
+  <div id="vut-navbar">
+    <nav class="navbar fixed-top navbar-expand-lg bg-default"><a href="" class="navbar-brand"><img
+          src="assets/images/logo.png" alt="logo" class="img-fluid"></a> <button type="button" data-toggle="collapse"
+        data-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"
+        class="navbar-toggler"><span class="navbar-toggler-icon fa fa-bars"></span></button>
+      <div id="mainNav" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
 
-                    <li class="nav-item dropdown menu-large">
+         
 
-                        <a [routerLink]="['/customer']" class="nav-link"><span class="icon fa fa-user "> </span>
-                            Customer</a>
-                    </li>
-                    <li class="nav-item dropdown menu-large">
 
-                        <a [routerLink]="['/setting']" class="nav-link"><span class="icon fa fa-wrench"></span>
-                            Setting</a>
-                    </li>
+          <li class="nav-item dropdown menu-large">
 
-                    <li class="nav-item dropdown menu-large">
+            <a [routerLink]="['/customer']" class="nav-link"><span class="icon fa fa-user "> </span>
+              Customer</a>
+          </li>
+          <!-- <li class="nav-item dropdown menu-large">
 
-                        <a [routerLink]="['/order']" class="nav-link"><span class="icon fa fa-sort-alpha-up-alt"></span>
-                            add Order</a>
-                    </li>
-                    
-                    <li class="nav-item dropdown menu-large">
-                        <a [routerLink]="['/incomplit']" class="nav-link"><span class="icon fa fa-list-ul"></span>
-                            incomplited Order</a>
-                    </li>
-                    <li class="nav-item dropdown menu-large">
-                        <a [routerLink]="['/completed']" class="nav-link"><span class="icon fa fa-clipboard-check"></span>
-                            completed Order</a>
-                    </li>
-                    <li class="nav-item dropdown menu-large">
-                        <a [routerLink]="['/deliveredorder']" class="nav-link"><span class="icon fa fa-truck"></span>
-                            Delivered Order</a>
-                    </li>
+            <a [routerLink]="['/setting']" class="nav-link"><span class="icon fa fa-wrench"></span>
+              Setting</a>
+          </li> -->
+          <li class="nav-item dropdown menu-large"><a href="#"
+            data-toggle="dropdown" class="dropdown-toggle nav-link"><span class="icon fa fa-wrench"></span>
+            Setting
+          </a>
+          <ul class="dropdown-menu megamenu">
+            <li class="nav-item"><a [routerLink]="['/category']"  data-toggle=""
+                class="nav-link">
+                Category
+              </a>
+              <!---->
+            </li>
+            <li class="nav-item"><a [routerLink]="['/subCategory']"  data-toggle=""
+                class="nav-link">
+                SubCategory
+              </a>
+              <!---->
+            </li>
+            <li class="nav-item"><a [routerLink]="['/']"  data-toggle=""
+                class="nav-link">
+                Measurement
+              </a>
+              <!---->
+            </li>
 
-                </ul>
-                <!-- <ul>
+          </ul>
+        </li>
+
+          <li class="nav-item dropdown menu-large">
+
+            <a [routerLink]="['/order']" class="nav-link"><span class="icon fa fa-sort-alpha-up-alt"></span>
+              add Order</a>
+          </li>
+
+          <li class="nav-item dropdown menu-large">
+            <a [routerLink]="['/incomplit']" class="nav-link"><span class="icon fa fa-list-ul"></span>
+              incomplited Order</a>
+          </li>
+          <li class="nav-item dropdown menu-large">
+            <a [routerLink]="['/completed']" class="nav-link"><span class="icon fa fa-clipboard-check"></span>
+              completed Order</a>
+          </li>
+          <li class="nav-item dropdown menu-large">
+            <a [routerLink]="['/deliveredorder']" class="nav-link"><span class="icon fa fa-truck"></span>
+              Delivered Order</a>
+          </li>
+
+        </ul>
+        <!-- <ul>
                 <li class="nav-item dropdown menu-large"><a href="https://vivasales.pihr.xyz/dashboard#" data-toggle="dropdown" class="dropdown-toggle nav-link"><span class="icon fa fa-cogs"></span>
                     Settings</a></li>
     
             </ul> -->
 
 
-                <ul class="navbar-nav ml-auto align-items-center">
-                    <li class="nav-item dropdown"><a href="javascript:;" data-toggle="dropdown"
-                            class="nav-link dropdown-toggle"><span class="username"> admin@deeplaid
-                                [<span>Admin</span>]</span> <span class="icon icon-user mr-1"></span></a>
-                        <div class="dropdown-menu"><a href=""
-                                class="dropdown-item"><i class="icon fa fa-lock"></i>Change Password
-                            </a> <a href="" class="dropdown-item"><i
-                                    class="icon fa fa-key"></i>Log Out
-                            </a></div>
-                    </li>
-                    <li id="header_notification_bar" class="nav-item dropdown"><a href="javascript:;"
-                            data-toggle="dropdown" data-close-others="false" title="Notification"
-                            class="dropdown-toggle nav-link"><span class="icon icon-bell"><span id="notificationNumber"
-                                    class="d-none notify-badge bg-warning">0</span></span></a>
-                        <div id="notifications-dropdown" class="dropdown-menu dropdown-menu-right scrollable-table">
-                            <h6 class="dropdown-header">Notifications</h6>
-                            <div class="dropdown-divider"></div> <a href="javascript:;" class="dropdown-item">No
-                                notifications
-                                available.</a>
-                        </div>
-                    </li>
-                </ul>
+        <ul class="navbar-nav ml-auto align-items-center">
+          <li class="nav-item dropdown"><a href="javascript:;" data-toggle="dropdown"
+              class="nav-link dropdown-toggle"><span class="username"> admin@deeplaid
+                [<span>Admin</span>]</span> <span class="icon icon-user mr-1"></span></a>
+            <div class="dropdown-menu"><a href="" class="dropdown-item"><i class="icon fa fa-lock"></i>Change Password
+              </a> <a href="" class="dropdown-item"><i class="icon fa fa-key"></i>Log Out
+              </a></div>
+          </li>
+          <li id="header_notification_bar" class="nav-item dropdown"><a href="javascript:;" data-toggle="dropdown"
+              data-close-others="false" title="Notification" class="dropdown-toggle nav-link"><span
+                class="icon icon-bell"><span id="notificationNumber"
+                  class="d-none notify-badge bg-warning">0</span></span></a>
+            <div id="notifications-dropdown" class="dropdown-menu dropdown-menu-right scrollable-table">
+              <h6 class="dropdown-header">Notifications</h6>
+              <div class="dropdown-divider"></div> <a href="javascript:;" class="dropdown-item">No
+                notifications
+                available.</a>
             </div>
+          </li>
+        </ul>
+      </div>
 
-        </nav>
-    </div>
+    </nav>
+  </div>
 </header>

@@ -3,9 +3,9 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
- import { SubCategoryModel } from '../model/subCategory.Model';
-import { SettingService } from '../service/setting.service';
-import { CategoryModel } from '../model/category.Model';
+ import { SubCategoryModel } from '../../model/subCategory.Model';
+import { SettingService } from '../../service/setting.service';
+import { CategoryModel } from '../../model/category.Model';
 
 @Component({
   selector: 'app-add-sub-cat',
@@ -23,7 +23,7 @@ export class AddSubCatComponent implements OnInit {
   catList: CategoryModel[];
   categoryList : any;  
   sendData: any;
-
+  isReadOnly: boolean =false;
   model: SubCategoryModel = new SubCategoryModel;
   modelId: any;
 
@@ -38,6 +38,7 @@ export class AddSubCatComponent implements OnInit {
     this.getCatList();
     // this.getProdOneList();
     if (this.sendData) {
+      this.isReadOnly = true;
       this.model = this.sendData;
       this.modelId = this.model.itemID;
     }

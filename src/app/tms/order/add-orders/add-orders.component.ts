@@ -21,6 +21,7 @@ export class AddOrdersComponent implements OnInit {
   groupList: StockGroup[];
   groupName: any;
   dtOptions: DataTables.Settings = {};
+  orderDate   : Date = new Date();
   constructor(
     public bsModalRef: BsModalRef,
     public apiService: OrderService,

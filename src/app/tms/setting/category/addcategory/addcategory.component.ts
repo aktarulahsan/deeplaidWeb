@@ -3,10 +3,10 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { Customer } from '../../customer/customer.model';
-import { CustomerService } from '../../customer/customer.service';
-import { CategoryModel } from '../model/category.Model';
-import { SettingService } from '../service/setting.service';
+import { Customer } from '../../../customer/customer.model';
+import { CustomerService } from '../../../customer/customer.service';
+import { CategoryModel } from '../../model/category.Model';
+import { SettingService } from '../../service/setting.service';
 
 @Component({
   selector: 'app-addcategory',

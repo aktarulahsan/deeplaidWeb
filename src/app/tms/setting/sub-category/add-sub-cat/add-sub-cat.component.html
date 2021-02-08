@@ -26,7 +26,7 @@
                 novalidate action="index.html">
 
                 <div class="row">
-                    <div class="col-sm-5 form-group">
+                    <div class="col-sm-4 form-group">
                         <label for="groupName">পোশাকের  নাম  </label>
                         <!-- [items]="categoryList" -->
                         <ng-select 
@@ -37,7 +37,7 @@
                                 bindLabel="cname"
                                 bindValue= "categoryId"
                                 [(ngModel)]="model.categoryId" 
-                                
+                                [disabled]="isReadOnly"
                                 name="categoryId"
                                 onselect="true"
                                 #categoryId="ngModel"
@@ -56,6 +56,17 @@
                         <div *ngIf="f.submitted && itemName.invalid">
                             <div *ngIf="itemName.errors.required">
                                 itemName is required
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group col-md-2 ">
+                        
+                        <label for="productName">মূল্য </label>
+                        <input type="text" class="form-control" name="itemAmount"
+                            [(ngModel)]="model.itemAmount" #itemAmount="ngModel" />
+                        <div *ngIf="f.submitted && itemAmount.invalid">
+                            <div *ngIf="itemAmount.errors.required">
+                                itemAmount is required
                             </div>
                         </div>
                       </div>
