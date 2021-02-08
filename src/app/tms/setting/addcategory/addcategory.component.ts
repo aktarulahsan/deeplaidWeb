@@ -5,6 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { Customer } from '../../customer/customer.model';
 import { CustomerService } from '../../customer/customer.service';
+import { CategoryModel } from '../model/category.Model';
+import { SettingService } from '../service/setting.service';
 
 @Component({
   selector: 'app-addcategory',
@@ -23,12 +25,12 @@ export class AddcategoryComponent implements OnInit {
   
   sendData: any;
 
-  customer: Customer = new Customer;
-  customerId: any;
+  categoryModel: CategoryModel = new CategoryModel;
+  categoryId: any;
 
   constructor(
     public bsModalRef: BsModalRef,
-    public apiService: CustomerService,
+    public apiService: SettingService,
     public toastr: ToastrService,
   ) { }
 
@@ -36,14 +38,14 @@ export class AddcategoryComponent implements OnInit {
     this.onClose = new Subject(); 
     // this.getProdOneList();
     if (this.sendData) {
-      this.customer = this.sendData;
-      this.customerId = this.customer.cusId;
+      this.categoryModel = this.sendData;
+      this.categoryId = this.categoryModel.categoryId;
     }
   }
 
   
   onSaveOrUpdate(form: NgForm) {
-    if (this.customerId) {
+    if (this.categoryId) {
       console.log("UPDATE",form); 
       this.updateCustomre(form);
     } else {
@@ -53,11 +55,11 @@ export class AddcategoryComponent implements OnInit {
   }
    
   createCustomre(form: NgForm): void {
-    console.log(this.customer); // print room obj
+    console.log(this.categoryModel); // print room obj
     // this.customer.ssCreator= this.token.getUsername();
     
      
-    this.apiService.save(this.customer).subscribe(
+    this.apiService.saveCat(this.categoryModel).subscribe(
       (resp) => {
         console.log('create ', resp);
         if (resp) {
@@ -76,10 +78,10 @@ export class AddcategoryComponent implements OnInit {
   }
 
   updateCustomre(form: NgForm): void {
-    console.log(this.customer); // print room obj
+    console.log(this.categoryModel); // print room obj
     // this.customer.ssModifier= this.token.getUsername();
   
-    this.apiService.update(this.customer).subscribe(
+    this.apiService.updateCat(this.categoryModel).subscribe(
       (resp) => {
         console.log('update ', resp);
         if (resp) {

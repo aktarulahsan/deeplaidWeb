@@ -98,8 +98,8 @@ export class SettingComponent implements OnInit {
 
         {
           title: 'পোশাকের  নাম',
-          data: 'customerName',
-          name: 'customerName',
+          data: 'cname',
+          name: 'cname',
         },
 
       ],
@@ -134,7 +134,7 @@ export class SettingComponent implements OnInit {
 
       ajax: {
 
-        url: `${environment.baseUrl}tms/customer/list`,
+        url: `${environment.baseUrl}tms/subCategory/list`,
 
         type: 'GET',
 
@@ -174,13 +174,18 @@ export class SettingComponent implements OnInit {
 
         {
           title: 'পোশাকের  নাম',
-          data: 'customerName',
-          name: 'customerName',
+          data: 'categoryId',
+          name: 'categoryId',
         },
         {
           title: 'পোশাকের মডেলের নাম  ',
-          data: 'customerName',
-          name: 'customerName',
+          data: 'itemName',
+          name: 'itemName',
+        },
+        {
+          title: 'পোশাকের মজুরি ',
+          data: 'itemAmount',
+          name: 'itemAmount',
         },
 
       ],
@@ -267,7 +272,7 @@ export class SettingComponent implements OnInit {
 
   addSubCategory() {
     const initialState = {
-      title: 'Add Customer ',
+      title: 'পোশাকের মডেল',
     };
     this.bsModalRef = this.modalService.show(AddSubCatComponent, {
       class: 'modal-lg',

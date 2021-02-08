@@ -3,7 +3,7 @@
 
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            কাস্টমার অ্যাড
+            {{title}}
         </h5>
         <button
         type="button"
@@ -30,16 +30,18 @@
                         <label for="groupName">পোশাকের  নাম  </label>
                         <!-- [items]="categoryList" -->
                         <ng-select 
-                            
-                            placeholder="Choose prod labe3"
-                            notFoundText="No groupName found"
-                            bindLabel="groupName"
-                            bindValue= "groupName"
-                            
-                         
-                            name="groupName"
-                           
-                            required>
+                            [items]="catList"
+                                            
+                                placeholder="Choose product code"
+                                notFoundText="Product code not found"
+                                bindLabel="cname"
+                                bindValue= "categoryId"
+                                [(ngModel)]="model.categoryId" 
+                                
+                                name="categoryId"
+                                onselect="true"
+                                #categoryId="ngModel"
+                            [ngClass]="{'invalid-input':f.submitted && categoryId.invalid}" required>
                         </ng-select>
                     </div>
           
@@ -47,18 +49,15 @@
 
                    
                     <div class="form-group col-md-6 ">
+                        
                         <label for="productName">পোশাকের মডেলের নাম </label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          name="productName"
-                       
-                        />
-                        <!-- <div *ngIf="f.submitted && productName.invalid">
-                          <div *ngIf="productName.errors.required">
-                              productName is required
-                          </div>
-                        </div> -->
+                        <input type="text" class="form-control" name="itemName"
+                            [(ngModel)]="model.itemName" #itemName="ngModel" />
+                        <div *ngIf="f.submitted && itemName.invalid">
+                            <div *ngIf="itemName.errors.required">
+                                itemName is required
+                            </div>
+                        </div>
                       </div>
            
 

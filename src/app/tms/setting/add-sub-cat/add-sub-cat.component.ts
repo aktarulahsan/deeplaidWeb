@@ -3,8 +3,9 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { Customer } from '../../customer/customer.model';
-import { CustomerService } from '../../customer/customer.service';
+ import { SubCategoryModel } from '../model/subCategory.Model';
+import { SettingService } from '../service/setting.service';
+import { CategoryModel } from '../model/category.Model';
 
 @Component({
   selector: 'app-add-sub-cat',
@@ -19,30 +20,41 @@ export class AddSubCatComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   title: any;
-  // [items]="groupList"
+  catList: CategoryModel[];
   categoryList : any;  
   sendData: any;
 
-  customer: Customer = new Customer;
-  customerId: any;
+  model: SubCategoryModel = new SubCategoryModel;
+  modelId: any;
 
   constructor(
     public bsModalRef: BsModalRef,
-    public apiService: CustomerService,
+    public apiService: SettingService,
     public toastr: ToastrService,
   ) { }
  
   ngOnInit(): void {
     this.onClose = new Subject(); 
+    this.getCatList();
     // this.getProdOneList();
     if (this.sendData) {
-      this.customer = this.sendData;
-      this.customerId = this.customer.cusId;
+      this.model = this.sendData;
+      this.modelId = this.model.itemID;
     }
   }
 
+  getCatList(){
+    this.apiService.getCatList().subscribe((data)=>{
+      
+      this.catList= data['data'];
+      console.log(this.catList); 
+    })
+    }
+
+
+
   onSaveOrUpdate(form: NgForm) {
-    if (this.customerId) {
+    if (this.modelId) {
       console.log("UPDATE",form); 
       this.update(form);
     } else {
@@ -52,11 +64,11 @@ export class AddSubCatComponent implements OnInit {
   }
    
   create(form: NgForm): void {
-    console.log(this.customer); // print room obj
+    console.log(this.model); // print room obj
     // this.customer.ssCreator= this.token.getUsername();
     
      
-    this.apiService.save(this.customer).subscribe(
+    this.apiService.saveSubCat(this.model).subscribe(
       (resp) => {
         console.log('create ', resp);
         if (resp) {
@@ -75,10 +87,10 @@ export class AddSubCatComponent implements OnInit {
   }
 
   update(form: NgForm): void {
-    console.log(this.customer); // print room obj
+    console.log(this.model); // print room obj
    
   
-    this.apiService.update(this.customer).subscribe(
+    this.apiService.updateSubCat(this.model).subscribe(
       (resp) => {
         console.log('update ', resp);
         if (resp) {
