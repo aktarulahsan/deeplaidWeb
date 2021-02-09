@@ -28,6 +28,7 @@ export class SettingService {
 
   private SAVE_SUB_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/create`;
   private UPDATE_SUB_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/update`;
+  private  SUB_CAT_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/list`;
 
 
   getCatList(): Observable<any> {
@@ -81,6 +82,11 @@ export class SettingService {
       .pipe(map((data: SubCategoryModel) => data));
   }
 
+
+  getSubCatList(): Observable<any> {
+    return this.http.get(`${this.SUB_CAT_LIST}`);
+  }
+  
   
 
 }

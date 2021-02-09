@@ -3,16 +3,19 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
- import { SubCategoryModel } from '../../model/subCategory.Model';
+import { MeasurementModel } from '../../model/measurement.Model';
+import { SubCategoryModel } from '../../model/subCategory.Model';
 import { SettingService } from '../../service/setting.service';
-import { CategoryModel } from '../../model/category.Model';
+import { MesurementService } from '../service/mesurement.service';
 
 @Component({
-  selector: 'app-add-sub-cat',
-  templateUrl: './add-sub-cat.component.html',
-  styleUrls: ['./add-sub-cat.component.css']
+  selector: 'app-add-mesurement',
+  templateUrl: './add-mesurement.component.html',
+  styleUrls: ['./add-mesurement.component.css']
 })
-export class AddSubCatComponent implements OnInit {
+export class AddMesurementComponent implements OnInit {
+
+  
   onClose: Subject<boolean>;
   form: any = {};
   isLoggedIn = false;
@@ -20,56 +23,53 @@ export class AddSubCatComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   title: any;
-  catList: CategoryModel[];
-  categoryList : any;  
+  subcatList: SubCategoryModel[];
   sendData: any;
   isReadOnly: boolean =false;
-  model: SubCategoryModel = new SubCategoryModel;
-  modelId: any;
+  measurementModel: MeasurementModel = new MeasurementModel;
+  measurementId: any;
 
   constructor(
     public bsModalRef: BsModalRef,
-    public apiService: SettingService,
+    public apiService: MesurementService,
+    public settingService: SettingService,
     public toastr: ToastrService,
   ) { }
- 
+
   ngOnInit(): void {
     this.onClose = new Subject(); 
-    this.getCatList();
-    // this.getProdOneList();
+    this.getItemList();
     if (this.sendData) {
-      this.isReadOnly = true;
-      this.model = this.sendData;
-      this.modelId = this.model.itemId;
+      this.measurementModel = this.sendData;
+      this.measurementId = this.measurementModel.measurementId;
     }
   }
 
-  getCatList(){
-    this.apiService.getCatList().subscribe((data)=>{
+  getItemList(){
+    this.settingService.getSubCatList().subscribe((data)=>{
       
-      this.catList= data['data'];
-      console.log(this.catList); 
+      this.subcatList= data['data'];
+      console.log(this.subcatList); 
     })
     }
 
-
-
+  
   onSaveOrUpdate(form: NgForm) {
-    if (this.modelId) {
+    if (this.measurementId) {
       console.log("UPDATE",form); 
-      this.update(form);
+      this.savemesurment(form);
     } else {
       console.log("CREATE",form);
-      this.create(form);
+      this.updatemesurment(form);
     } 
   }
    
-  create(form: NgForm): void {
-    console.log(this.model); // print room obj
+  savemesurment(form: NgForm): void {
+    console.log(this.measurementModel); // print room obj
     // this.customer.ssCreator= this.token.getUsername();
     
      
-    this.apiService.saveSubCat(this.model).subscribe(
+    this.apiService.savemesurment(this.measurementModel).subscribe(
       (resp) => {
         console.log('create ', resp);
         if (resp) {
@@ -87,11 +87,11 @@ export class AddSubCatComponent implements OnInit {
     );
   }
 
-  update(form: NgForm): void {
-    console.log(this.model); // print room obj
-   
+  updatemesurment(form: NgForm): void {
+    console.log(this.measurementModel); // print room obj
+    // this.customer.ssModifier= this.token.getUsername();
   
-    this.apiService.updateSubCat(this.model).subscribe(
+    this.apiService.updatemesurment(this.measurementModel).subscribe(
       (resp) => {
         console.log('update ', resp);
         if (resp) {

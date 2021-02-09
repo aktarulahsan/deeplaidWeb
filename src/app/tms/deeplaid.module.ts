@@ -30,6 +30,8 @@ import { AddcategoryComponent } from './setting/category/addcategory/addcategory
 import { AddSubCatComponent } from './setting/sub-category/add-sub-cat/add-sub-cat.component';
 import { CategoryComponent } from './setting/category/category.component';
 import { SubCategoryComponent } from './setting/sub-category/sub-category.component';
+import { MeasurementComponent } from './setting/measurement/measurement.component';
+import { AddMesurementComponent } from './setting/measurement/add-mesurement/add-mesurement.component';
 // import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
@@ -40,7 +42,7 @@ import { SubCategoryComponent } from './setting/sub-category/sub-category.compon
         DeliveryComponent, IncomplitedComponent,
          CompletedComponent, DeliveredOrderComponent,
           AddCustomerComponent, OrderComponent, 
-          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent],
+          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent],
   imports: [
     FormsModule,
     BrowserModule,

@@ -1,7 +1,7 @@
 
 export class SubCategoryModel {
    
-    itemID: number;
+    itemId: number;
     categoryId: number;
     itemName: string;
     itemAmount: number;
