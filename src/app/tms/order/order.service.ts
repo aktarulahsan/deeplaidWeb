@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,11 +14,17 @@ export class OrderService {
 
   private SUPPLIER_END_POINT = `supplier`;
 
+
   private SAVE_SUPPLIER= `${environment.baseUrl}${environment.orderApiUrl}/${this.SUPPLIER_END_POINT}/create`;
   private UPDATE_SUPPLIER = `${environment.baseUrl}${environment.orderApiUrl}/${this.SUPPLIER_END_POINT}/update`;
   private  SUPPLIER_LIST = `${environment.baseUrl}${environment.orderApiUrl}/${this.SUPPLIER_END_POINT}/list`;
   private FIND_BY_ID_SUPPLIER = `${environment.baseUrl}${environment.orderApiUrl}/${this.SUPPLIER_END_POINT}/findById`;
 
+
+
+  private END_POINT = `measurement`;
+
+  private FIND_DETAILS_BY_ITEM_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findDetailsById`;
   
 
   // getsupplierList(): Observable<any> {
@@ -39,6 +46,21 @@ export class OrderService {
   //   // return this.http.get(this.FIND_BY_ID_SUPPLIER, { params }).pipe(
   //   //   map((data: any) => data.items
   //   //   ));
+  // }
+
+
+  getMesurementlistByItemId(data) {
+    const params = new HttpParams().append('itemId', data); 
+    return this.http.get(this.FIND_DETAILS_BY_ITEM_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
+
+  // findOrderlist(data) {
+  //   const params = new HttpParams().append('id', data); 
+  //   return this.http.get(this.FIND_BY_ID_ORDER, { params }).pipe(
+  //     map((data: any) => data.items
+  //     ));
   // }
 
 }

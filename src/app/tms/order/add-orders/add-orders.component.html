@@ -112,12 +112,34 @@
                   </div>
                 </div> -->
                     </div>
+
+
+
                     <div class="col-sm-4 form-group">
                         <label for="groupName">পোশাকের মডেল </label>
-                        <ng-select [items]="groupList" placeholder="Choose prod labe3" notFoundText="No groupName found"
+
+                        <ng-select 
+                        [items]="subcatList"
+                                    
+                        placeholder="Choose product code"
+                        notFoundText="Product code not found"
+                        bindLabel="itemName"
+                        bindValue= "itemId"
+                      
+                         
+                        name="itemId"
+                        (change)="selectL1Item($event)"
+                        onselect="true"
+                         
+                      required>
+                </ng-select>
+
+
+
+                        <!-- <ng-select [items]="groupList" placeholder="Choose prod labe3" notFoundText="No groupName found"
                             bindLabel="groupName" bindValue="groupName" (change)="selectL1Item($event)" name="groupName"
                             [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
-                        </ng-select>
+                        </ng-select> -->
                     </div>
                    <!-- <div class="col-sm-3 form-group">
               <label for="groupName">চালান নাম্বার </label>
@@ -137,6 +159,38 @@
 
                 </div>
 
+                <!-- <div class="departmentArea">
+                    <table>
+                      <tbody>
+                        <tr *ngFor= "let item of mesurementList">
+                            
+                          <th>{{item.measurementName}}:</th>
+                          <td colspan="1"><input type="text" class="form-control" placeholder="Address"></td>
+                        </tr>
+                      
+                      </tbody>
+                    </table>
+                  </div> -->
+                <!-- <div fxLayout="row">
+                    <div fxFlex="65">
+                        <div class="form-group col-md-2 " *ngFor= "let item of mesurementList">
+                            <label >{{item.measurementName}}</label>
+                            <input type="text" class="form-control" maxlength="4" name="productName" />
+                        </div>
+
+                    </div>
+                    
+                      
+
+                </div> -->
+                <div class="row bg-light" >
+                    <div class="col" *ngFor="let item of mesurementList">
+                        <div class="form-group col-md-3  ">
+                            <label >{{item.measurementName}}</label>
+                            <input type="text" class="form-control" maxlength="4" name="productName" />
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row">
                 

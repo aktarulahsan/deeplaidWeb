@@ -57,10 +57,10 @@ export class AddMesurementComponent implements OnInit {
   onSaveOrUpdate(form: NgForm) {
     if (this.measurementId) {
       console.log("UPDATE",form); 
-      this.savemesurment(form);
+      this.updatemesurment(form);
     } else {
       console.log("CREATE",form);
-      this.updatemesurment(form);
+      this.savemesurment(form);
     } 
   }
    

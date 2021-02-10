@@ -3,8 +3,12 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { OrderService } from 'src/app/service/order.service';
+ 
 import { StockGroup } from '../../model/stockGroup.Model';
+import { MeasurementModel } from '../../setting/model/measurement.Model';
+import { SubCategoryModel } from '../../setting/model/subCategory.Model';
+import { SettingService } from '../../setting/service/setting.service';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-add-orders',
@@ -22,9 +26,14 @@ export class AddOrdersComponent implements OnInit {
   groupName: any;
   dtOptions: DataTables.Settings = {};
   orderDate   : Date = new Date();
+  mesurementList: MeasurementModel[];
+  subcatList: SubCategoryModel[];
+
+  isReadOnly: boolean =false;
   constructor(
     public bsModalRef: BsModalRef,
     public apiService: OrderService,
+    public settingService: SettingService,
     public toastr: ToastrService,
   ) { }
 
@@ -33,8 +42,38 @@ export class AddOrdersComponent implements OnInit {
 
     this.onClose = new Subject();
     // this.getgList();   
+    this.getItemList();
     // this.getProdoneList();
   }
+
+  getmesurementList(itemId):any{
+    console.log(itemId); 
+    // this.apiService.getMesurementlistByItemId(itemId).subscribe((data)=>{
+      
+    //   this.mesurementList= data['data'];
+    //   console.log(this.mesurementList); 
+    // })
+
+    this.apiService.getMesurementlistByItemId(itemId).subscribe(data=>{
+      this.mesurementList= data;
+      console.log(this.mesurementList); 
+      // this.orderDetailList= data;
+      // this.getGrandTotal();
+      // console.log(this.prodTwoList);
+    })
+
+
+    }
+
+    
+
+    getItemList(){
+      this.settingService.getSubCatList().subscribe((data)=>{
+        
+        this.subcatList= data['data'];
+        console.log(this.subcatList); 
+      })
+      }
 
   getgList() {
     // this.apiService.getProductGList().subscribe((data) => {
@@ -64,6 +103,8 @@ export class AddOrdersComponent implements OnInit {
   }
 
   selectL1Item(getItem):any{  
+    console.log(getItem); 
+    this.getmesurementList(getItem.itemId);
     // console.log('data list', getItem);
     // if(getItem !=null){
     //     this.model.productName = getItem.productname;
