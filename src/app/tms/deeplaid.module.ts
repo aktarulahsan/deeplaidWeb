@@ -33,7 +33,7 @@ import { SubCategoryComponent } from './setting/sub-category/sub-category.compon
 import { MeasurementComponent } from './setting/measurement/measurement.component';
 import { AddMesurementComponent } from './setting/measurement/add-mesurement/add-mesurement.component';
 // import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
@@ -55,6 +55,7 @@ import { AddMesurementComponent } from './setting/measurement/add-mesurement/add
     NgSelectModule,
     FontAwesomeModule,
     ToastrModule.forRoot(),
+    TabsModule.forRoot(),
     BsDatepickerModule,
     
   ]

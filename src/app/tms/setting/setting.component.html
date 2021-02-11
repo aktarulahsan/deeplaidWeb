@@ -1,134 +1,58 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="all_content_wrapper card">
-        <!-- <div id="apgeTitle">Employee List</div> -->
-        <div class="allInner">
-          <div class="row">
-            <div class="col-lg-12 paddin4">
-              <!-- crudArea -->
-              <div class="card-header" style="background:  #194771; color: white;" >
-                <div class="row">
-                  <div class="col-md-8"><h4>পোশাকের নাম  </h4></div>
-                  <div class="col-md-4" style="position: relative;">
-                    <div class="btnAllRow">
-                      <button
-                        title="Add Role"
-                        style="margin: 2px;"
-                        class="btn btn-success"
-                        
-                        (click)= "addCategory()"
-                      >
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i
-                        >&nbsp;Add
-                      </button>
-                      <button
-                        title="Edit Role"
-                        style="margin: 2px;"
-                        data-toggle="modal"
-                        data-target="#edit"
-                        class="btn btn-warning"
-                        (click)= "updateCategory()"
-                        
-                      >
-                        <i class="fas fa-edit" aria-hidden="true"></i>&nbsp;Edit
-                      </button>
-                      <button
-                        title="Delete Role"
-                        style="margin: 2px;"
-                        data-toggle="modal"
-                        data-target="#deleted"
-                        class="btn btn-danger"
-                      >
-                        <i class="fas fa-trash-alt" aria-hidden="true"></i
-                        >&nbsp;Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+<!-- <div class="row marginRightAll card"> -->
+  <div class="col-md-12 padding-left-right">
+    <div class="all_content_wrapper all_content_wrapper_sample_collection">
+      <div class="allInner">
+          <div class="tabArea registartionTab ">
 
-              <div class="employeeTable selectedTable">
-                <div class="table-responsive">
-                  <table
-                    datatable
-                    [dtOptions]="dtOptions"
-                    [dtTrigger]="dtTrigger"
-                    class="row-border hover"
-                  ></table>
-                </div>
-              </div>
+            <tabset #tabset>
+                <tab *ngFor="let tabz of tabs"
+                      [heading]="tabz.title"
+                      [active]="tabz.active"
+                      (selectTab)="tabz.active = true; tabz.initiated = true;onSelect(tabz)"
+                      (click)="updateChildVisibility(tab.tabId)"
+                      (deselect)="tabz.active = true"
+                      [disabled]="tabz.disabled"
+                      [customClass]="tabz.customClass">
+
+                      <ng-container *ngIf="tabz.content == 'category' && tabz.initiated">
+                          <app-category></app-category>
+                      </ng-container>                   
+                      <ng-container *ngIf="tabz.content == 'subCategory' && tabz.initiated">
+                     
+                        <app-sub-category (selectedTabEmitter)="getSelectedTab($event)"></app-sub-category>
+                      </ng-container>
+                      <ng-container *ngIf="tabz.content == 'measurement' && tabz.initiated">
+                          <app-measurement></app-measurement>
+                      </ng-container>
+                </tab>
+              </tabset>
+
+          <!-- <ul class="nav nav-tabs nav-tabs2">
+            <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#collection">Collection</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#pending">Pending</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#collected">Collected</a> </li>
+            <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#report">Report</a> </li>
+          </ul>
+
+          <div class="tab-content">
+
+            <div id="collection" class="tab-pane active">
+              <app-category></app-category>
             </div>
-          </div>
+
+            <div id="pending" class="tab-pane fade">
+              <app-sub-category></app-sub-category>
+            </div>
+
+            <div id="collected" class="tab-pane fade">
+              <app-measurement></app-measurement>
+            </div>
+ 
+
+          </div> -->
+
         </div>
       </div>
     </div>
   </div>
-
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="all_content_wrapper card">
-        <!-- <div id="apgeTitle">Employee List</div> -->
-        <div class="allInner">
-          <div class="row">
-            <div class="col-lg-12 paddin4">
-              <!-- crudArea -->
-              <div class="card-header" style="background:  #194771; color: white;" >
-                <div class="row">
-                  <div class="col-md-8"><h4>পোশাকের মডেলের নাম </h4></div>
-                  <div class="col-md-4" style="position: relative;">
-                    <div class="btnAllRow">
-                      <button
-                        title="Add Role"
-                        style="margin: 2px;"
-                        class="btn btn-success"
-                        
-                        (click)= "addSubCategory()"
-                      >
-                        <i class="fa fa-plus-circle" aria-hidden="true"></i
-                        >&nbsp;Add
-                      </button>
-                      <button
-                        title="Edit Role"
-                        style="margin: 2px;"
-                        data-toggle="modal"
-                        data-target="#edit"
-                        class="btn btn-warning"
-                        (click)= "updateSubCategory()"
-                        
-                      >
-                        <i class="fas fa-edit" aria-hidden="true"></i>&nbsp;Edit
-                      </button>
-                      <button
-                        title="Delete Role"
-                        style="margin: 2px;"
-                        data-toggle="modal"
-                        data-target="#deleted"
-                        class="btn btn-danger"
-                      >
-                        <i class="fas fa-trash-alt" aria-hidden="true"></i
-                        >&nbsp;Delete
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="employeeTable selectedTable">
-                <div class="table-responsive">
-                  <table
-                    datatable
-                    [dtOptions]="dtOptionsSub"
-                    [dtTrigger]="dtTrigger"
-                    class="row-border hover"
-                  ></table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- </div> -->

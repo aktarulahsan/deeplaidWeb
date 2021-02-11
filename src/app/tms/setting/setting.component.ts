@@ -10,7 +10,8 @@ import { environment } from 'src/environments/environment';
 import { AddcategoryComponent } from './category/addcategory/addcategory.component';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AddSubCatComponent } from './sub-category/add-sub-cat/add-sub-cat.component';
-
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
+ 
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -18,7 +19,11 @@ import { AddSubCatComponent } from './sub-category/add-sub-cat/add-sub-cat.compo
 })
 export class SettingComponent implements OnInit {
 
-  @ViewChild(DataTableDirective, { static: false })
+  // @ViewChild(DataTableDirective, { static: false })
+  @ViewChild('tabset') tabset: TabsetComponent;
+  // @ViewChild(CategoryComponent) private pendingComponent: CategoryComponent;
+  // @ViewChild(SubCategoryComponent) private sabcategory: SubCategoryComponent;
+  // @ViewChild(MeasurementComponent) private measurement: MeasurementComponent;
   dtElement: DataTableDirective;
   dtOptions: any = {};
   dtOptionsSub: any = {};
@@ -27,6 +32,12 @@ export class SettingComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   bsModalRef: any;
 
+  tabs: any[] = [
+    { title: 'category',tabId: 1, content: 'category', initiated : true, active: true },
+    { title: 'subCategory',tabId: 2, content: 'subCategory', initiated : false,  active: false },
+    { title: 'measurement',tabId: 3, content: 'measurement', initiated : false, active: false }
+    // { title: 'Report', content: 'report', initiated : false, active: false}
+  ];
  
   constructor(
     private modalService: BsModalService,
@@ -39,6 +50,28 @@ export class SettingComponent implements OnInit {
     this.showgridCat();
 
   }
+
+
+  // On select tab handler
+  onSelect(data: any): void {
+    console.log('Pathology Sample Pending emitting obj');
+    if(data.content == "pending"){
+     
+    }
+    console.log('Tabset tabs:',data);
+  }
+
+  getSelectedTab(selectedTabId:number): void{
+    console.log('Pathology Sample Pending emitting obj',selectedTabId);
+    this.selectTab(selectedTabId);
+  }
+
+  selectTab(id){
+    this.tabset.tabs[id].active = true;
+  }
+
+
+
 
   public data = [
     { tc: 'পাঞ্জাবী   ', doctorname: 'হুজুর  ' },

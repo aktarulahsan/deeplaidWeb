@@ -94,8 +94,8 @@ export class SubCategoryComponent implements OnInit {
 
         {
           title: 'পোশাকের  আইডি ',
-          data: 'itemID',
-          name: 'itemID',
+          data: 'itemId',
+          name: 'itemId',
         },
 
         {
