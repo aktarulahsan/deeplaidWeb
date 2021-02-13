@@ -34,6 +34,8 @@ import { MeasurementComponent } from './setting/measurement/measurement.componen
 import { AddMesurementComponent } from './setting/measurement/add-mesurement/add-mesurement.component';
 // import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ItemModelComponent } from './setting/item-model/item-model.component';
+import { AddItemModelComponent } from './setting/item-model/add-item-model/add-item-model.component';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
@@ -42,7 +44,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
         DeliveryComponent, IncomplitedComponent,
          CompletedComponent, DeliveredOrderComponent,
           AddCustomerComponent, OrderComponent, 
-          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent],
+          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent],
   imports: [
     FormsModule,
     BrowserModule,
