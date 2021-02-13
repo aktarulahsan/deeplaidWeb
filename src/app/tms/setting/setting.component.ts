@@ -35,7 +35,8 @@ export class SettingComponent implements OnInit {
   tabs: any[] = [
     { title: 'category',tabId: 1, content: 'category', initiated : true, active: true },
     { title: 'subCategory',tabId: 2, content: 'subCategory', initiated : false,  active: false },
-    { title: 'measurement',tabId: 3, content: 'measurement', initiated : false, active: false }
+    { title: 'measurement',tabId: 3, content: 'measurement', initiated : false, active: false },
+    { title: 'itemModel',tabId: 4, content: 'itemModel', initiated : false, active: false }
     // { title: 'Report', content: 'report', initiated : false, active: false}
   ];
  

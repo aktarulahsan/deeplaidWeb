@@ -1,1 +1,94 @@
-<p>add-item-model works!</p>
+<div class="modal-content">
+
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+            {{title}}
+        </h5>
+        <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="bsModalRef.hide()"
+      >
+        <span>&times;</span>
+      </button>
+    </div>
+
+
+
+
+    <div class="modal-body crudForm">
+        <div class="persoanlInfoArea">
+
+            <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm"
+                novalidate action="index.html">
+
+                <div class="row">
+                    <div class="col-sm-4 form-group">
+                        <label for="itemId">পোশাকের  নাম  </label>
+                        <!-- [items]="categoryList" -->
+                        <ng-select 
+                            [items]="catList"
+                                            
+                                placeholder="Choose product code"
+                                notFoundText="Product code not found"
+                                bindLabel="itemName"
+                                bindValue= "itemId"
+                                [(ngModel)]="model.itemId" 
+                                [disabled]="isReadOnly"
+                                name="itemId"
+                                onselect="true"
+                                #itemId="ngModel"
+                            [ngClass]="{'invalid-input':f.submitted && itemId.invalid}" required>
+                        </ng-select>
+                    </div>
+          
+                   
+
+                   
+                    <div class="form-group col-md-6 ">
+                        
+                        <label for="modelName">পোশাকের মডেলের নাম </label>
+                        <input type="text" class="form-control" name="modelName"
+                            [(ngModel)]="model.modelName" #modelName="ngModel" />
+                        <div *ngIf="f.submitted && modelName.invalid">
+                            <div *ngIf="modelName.errors.required">
+                                modelName is required
+                            </div>
+                        </div>
+                      </div>
+                      <!-- <div class="form-group col-md-2 ">
+                        
+                        <label for="productName">মূল্য </label>
+                        <input type="text" class="form-control" name="itemAmount"
+                            [(ngModel)]="model.itemAmount" #itemAmount="ngModel" />
+                        <div *ngIf="f.submitted && itemAmount.invalid">
+                            <div *ngIf="itemAmount.errors.required">
+                                itemAmount is required
+                            </div>
+                        </div>
+                      </div> -->
+           
+
+                </div>
+                
+
+                <div class="form-group">
+            
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i>  সেভ </button>
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+ 
+
+</div>

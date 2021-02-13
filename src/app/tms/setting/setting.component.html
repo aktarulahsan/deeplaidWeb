@@ -24,6 +24,9 @@
                       <ng-container *ngIf="tabz.content == 'measurement' && tabz.initiated">
                           <app-measurement></app-measurement>
                       </ng-container>
+                      <ng-container *ngIf="tabz.content == 'itemModel' && tabz.initiated">
+                        <app-item-model></app-item-model>
+                    </ng-container>
                 </tab>
               </tabset>
 

@@ -3,8 +3,14 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { Customer } from '../../customer/customer.model';
+import { CustomerService } from '../../customer/customer.service';
+import { OrderModel } from '../../model/order.Model';
+import { OrderDetailsModel } from '../../model/orderDetails.Model';
  
 import { StockGroup } from '../../model/stockGroup.Model';
+import { CategoryModel } from '../../setting/model/category.Model';
+import { ItemEntity } from '../../setting/model/itemEntity.Model';
 import { MeasurementModel } from '../../setting/model/measurement.Model';
 import { SubCategoryModel } from '../../setting/model/subCategory.Model';
 import { SettingService } from '../../setting/service/setting.service';
@@ -27,13 +33,22 @@ export class AddOrdersComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   orderDate   : Date = new Date();
   mesurementList: MeasurementModel[];
+  catList: CategoryModel[];
   subcatList: SubCategoryModel[];
+  itemEntityList: ItemEntity[];
+  customerList: Customer[];
+  selected: any[]=new Array();
+  orderModel: OrderModel= new OrderModel();
+  customer: Customer= new Customer();
+
+  orderDetailsModel: OrderDetailsModel = new OrderDetailsModel();
 
   isReadOnly: boolean =false;
   constructor(
     public bsModalRef: BsModalRef,
     public apiService: OrderService,
     public settingService: SettingService,
+    public customerService: CustomerService,
     public toastr: ToastrService,
   ) { }
 
@@ -42,7 +57,11 @@ export class AddOrdersComponent implements OnInit {
 
     this.onClose = new Subject();
     // this.getgList();   
+    this.getCatList();
     this.getItemList();
+    this. getItemModelList();
+    this.getCustomerList();
+
     // this.getProdoneList();
   }
 
@@ -65,7 +84,21 @@ export class AddOrdersComponent implements OnInit {
 
     }
 
-    
+
+    getCustomerList(){
+      this.customerService.getCustomerList().subscribe((data)=>{
+        
+        this.customerList= data['data'];
+        console.log(this.customerList); 
+      })
+      }
+      getCatList(){
+        this.settingService.getCatList().subscribe((data)=>{
+          
+          this.catList= data['data'];
+          console.log(this.catList); 
+        })
+        }
 
     getItemList(){
       this.settingService.getSubCatList().subscribe((data)=>{
@@ -74,6 +107,15 @@ export class AddOrdersComponent implements OnInit {
         console.log(this.subcatList); 
       })
       }
+
+      getItemModelList(){
+        this.settingService.getSubItemModel().subscribe((data)=>{
+          
+          this.itemEntityList= data['data'];
+          console.log(this.itemEntityList); 
+        })
+        }
+    
 
   getgList() {
     // this.apiService.getProductGList().subscribe((data) => {
@@ -93,8 +135,11 @@ export class AddOrdersComponent implements OnInit {
 
   
   onSaveOrUpdate(form: NgForm) {
+
+
+
     // if (this.supplierid) {
-    //   console.log("UPDATE",form); 
+      console.log("UPDATE",this.mesurementList); 
     //   this.updateSupplier(form);
     // } else {
     //   console.log("CREATE",form);
@@ -114,6 +159,26 @@ export class AddOrdersComponent implements OnInit {
     // }
   }
 
+  selectCategory(category):any{
+    console.log(category); 
+    this.settingService.findByCategoryid(category.categoryId).subscribe(data=>{
+      this.subcatList= data;
+       
+    })
+
+  }
+
+
+  selectCustomer(customer):any{  
+    console.log(customer); 
+    this.customer = customer;
+
+    if(customer !=null){
+        this.orderModel.customerCode = customer.cusId;
+        
+       
+    }
+  }
 
 
   // createSupplier(form: NgForm): void {

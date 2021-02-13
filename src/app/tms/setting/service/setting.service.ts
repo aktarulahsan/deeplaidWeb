@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CategoryModel } from '../model/category.Model';
 import { SubCategoryModel } from '../model/subCategory.Model';
+import { ItemEntity } from '../model/itemEntity.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class SettingService {
   
   private END_POINT = `category`;
   private END_POINT2 = `subCategory`;
+  private END_POINT3 = `itemModel`;
 
   private SAVE_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/create`;
   private UPDATE_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/update`;
@@ -29,6 +31,12 @@ export class SettingService {
   private SAVE_SUB_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/create`;
   private UPDATE_SUB_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/update`;
   private  SUB_CAT_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/list`;
+  private FIND_BY_CAT_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/findByCategoryId`;
+
+
+  private SAVE_ITEM_MODEL= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT3}/create`;
+  private UPDATE_ITEM_MODEL = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT3}/update`;
+  private  SUB_ITEM_MODEL_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT3}/list`;
 
 
   getCatList(): Observable<any> {
@@ -86,7 +94,33 @@ export class SettingService {
   getSubCatList(): Observable<any> {
     return this.http.get(`${this.SUB_CAT_LIST}`);
   }
+
+  findByCategoryid(data) {
+    const params = new HttpParams().append('categoryId', data); 
+    return this.http.get(this.FIND_BY_CAT_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
   
   
+
+
+
+  saveItemModel(data: ItemEntity): Observable<ItemEntity> {
+    return this.http
+      .post<ItemEntity>(this.SAVE_ITEM_MODEL, data)
+      .pipe(map((data: ItemEntity) => data));
+  }
+
+  
+  updateItemModel(data: ItemEntity): Observable<ItemEntity> {
+    return this.http
+      .put<ItemEntity>(this.SUB_ITEM_MODEL_LIST, data)
+      .pipe(map((data: ItemEntity) => data));
+  }
+
+  getSubItemModel(): Observable<any> {
+    return this.http.get(`${this.SUB_ITEM_MODEL_LIST}`);
+  }
 
 }

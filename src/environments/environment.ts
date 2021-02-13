@@ -11,10 +11,13 @@
 export const environment = {
   production: false,
     baseUrl: 'http://' + window.location.hostname + ':'+'8081/', 
-  
+    authApiUrl: 'auth-api',
  orderApiUrl: 'tms',
  tmsApiUrl: 'tms',
 };
+
+
+ 
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -26,17 +26,17 @@ export class CustomerService {
   //   private endpoint: string,
   //   private serializer: Serializer) { }
 
-  private ORDER_END_POINT = `customer`;
+  private CUSTOMER_END_POINT = `customer`;
 
-  private SAVE_ORDER= `${environment.baseUrl}${environment.orderApiUrl}/${this.ORDER_END_POINT}/create`;
-  private UPDATE_ORDER = `${environment.baseUrl}${environment.orderApiUrl}/${this.ORDER_END_POINT}/update`;
-  private  ORDER_LIST = `${environment.baseUrl}${environment.orderApiUrl}/${this.ORDER_END_POINT}/list`;
-  private FIND_BY_ID_ORDER = `${environment.baseUrl}${environment.orderApiUrl}/${this.ORDER_END_POINT}/findById`;
-  private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.orderApiUrl}/${this.ORDER_END_POINT}/findDetailsById`;
+  private SAVE_CUSTOMER= `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/create`;
+  private UPDATE_CUSTOMER = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/update`;
+  private  CUSTOMER_LIST = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/list`;
+  private FIND_BY_ID_CUSTOMER = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/findById`;
+  private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/findDetailsById`;
 
 
-  getBranchList(): Observable<any> {
-    return this.http.get(`${this.ORDER_LIST}`);
+  getCustomerList(): Observable<any> {
+    return this.http.get(`${this.CUSTOMER_LIST}`);
   }
   
   // save(data: Customer): Observable<Customer> {
@@ -47,7 +47,7 @@ export class CustomerService {
 
   save(data: Customer): Observable<Customer> {
     return this.http
-      .post<Customer>(this.SAVE_ORDER, data)
+      .post<Customer>(this.SAVE_CUSTOMER, data)
       .pipe(map((data: Customer) => data));
   }
 
@@ -59,19 +59,19 @@ export class CustomerService {
 
   update(data: Customer): Observable<Customer> {
     return this.http
-      .put<Customer>(this.UPDATE_ORDER, data)
+      .put<Customer>(this.UPDATE_CUSTOMER, data)
       .pipe(map((data: Customer) => data));
   }
 
   findOrderlist(data) {
     const params = new HttpParams().append('id', data); 
-    return this.http.get(this.FIND_BY_ID_ORDER, { params }).pipe(
+    return this.http.get(this.FIND_BY_ID_CUSTOMER, { params }).pipe(
       map((data: any) => data.items
       ));
   }
 
   checkOrderID(orderId: any) {
-    return this.http.get<any>(`${this.FIND_BY_ID_ORDER}`, {
+    return this.http.get<any>(`${this.FIND_BY_ID_CUSTOMER}`, {
       params: new HttpParams().set('orderId', orderId)
     })
   }
