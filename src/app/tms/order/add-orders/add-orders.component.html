@@ -1,7 +1,7 @@
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
-            কাস্টমার তথ্য
+            অ্যাড অর্ডার
         </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="bsModalRef.hide()">
             <span>&times;</span>
@@ -15,22 +15,7 @@
                 novalidate action="index.html">
 
                 <div class="row">
-                    <!-- <div class="col-sm-3 form-group">
-              <label for="groupName">কাস্টমার কোড </label>
-              <ng-select 
-                  [items]="groupList"
-                  placeholder="Choose prod labe3"
-                  notFoundText="No groupName found"
-                  bindLabel="groupName"
-                  bindValue= "groupName"
-                  
-                  (change)="selectL1Item($event)"
-                  name="groupName"
-                 
-                  [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
-              </ng-select>
-          </div> -->
-
+         
                     
                     <div class="col-sm-4 form-group">
                         <label for="groupName">কাস্টমার কোড </label>
@@ -77,7 +62,22 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="qty">অর্ডার ডেট </label>
-                        <input type="date" class="form-control" name="orderDate" required />
+                        <input type="text" 
+                        class="form-control datePicker" 
+                        placeholder="Select Date (DD-MM-YYYY)"      
+                        bsDatepicker
+                        [(ngModel)]="orderModel.orderDate"
+                        [maxDate]="maxDate"
+                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                        #orderDate="ngModel"
+                        name="orderDate"
+                        required/>
+
+
+
+
+
+                        <!-- <input type="date" class="form-control" max="maxDate" name="orderDate" required /> -->
                         <!-- <div *ngIf="f.submitted && qty.invalid">
                   <div *ngIf="qty.errors.required">
                     qty Id is required
@@ -123,48 +123,11 @@
                             (change)="selectL1Item($event)" onselect="true" required>
                         </ng-select>
                     </div>
-                    <!-- <div class="col-sm-3 form-group">
-              <label for="groupName">চালান নাম্বার </label>
-              <ng-select 
-                  [items]="groupList"
-                  placeholder="Choose prod labe3"
-                  notFoundText="No groupName found"
-                  bindLabel="groupName"
-                  bindValue= "groupName"
-                  
-                  (change)="selectL1Item($event)"
-                  name="groupName"
-                 
-                  [ngClass]="{'invalid-input':f.submitted && groupName.invalid}" required>
-              </ng-select>
-          </div> -->
+           
 
                 </div>
 
-                <!-- <div class="departmentArea">
-                    <table>
-                      <tbody>
-                        <tr *ngFor= "let item of mesurementList">
-                            
-                          <th>{{item.measurementName}}:</th>
-                          <td colspan="1"><input type="text" class="form-control" placeholder="Address"></td>
-                        </tr>
-                      
-                      </tbody>
-                    </table>
-                  </div> -->
-                <!-- <div fxLayout="row">
-                    <div fxFlex="65">
-                        <div class="form-group col-md-2 " *ngFor= "let item of mesurementList">
-                            <label >{{item.measurementName}}</label>
-                            <input type="text" class="form-control" maxlength="4" name="productName" />
-                        </div>
-
-                    </div>
-                    
-                      
-
-                </div> -->
+           
                 <div class="row bg-light">
                     <div class="col-md-2" *ngFor="let item of mesurementList">
                         <div class="form-group">
@@ -180,7 +143,7 @@
                     <div class="form-group col-md-8">
                         <label for="productName">  কাজের মডেল </label>
                         <ng-select bindLabel="name" placeholder="Select item" appendTo="body" multiple="true"
-                            [searchable]="true" [clearable]="true"   [(ngModel)]="selected" [ngModelOptions]="{standalone: true}">
+                            [searchable]="true" [clearable]="true"   [(ngModel)]="orderModel.designModel" [ngModelOptions]="{standalone: true}">
                             <ng-option [value]="item.itemModelId" [disabled]="item.disabled"
                                 *ngFor="let item of itemEntityList">
 
@@ -198,17 +161,26 @@
 
                     <div class="form-group col-md-3 ">
                         <label for="productName">ডেলিভারী তারিখ </label>
-
-                        <input type="date" class="form-control" name="deliveryDate" required />
-                        <!-- <div *ngIf="f.submitted && productName.invalid">
-                                            <div *ngIf="productName.errors.required">
-                                                productName is required
+                        <input type="text" 
+                        class="form-control datePicker" 
+                        placeholder="Select Date (DD-MM-YYYY)"      
+                        bsDatepicker
+                        [(ngModel)]="orderModel.deliveryDate"
+                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                        #deliveryDate="ngModel"
+                        name="deliveryDate"
+                        required/>
+                     
+                        <div *ngIf="f.submitted && deliveryDate.invalid">
+                                            <div *ngIf="deliveryDate.errors.required">
+                                                deliveryDate is required
                                             </div>
-                                            </div> -->
+                                            </div>
                     </div>
                     <div class="form-group col-md-2 ">
                         <label for="productName">মূল্য </label>
-                        <input type="text" class="form-control" name="productName" />
+                        <input type="number" readonly class="form-control" bindLabel="orderAccountDetails.itemRate" [(ngModel)]="orderAccountDetails.itemRate" name="itemRate" />
+                        <!-- <input type="text" class="form-control" name="productName" /> -->
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                                             <div *ngIf="productName.errors.required">
                                                 productName is required
@@ -219,7 +191,8 @@
                     </div>
                     <div class="form-group col-md-2 ">
                         <label for="productName">পরিমান </label>
-                        <input type="text" class="form-control" name="productName" />
+                        <input type="number" class="form-control" bindLabel="orderAccountDetails.qty" (input)="getTotal()" [(ngModel)]="orderAccountDetails.qty" name="qty" />
+                         
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                                             <div *ngIf="productName.errors.required">
                                                 productName is required
@@ -228,22 +201,16 @@
                     </div>
                     <div class="form-group col-md-3 ">
                         <label for="productName">মোটা মূল্য</label>
-                        <input type="text" class="form-control" name="productName" />
+                        
+                        <input type="number" readonly class="form-control"     bindLabel="orderAccountDetails.itemTotalAmount" [(ngModel)]="orderAccountDetails.itemTotalAmount" name="itemTotalAmount" />
+                         
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                                             <div *ngIf="productName.errors.required">
                                                 productName is required
                                             </div>
                                             </div> -->
                     </div>
-                    <div class="form-group col-md-2 ">
-                        <label for="productName">টাকা </label>
-                        <input type="text" class="form-control" name="productName" />
-                        <!-- <div *ngIf="f.submitted && productName.invalid">
-                                            <div *ngIf="productName.errors.required">
-                                                productName is required
-                                            </div>
-                                            </div> -->
-                    </div>
+                   
 
                 </div>
 

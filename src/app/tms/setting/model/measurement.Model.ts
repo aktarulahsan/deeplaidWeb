@@ -7,7 +7,7 @@ export class MeasurementModel {
     measurementId: number;
     itemId: number;
     measurementName:string;
-    measurementValue:number;
+    measurementValue:number; 
     status: number;
 
 }

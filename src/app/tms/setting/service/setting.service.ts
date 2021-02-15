@@ -17,7 +17,7 @@ export class SettingService {
     private httpClient: HttpClient, private http: HttpClient
   ) { }
   
-  private END_POINT = `category`;
+  private END_POINT = `category`; 
   private END_POINT2 = `subCategory`;
   private END_POINT3 = `itemModel`;
 

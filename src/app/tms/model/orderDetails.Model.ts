@@ -2,7 +2,7 @@ export class OrderDetailsModel{
      
     
     
-    orderDetailsNo: number;
+     orderDetailsNo: number;
      orderMaserNo: number;
      measurementId: number;
      measurementName: string;

@@ -36,6 +36,7 @@ import { AddMesurementComponent } from './setting/measurement/add-mesurement/add
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ItemModelComponent } from './setting/item-model/item-model.component';
 import { AddItemModelComponent } from './setting/item-model/add-item-model/add-item-model.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
@@ -48,6 +49,7 @@ import { AddItemModelComponent } from './setting/item-model/add-item-model/add-i
   imports: [
     FormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     HttpClientModule,
     RouterModule,
@@ -58,7 +60,7 @@ import { AddItemModelComponent } from './setting/item-model/add-item-model/add-i
     FontAwesomeModule,
     ToastrModule.forRoot(),
     TabsModule.forRoot(),
-    BsDatepickerModule,
+    BsDatepickerModule.forRoot()
     
   ]
 })
