@@ -15,7 +15,7 @@ export class OrderModel extends BaseModel {
      designModel: String;
      status: number;
 
-     // orderDetailList: OrderDetailsModel[]=new Array();
+     orderDetailList: OrderDetailsModel[]=new Array();
      orderAccountDetails: OrderAccountDetails;
      ordermeasurementList:MeasurementModel[]= new Array();
 

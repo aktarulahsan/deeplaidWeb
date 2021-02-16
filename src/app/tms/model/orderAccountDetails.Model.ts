@@ -1,14 +1,17 @@
+import { MeasurementModel } from "../setting/model/measurement.Model";
 import { BaseModel } from "./base.Model";
 import { OrderDetailsModel } from "./orderDetails.Model";
 
 export class OrderAccountDetails extends BaseModel {
 
    
-     orderADetailsNo: number;
+     id: number;
      orderMaserNo: number;
      itemsCode: number;
      itemRate: number;
      qty: number = 1;
      itemTotalAmount: number;
+
+     ordermeasurementList:OrderDetailsModel[]= new Array();
 
 }

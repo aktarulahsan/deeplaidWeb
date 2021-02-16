@@ -38,7 +38,7 @@ export class OrderComponent implements OnInit {
       processing: true,
 
       ajax: {
-        url: `${environment.baseUrl}${environment.orderApiUrl}/supplier/list`,
+        url: `${environment.baseUrl}${environment.orderApiUrl}/order/list`,
         //url: 'http://localhost:8080/api/supplier/list',
         type: 'GET',
 
@@ -78,14 +78,14 @@ export class OrderComponent implements OnInit {
 
         {
           title: 'কাস্টমার কোড', 
-          data: 'supplierId',
-          name: 'supplierId',
+          data: 'customerCode',
+          name: 'customerCode',
         },
         
         {
-          title: 'কাস্টমার নাম',
-          data: 'supName',
-          name: 'supName',
+          title: 'অর্ডার আইডি ',
+          data: 'orderNo',
+          name: 'orderNo',
         },
         {
           title: 'ড্রেস কোড',
@@ -97,80 +97,80 @@ export class OrderComponent implements OnInit {
           data: 'supMobile',
           name: 'supMobile',
         },
-        {
-          title: 'মূল্য',
-          data: 'supEmail',
-          name: 'supEmail',
-        },
-        {
-          title: 'পরিমান',
-          data: 'contactPerson',
-          name: 'contactPerson',
-        },
+        // {
+        //   title: 'মূল্য',
+        //   data: 'totalAmount',
+        //   name: 'totalAmount',
+        // },
+        // {
+        //   title: 'পরিমান',
+        //   data: 'contactPerson',
+        //   name: 'contactPerson',
+        // },
         {
           title: 'মোটা মূল্য',
-          data: 'ssCreator',
-          name: 'ssCreator',
+          data: 'totalAmount',
+          name: 'totalAmount',
         },
         {
-          title: 'পোশাকের  মডেল',
+          title: 'আপডেট ডেট ',
           data: 'ssModifiedOn',
           render: (data) => {
             return moment(new Date(data)).format("DD/MM/YYYY").toString();
          },
           name: 'ssModifiedOn',
         },
-        {
-          title: 'লম্বা',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'বডি',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'পুট',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'হাতা',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
+        // {
+        //   title: 'লম্বা',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'বডি',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'পুট',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'হাতা',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
 
-        {
-          title: 'কলার',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'মুহরি',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'কফ',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'হাতা',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'বোতাম',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
-        {
-          title: 'গলার কাজের মডেল',
-          data: 'ssModifier',
-          name: 'ssModifier',
-        },
+        // {
+        //   title: 'কলার',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'মুহরি',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'কফ',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'হাতা',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'বোতাম',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
+        // {
+        //   title: 'গলার কাজের মডেল',
+        //   data: 'ssModifier',
+        //   name: 'ssModifier',
+        // },
         
 
 

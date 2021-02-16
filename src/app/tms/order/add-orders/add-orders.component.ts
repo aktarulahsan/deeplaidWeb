@@ -50,11 +50,18 @@ export class AddOrdersComponent implements OnInit {
   orderDetailsModel: OrderDetailsModel = new OrderDetailsModel();
   orderAccountDetails: OrderAccountDetails= new OrderAccountDetails();
 
+  itemEntityModel: ItemEntity = new ItemEntity();
+  itemModelId: any[]= new Array();
+  
+  orderModelList: OrderModel[];
+  orderAccountDetailsList: any[]= new Array();
+
   itemTotal: any;
 
   isReadOnly: boolean =false;
 
   maxDate: Date = new Date();
+  id=0;
 
   constructor(
     
@@ -84,7 +91,7 @@ export class AddOrdersComponent implements OnInit {
     
     this.apiService.getMesurementlistByItemId(itemId).subscribe(data=>{
       this.mesurementList= data;
-      console.log(this.mesurementList); 
+      // console.log(this.mesurementList); 
     
     })
 
@@ -165,7 +172,7 @@ export class AddOrdersComponent implements OnInit {
 
   getTotal():any{
 
-    this.orderAccountDetails.itemTotalAmount = this.orderAccountDetails.itemRate* this.orderAccountDetails.qty;
+    // this.orderAccountDetails.itemTotalAmount = this.orderAccountDetails.itemRate* this.orderAccountDetails.qty;
   }
 
   selectCategory(category):any{
@@ -189,42 +196,107 @@ export class AddOrdersComponent implements OnInit {
     }
   }
 
+addod(){
+    //this.model.rate;
+   
+    var designModel= "";
+    if(this.itemModelId){
+      for (let index = 0; index < this.itemModelId.length;) {
+        designModel += this.itemModelId[index];
+        index++;
+        if(index !=this.itemModelId.length){
+
+          designModel +=  ",";
+        }
+      }
+    }
+    var plist = [];
+    plist = this.mesurementList;
+    this.orderAccountDetails.ordermeasurementList = plist;
+    for (let index = 0; index <plist.length; index++) {
+      const element = plist[index];
+
+      this.orderModel.orderDetailList[index].measurementId= plist[index].measurementId;
+      
+    }
+    
+
+      this.orderModel.designModel= designModel;
+
+      console.log(this.orderAccountDetails);
+      console.log(this.orderAccountDetailsList);
+
+      this.id += 1;
+      this.orderAccountDetails.id = this.id;
+ 
+    this.orderAccountDetailsList.push(this.orderAccountDetails);
+
+   
+  }
 
   createOrder(form: NgForm): void {
+   
+    // this.orderModel.customerCode = this.customer.cusId;
+    // this.orderModel.totalAmount = this.orderAccountDetails.itemTotalAmount;
 
-    this.orderModel.customerCode = this.customer.cusId;
-    this.orderModel.totalAmount = this.orderAccountDetails.itemTotalAmount;
+      // if(this.mesurementList.length>0){
+      //   this.orderModel.ordermeasurementList= this.mesurementList;
+      // }
+      // this.orderModel.orderAccountDetails= this.orderAccountDetails;
+      var designModel= "";
+      if(this.itemModelId){
+        for (let index = 0; index < this.itemModelId.length;) {
+          designModel += this.itemModelId[index];
+          index++;
+          if(index !=this.itemModelId.length){
 
-      if(this.mesurementList.length>0){
-        this.orderModel.ordermeasurementList= this.mesurementList;
+            designModel +=  ",";
+          }
+        }
       }
-      this.orderModel.orderAccountDetails= this.orderAccountDetails;
+      var plist = [];
+      plist = this.mesurementList;
+      this.orderAccountDetails.ordermeasurementList = plist;
+      
 
-      this.orderModel.designModel= this.orderModel.designModel;
+        this.orderModel.designModel= designModel;
+
+        console.log(this.orderAccountDetails);
+        console.log(this.orderAccountDetailsList);
+
+        this.id += 1;
+        this.orderAccountDetails.id = this.id;
+   
+      this.orderAccountDetailsList.push(this.orderAccountDetails);
+      // this.orderAccountDetailsList.
+      
+      
 
     
 
-    console.log(this.orderModel); // print room obj
+    // console.log(this.orderModel); // print room obj
     // this.orderModel.ssCreator= this.token.getUsername();
     
      
-    this.apiService.saveOrder(this.orderModel).subscribe(
-      (resp) => {
-        console.log('create ', resp);
-        if (resp) {
-          form.resetForm();
-           this.toastr.success('', 'Create Successfull');
-          this.onClose.next(true);
-          this.bsModalRef.hide();
-        } else {
-           this.toastr.success('', "Something  wrong");
-        }
-      },
-      (err) => {
-         this.toastr.warning('', "There have an error");
-      }
-    );
+    // this.apiService.saveOrder(this.orderModel).subscribe(
+    //   (resp) => {
+    //     console.log('create ', resp);
+    //     if (resp) {
+    //       form.resetForm();
+    //        this.toastr.success('', 'Create Successfull');
+    //       this.onClose.next(true);
+    //       this.bsModalRef.hide();
+    //     } else {
+    //        this.toastr.success('', "Something  wrong");
+    //     }
+    //   },
+    //   (err) => {
+    //      this.toastr.warning('', "There have an error");
+    //   }
+    // );
   }
+
+
 
   // updateSupplier(form: NgForm): void {
   //   console.log(this.supplier); // print room obj
