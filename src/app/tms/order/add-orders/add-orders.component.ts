@@ -92,6 +92,8 @@ export class AddOrdersComponent implements OnInit {
       this.cusId = this.orderModel.customerCode;
 
       this.getCustomerInfo(this.cusId);
+      // this.orderModel.orderDate= formatDate(new Date(), 'yyyy-MM-dd');
+
 
       // this.selectCustomer(this.cusId);
       // this.selectedorderId = this.orderModel.orderId;
