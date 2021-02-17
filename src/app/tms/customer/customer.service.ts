@@ -63,16 +63,16 @@ export class CustomerService {
       .pipe(map((data: Customer) => data));
   }
 
-  findOrderlist(data) {
+  findCustomerlist(data) {
     const params = new HttpParams().append('id', data); 
     return this.http.get(this.FIND_BY_ID_CUSTOMER, { params }).pipe(
       map((data: any) => data.items
       ));
   }
 
-  checkOrderID(orderId: any) {
+  checkCustomerID(id: any) {
     return this.http.get<any>(`${this.FIND_BY_ID_CUSTOMER}`, {
-      params: new HttpParams().set('orderId', orderId)
+      params: new HttpParams().set('cusId', id)
     })
   }
 

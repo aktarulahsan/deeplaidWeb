@@ -7,7 +7,7 @@ export class OrderDetailsModel{
      measurementId: number;
      measurementName: string;
      measurementValue: number;
-
+     
 
      
 }

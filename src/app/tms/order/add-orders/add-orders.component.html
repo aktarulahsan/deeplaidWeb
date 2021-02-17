@@ -11,7 +11,7 @@
     <div class="modal-body crudForm">
         <div class="persoanlInfoArea">
 
-            <!-- <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm" novalidate action="index.html"> -->
+            <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm" novalidate action="index.html">
 
                 <div class="row">
          
@@ -24,6 +24,7 @@
                         notFoundText="Product code not found" 
                         bindLabel="customerName" 
                         bindValue="cusId" 
+                        [(ngModel)]= "cusId"
                         name="cusId"
                         (change)="selectCustomer($event)"
                         onselect="true" required>
@@ -201,7 +202,7 @@
                     <div class="form-group col-md-3 ">
                         <label for="productName">মোটা মূল্য</label>
                         
-                        <input type="number" readonly class="form-control"     bindLabel="orderAccountDetails.itemTotalAmount" [(ngModel)]="orderAccountDetails.itemTotalAmount" name="itemTotalAmount" />
+                        <input type="number" readonly class="form-control"     bindLabel="grandTotal" [(ngModel)]="grandTotal" name="grandTotal" />
                          
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                                             <div *ngIf="productName.errors.required">
@@ -221,7 +222,7 @@
 
                 </div>
 
-            <!-- </form> -->
+            </form>
 
 
         </div>
@@ -251,8 +252,8 @@
                 </td>
               </tr>
         
-              <tr *ngFor="let group of orderAccountDetailsList">
-                   
+              <tr *ngFor="let group of orderAccountDetailsList; let i=index;">
+                <td>{{i+1}}</td>
                 <td>{{group.itemsCode}}</td>
                 <td>{{group.itemRate}}</td>
                 <td>{{group.qty}}</td>
@@ -267,7 +268,10 @@
         </table>
 
     </div>
-
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success " (click)="submitOrder()">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="bsModalRef.hide()">Cancel</button>
+      </div>
 
 
 </div>

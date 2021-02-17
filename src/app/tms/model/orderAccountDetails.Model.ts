@@ -11,6 +11,7 @@ export class OrderAccountDetails extends BaseModel {
      itemRate: number;
      qty: number = 1;
      itemTotalAmount: number;
+     designModel: string;
 
      ordermeasurementList:OrderDetailsModel[]= new Array();
 

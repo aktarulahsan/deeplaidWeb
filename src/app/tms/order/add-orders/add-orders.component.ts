@@ -31,7 +31,7 @@ export class AddOrdersComponent implements OnInit {
   
   onClose: Subject<boolean>;
   purchaseDetailList: any[]=new Array();
-  grandTotal= 0;
+   
   groupList: StockGroup[];
   groupName: any;
   dtOptions: DataTables.Settings = {};
@@ -62,7 +62,10 @@ export class AddOrdersComponent implements OnInit {
 
   maxDate: Date = new Date();
   id=0;
-
+  grandTotal:number = 0.00;
+  designModel: any;
+  sendData: any;
+  cusId: any;
   constructor(
     
     public bsModalRef: BsModalRef,
@@ -82,8 +85,36 @@ export class AddOrdersComponent implements OnInit {
     this. getItemModelList();
     this.getCustomerList();
 
+
+    if (this.sendData) {
+      
+      this.orderModel = this.sendData;
+      this.cusId = this.orderModel.customerCode;
+
+      this.getCustomerInfo(this.cusId);
+
+      // this.selectCustomer(this.cusId);
+      // this.selectedorderId = this.orderModel.orderId;
+      // this.isReadOnly = true;
+      // this.apiService.findDetailslistByid(this.orderModel.orderId).subscribe(data=>{
+      //   this.orderDetailList= data;
+      //   this.getGrandTotal();
+      //   // console.log(this.prodTwoList);
+      // })
+      // this.roleId = this.productModel.l4Code;
+    }
+
     // this.getProdoneList();
   }
+
+  getCustomerInfo(id){
+    this.customerService.checkCustomerID(id).subscribe(data=>{
+    this.customer= data.obj;
+      console.log("this.customer",this.customer); 
+    
+    })
+  }
+
 
   getmesurementList(itemId):any{
     console.log(itemId); 
@@ -197,41 +228,93 @@ export class AddOrdersComponent implements OnInit {
   }
 
 addod(){
-    //this.model.rate;
-   
-    var designModel= "";
+    console.log(this.orderAccountDetails);
+    this.designModel="";
     if(this.itemModelId){
       for (let index = 0; index < this.itemModelId.length;) {
-        designModel += this.itemModelId[index];
+        this.designModel += this.itemModelId[index];
         index++;
         if(index !=this.itemModelId.length){
 
-          designModel +=  ",";
+          this.designModel +=  ",";
         }
       }
     }
     var plist = [];
     plist = this.mesurementList;
-    this.orderAccountDetails.ordermeasurementList = plist;
-    for (let index = 0; index <plist.length; index++) {
-      const element = plist[index];
+    // for (let i = 0; i < this.mesurementList.length; i++) {
+    //   var mod = new OrderDetailsModel();
+    //   mod.measurementId  = this.mesurementList[i].measurementId;
+    //   mod.measurementName  = this.mesurementList[i].measurementName;
+    //   mod.measurementValue  = this.mesurementList[i].measurementValue;
+    //   mod.designModel = this.designModel;
 
-      this.orderModel.orderDetailList[index].measurementId= plist[index].measurementId;
       
-    }
+    //   // this.orderDetailsModellist[i]=mod;
+    //   console.log("this.orderDetailsModellist",mod);
+    // }
+
+    this.orderAccountDetails.ordermeasurementList = plist;
+
+      this.orderModel.designModel= this.designModel;
+
+      console.log("this.orderModel",this.orderModel);
     
-
-      this.orderModel.designModel= designModel;
-
-      console.log(this.orderAccountDetails);
-      console.log(this.orderAccountDetailsList);
 
       this.id += 1;
       this.orderAccountDetails.id = this.id;
+      this.orderAccountDetails.designModel= this.designModel;
  
     this.orderAccountDetailsList.push(this.orderAccountDetails);
 
-   
+
+      this.getGrandTotal();
+      
+      this.reset();
+  }
+  submitOrder(): any{
+    this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
+    this.orderModel.totalAmount = this.grandTotal;
+
+    this.apiService.saveOrder(this.orderModel).subscribe(
+      (resp) => {
+        console.log('create ', resp);
+        if (resp) {
+          
+           this.toastr.success('', 'Create Successfull');
+          this.onClose.next(true);
+          this.bsModalRef.hide();
+        } else {
+           this.toastr.success('', "Something  wrong");
+        }
+      },
+      (err) => {
+         this.toastr.warning('', "There have an error");
+      }
+    );
+  }
+
+
+
+  getGrandTotal():any{
+    this.grandTotal=0;
+    console.log("addorder", this.orderAccountDetailsList);
+    this.orderAccountDetailsList.forEach(element => {
+      this.grandTotal += element.qty*element.itemRate;
+      //this.getVatamount();
+    });  
+  
+  }
+  reset() {
+    this.designModel= "";
+    this.itemModelId=[];
+    this.mesurementList = [];
+    this.orderAccountDetails =new OrderAccountDetails();
+    // this.model = new OrderDetailsModel();
+    //  this.l4Code ="";
+    //  this.qty="";
+    //  this.productName="";
+    // this.rate = 0;
   }
 
   createOrder(form: NgForm): void {
@@ -243,31 +326,31 @@ addod(){
       //   this.orderModel.ordermeasurementList= this.mesurementList;
       // }
       // this.orderModel.orderAccountDetails= this.orderAccountDetails;
-      var designModel= "";
-      if(this.itemModelId){
-        for (let index = 0; index < this.itemModelId.length;) {
-          designModel += this.itemModelId[index];
-          index++;
-          if(index !=this.itemModelId.length){
+      // var designModel= "";
+      // if(this.itemModelId){
+      //   for (let index = 0; index < this.itemModelId.length;) {
+      //     designModel += this.itemModelId[index];
+      //     index++;
+      //     if(index !=this.itemModelId.length){
 
-            designModel +=  ",";
-          }
-        }
-      }
-      var plist = [];
-      plist = this.mesurementList;
-      this.orderAccountDetails.ordermeasurementList = plist;
+      //       designModel +=  ",";
+      //     }
+      //   }
+      // }
+      // var plist = [];
+      // plist = this.mesurementList;
+      // this.orderAccountDetails.ordermeasurementList = plist;
       
 
-        this.orderModel.designModel= designModel;
+      //   this.orderModel.designModel= designModel;
 
-        console.log(this.orderAccountDetails);
-        console.log(this.orderAccountDetailsList);
+      //   console.log(this.orderAccountDetails);
+      //   console.log(this.orderAccountDetailsList);
 
-        this.id += 1;
-        this.orderAccountDetails.id = this.id;
+      //   this.id += 1;
+      //   this.orderAccountDetails.id = this.id;
    
-      this.orderAccountDetailsList.push(this.orderAccountDetails);
+      // this.orderAccountDetailsList.push(this.orderAccountDetails);
       // this.orderAccountDetailsList.
       
       
@@ -296,6 +379,7 @@ addod(){
     // );
   }
 
+  
 
 
   // updateSupplier(form: NgForm): void {

@@ -18,5 +18,6 @@ export class OrderModel extends BaseModel {
      orderDetailList: OrderDetailsModel[]=new Array();
      orderAccountDetails: OrderAccountDetails;
      ordermeasurementList:MeasurementModel[]= new Array();
+     orderAccountDetailsList:OrderAccountDetails[]= new Array();
 
 }

@@ -87,16 +87,12 @@ export class OrderComponent implements OnInit {
           data: 'orderNo',
           name: 'orderNo',
         },
-        {
-          title: 'ড্রেস কোড',
-          data: 'supAddress',
-          name: 'supAddress',
-        },
-        {
-          title: 'পোশাকের নাম',
-          data: 'supMobile',
-          name: 'supMobile',
-        },
+        
+        // {
+        //   title: 'পোশাকের নাম',
+        //   data: 'supMobile',
+        //   name: 'supMobile',
+        // },
         // {
         //   title: 'মূল্য',
         //   data: 'totalAmount',
@@ -176,11 +172,11 @@ export class OrderComponent implements OnInit {
 
         
          
-        {
-          title: 'Status',
-          data: 'status',
-          name: 'status',
-        },
+        // {
+        //   title: 'Status',
+        //   data: 'status',
+        //   name: 'status',
+        // },
       ],
       responsive: true,
       select: true,
