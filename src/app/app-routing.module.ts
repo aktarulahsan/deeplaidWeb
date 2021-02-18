@@ -5,6 +5,7 @@ import { LoginPageComponent } from './login/login-page/login-page.component';
 import { LoginComponent } from './login/login.component';
 import { AddorderComponent } from './tms/addorder/addorder.component';
 import { CompletedComponent } from './tms/completed/completed.component';
+import { CustomerDetailsComponent } from './tms/customer/customer-details/customer-details.component';
 import { CustomerComponent } from './tms/customer/customer.component';
 import { DeeplaidComponent } from './tms/deeplaid.component';
 import { DeliveredOrderComponent } from './tms/delivered-order/delivered-order.component';
@@ -101,7 +102,11 @@ const routes: Routes = [
         component: MeasurementComponent,
      
       },
-      
+      {
+        path: 'customerDetails',
+        component: CustomerDetailsComponent,
+     
+      },
 
 
     ],

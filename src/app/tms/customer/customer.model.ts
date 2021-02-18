@@ -4,7 +4,7 @@ import { BaseModel } from "../model/base.Model";
 
 export class Customer extends BaseModel{
 
-    cusId: number;
+    customerCode: number;
     companyId:string;
     branchId:string;
     customerName:string;

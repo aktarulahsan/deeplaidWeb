@@ -10,6 +10,8 @@ import { Customer } from './customer.model';
 import { CustomerService } from './customer.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,7 +30,8 @@ export class CustomerComponent implements OnInit {
   bsModalRef: any;
 
   constructor(
-    
+    public router: Router,
+    private toastr: ToastrService,
     private modalService: BsModalService,
  
   ) { }
@@ -126,7 +129,7 @@ export class CustomerComponent implements OnInit {
           title: 'Action',
           "orderable": false,
           render: (data: any, type: any, row: any) => {
-            return '<button type="button"   class="fas fa-edit fontsize  details-sloat">Details</button>';
+            return '<button type="button"   class="btn btn-info fontsize  details-sloat">Details</button>';
           }
         },
 
@@ -142,7 +145,10 @@ export class CustomerComponent implements OnInit {
             console.log('hello delete data', data);
             that.rerender();
           });
-
+          $(row).find(".details-sloat").click(function () {
+            that.showDetails(data);
+          });
+  
         $(row).bind('click', () => {
           this.selectData = data;
         
@@ -195,6 +201,29 @@ export class CustomerComponent implements OnInit {
         this.rerender();
       }
     });
+  }
+
+  showDetails(data: any){
+    // const initialState = {
+    //   title: 'Add Customer ',
+    // };
+    // this.router.navigate(['/customerDetails'],{state : {data : {initialState}}})
+    // console.log(initialState)
+   
+    var customerCode = data.customerCode;
+    console.log( "id is "+customerCode);
+    if(customerCode){
+      const initialState={
+        title: 'Add Customer ',
+        // reciveQRNDisposal :    this.eQRNDisposal,
+        sendData: this.selectData,
+      }
+        this.router.navigate(['/customerDetails', { 'customerCode': customerCode }]);
+    }else{
+        this.toastr.warning('', "Please select a patient"); 
+    }
+
+
   }
 
   update() {

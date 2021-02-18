@@ -37,6 +37,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ItemModelComponent } from './setting/item-model/item-model.component';
 import { AddItemModelComponent } from './setting/item-model/add-item-model/add-item-model.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
@@ -45,7 +46,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         DeliveryComponent, IncomplitedComponent,
          CompletedComponent, DeliveredOrderComponent,
           AddCustomerComponent, OrderComponent, 
-          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent],
+          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent, CustomerDetailsComponent],
   imports: [
     FormsModule,
     BrowserModule,

@@ -7,8 +7,9 @@ export class OrderAccountDetails extends BaseModel {
    
      id: number;
      orderMaserNo: number;
-     itemsCode: number;
+     itemId: number;
      itemRate: number;
+     itemName: string;
      qty: number = 1;
      itemTotalAmount: number;
      designModel: string;

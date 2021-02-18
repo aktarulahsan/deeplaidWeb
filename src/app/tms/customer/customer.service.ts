@@ -72,7 +72,7 @@ export class CustomerService {
 
   checkCustomerID(id: any) {
     return this.http.get<any>(`${this.FIND_BY_ID_CUSTOMER}`, {
-      params: new HttpParams().set('cusId', id)
+      params: new HttpParams().set('customerCode', id)
     })
   }
 

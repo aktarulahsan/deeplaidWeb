@@ -23,9 +23,9 @@
                         placeholder="Choose product code"
                         notFoundText="Product code not found" 
                         bindLabel="customerName" 
-                        bindValue="cusId" 
-                        [(ngModel)]= "cusId"
-                        name="cusId"
+                        bindValue="customerCode" 
+                        [(ngModel)]= "customerCode"
+                        name="customerCode"
                         (change)="selectCustomer($event)"
                         onselect="true" required>
                         </ng-select>
@@ -119,7 +119,7 @@
                         <label for="groupName">পোশাকের মডেল </label>
 
                         <ng-select [items]="subcatList" placeholder="Choose product code"
-                            notFoundText="Product code not found" bindLabel="itemName" bindValue="itemId" name="itemId"
+                            notFoundText="Product code not found" bindLabel="itemName" [(ngModel)]="itemId" bindValue="itemId" name="itemId"
                             (change)="selectL1Item($event)" onselect="true" required>
                         </ng-select>
                     </div>
@@ -129,12 +129,18 @@
 
            
                 <div class="row bg-light">
-                    <div class="col-md-2" *ngFor="let item of mesurementList">
+                    <div class="col-md-2" *ngFor="let item of mesurementList let i=index">
                         <div class="form-group">
-                            <label>{{item.measurementName}}</label>
-                            <input type="text" class="form-control"[(ngModel)]="item.measurementValue" name="measurementValue" maxlength="4" name="measurementValue" />
+                            <label>{{item.measurementName}}{{item.measurementId}}</label>
+                           <td> <input type="number"  class="form-control"  [attr.id] = "item.measurementId"
+                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
+                            <label [attr.for] = "item.measurementName" class="form-check-label">{{item.measurementName}}</label>
                         </div>
                     </div>
+<!-- <table>
+    
+</table> -->
+
                 </div>
 
                
@@ -239,6 +245,7 @@
             <thead class="thead-light">
               <th>SL</th>
               <th>Product Code</th>
+              <th>Product Name</th>
               <th>Qty</th>
               <th>Unit Price</th>
               <th>Total</th>
@@ -254,13 +261,16 @@
         
               <tr *ngFor="let group of orderAccountDetailsList; let i=index;">
                 <td>{{i+1}}</td>
-                <td>{{group.itemsCode}}</td>
-                <td>{{group.itemRate}}</td>
+                <td>{{group.itemId}}</td>
+                <td>{{group.itemName}}</td>
+               
+               
                 <td>{{group.qty}}</td>
-                <td>{{group.itemTotalAmount}}</td>
+                <td>{{group.itemRate}}</td>
+                <td>{{group.qty*group.itemRate}}</td>
                
                 <td>
-                  <a class="btn btn-sm btn-info text-white" ><i class="fas fa-edit"></i></a>
+                  <a class="btn btn-sm btn-info text-white" (click)="editData(group,this)"><i class="fas fa-edit"></i></a>
                   <a class="btn btn-sm btn-danger text-white ml-1"  ><i class="fa fa-trash"></i></a>
                 </td>
               </tr>

@@ -65,7 +65,8 @@ export class AddOrdersComponent implements OnInit {
   grandTotal:number = 0.00;
   designModel: any;
   sendData: any;
-  cusId: any;
+  customerCode: any;
+  itemId: any;
   constructor(
     
     public bsModalRef: BsModalRef,
@@ -89,9 +90,9 @@ export class AddOrdersComponent implements OnInit {
     if (this.sendData) {
       
       this.orderModel = this.sendData;
-      this.cusId = this.orderModel.customerCode;
+      this.customerCode = this.orderModel.customerCode;
 
-      this.getCustomerInfo(this.cusId);
+      this.getCustomerInfo(this.customerCode);
       // this.orderModel.orderDate= formatDate(new Date(), 'yyyy-MM-dd');
 
 
@@ -193,15 +194,32 @@ export class AddOrdersComponent implements OnInit {
   }
 
   selectL1Item(getItem):any{  
+
     console.log(getItem); 
     this.orderAccountDetails.itemRate= getItem.itemAmount;
-    this.orderAccountDetails.itemsCode =getItem.itemId;
+    this.orderAccountDetails.itemId =getItem.itemId;
+    this.orderAccountDetails.itemName = getItem.itemName;
     this.getTotal();
 
     this.getmesurementList(getItem.itemId);
-  
   }
  
+  editData(entity, s) {
+    
+    for (let i = 0; i < entity.ordermeasurementList.length; i++) {
+      entity.ordermeasurementList[i].id= entity.ordermeasurementList[i].measurementId;
+      
+    }
+    this.mesurementList= entity.ordermeasurementList;
+    this.itemId = entity.itemId;
+    console.log("entity.ordermeasurementList",entity.ordermeasurementList);
+    // this.orderAccountDetails.designModel= this.designModel;
+    this.itemModelId = entity.designModel;
+
+    console.log(entity.ordermeasurementList); 
+   
+    
+  }
 
   getTotal():any{
 
@@ -223,7 +241,7 @@ export class AddOrdersComponent implements OnInit {
     this.customer = customer;
 
     if(customer !=null){
-        this.orderModel.customerCode = customer.cusId;
+        this.orderModel.customerCode = customer.customerCode;
         
        
     }
@@ -235,6 +253,7 @@ addod(){
     if(this.itemModelId){
       for (let index = 0; index < this.itemModelId.length;) {
         this.designModel += this.itemModelId[index];
+
         index++;
         if(index !=this.itemModelId.length){
 
@@ -243,30 +262,22 @@ addod(){
       }
     }
     var plist = [];
-    plist = this.mesurementList;
-    // for (let i = 0; i < this.mesurementList.length; i++) {
-    //   var mod = new OrderDetailsModel();
-    //   mod.measurementId  = this.mesurementList[i].measurementId;
-    //   mod.measurementName  = this.mesurementList[i].measurementName;
-    //   mod.measurementValue  = this.mesurementList[i].measurementValue;
-    //   mod.designModel = this.designModel;
 
-      
-    //   // this.orderDetailsModellist[i]=mod;
-    //   console.log("this.orderDetailsModellist",mod);
-    // }
+    for (let i = 0; i < this.mesurementList.length; i++) {
+      this.mesurementList[i].id= this.mesurementList[i].measurementId; 
+    }
+
+    plist = this.mesurementList;
 
     this.orderAccountDetails.ordermeasurementList = plist;
 
-      this.orderModel.designModel= this.designModel;
+      // this.orderModel.designModel= this.designModel;
 
-      console.log("this.orderModel",this.orderModel);
-    
-
+      // console.log("this.orderModel",this.orderModel);
       this.id += 1;
       this.orderAccountDetails.id = this.id;
       this.orderAccountDetails.designModel= this.designModel;
- 
+      console.log("this.orderAccountDetails",this.orderAccountDetails);
     this.orderAccountDetailsList.push(this.orderAccountDetails);
 
 

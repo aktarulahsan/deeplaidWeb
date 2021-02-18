@@ -40,7 +40,7 @@ export class AddCustomerComponent implements OnInit {
     // this.getProdOneList();
     if (this.sendData) {
       this.customer = this.sendData;
-      this.customerId = this.customer.cusId;
+      this.customerId = this.customer.customerCode;
     }
   }
 
