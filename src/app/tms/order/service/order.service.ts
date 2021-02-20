@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { BaseResponse } from '../../model/baseresponse.model';
 import { OrderModel } from '../../model/order.Model';
+import { OrderAccountDetails } from '../../model/orderAccountDetails.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,10 @@ export class OrderService {
   private FIND_BY_ID_ORDER = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findById`;
   private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findDetailsById`;
   private FIND_MESUERMENT_BY_ITEM_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/findDetailsById`;
- 
+  private FIND_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findMesurementByOrderid`;
+  private FIND_ACCOUNT_INFO_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderid`;
+  private FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderidandItemId`;
+   
   getOrderList(): Observable<any> {
     return this.http.get(`${this.ORDER_LIST}`);
   }
@@ -61,7 +65,29 @@ export class OrderService {
       ));
   }
 
-   
+  findMesurementByOrderid(data) {
+    const params = new HttpParams().append('orderId', data); 
+    return this.http.get(this.FIND_BY_ORDER_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
+  // findMesurementByOrderidandItemid(data) {
+  //   const params = new HttpParams().append('orderId', data); 
+  //   return this.http.get(this.FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID, { params }).pipe(
+  //     map((data: any) => data.items
+  //     ));
+  // }
 
+  findAccountInfoByOrderid(data) {
+    const params = new HttpParams().append('orderId', data); 
+    return this.http.get(this.FIND_ACCOUNT_INFO_BY_ORDER_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
+
+  findAccountInfoByOrderidandItemId(data: OrderAccountDetails): Observable<BaseResponse> {
+    return this.http
+      .post<BaseResponse>(this.FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID, data);
+  }
 
 }

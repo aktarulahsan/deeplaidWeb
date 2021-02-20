@@ -26,6 +26,7 @@ export class SettingService {
   private  CAT_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/list`;
   private FIND_BY_ID_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findById`;
   private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findDetailsById`;
+  private FIND__BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findByOrderId`;
 
 
   private SAVE_SUB_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT2}/create`;
@@ -75,8 +76,14 @@ export class SettingService {
       map((data: any) => data.items
       ));
   }
+ 
 
-
+  findMesurementByOrderid(data) {
+    const params = new HttpParams().append('orderId', data); 
+    return this.http.get(this.FIND__BY_ORDER_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
   saveSubCat(data: SubCategoryModel): Observable<SubCategoryModel> {
     return this.http
       .post<SubCategoryModel>(this.SAVE_SUB_CAT, data)

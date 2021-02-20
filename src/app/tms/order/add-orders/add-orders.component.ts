@@ -51,7 +51,7 @@ export class AddOrdersComponent implements OnInit {
   orderAccountDetails: OrderAccountDetails= new OrderAccountDetails();
 
   itemEntityModel: ItemEntity = new ItemEntity();
-  itemModelId: any[]= new Array();
+  itemModelId=  [];
   itemModelId2: any[]= new Array();
   
   orderModelList: OrderModel[];
@@ -68,6 +68,7 @@ export class AddOrdersComponent implements OnInit {
   sendData: any;
   customerCode: any;
   itemId: any;
+  orderid: any;
   constructor(
     
     public bsModalRef: BsModalRef,
@@ -92,29 +93,55 @@ export class AddOrdersComponent implements OnInit {
       
       this.orderModel = this.sendData;
       this.customerCode = this.orderModel.customerCode;
+      this.orderid = this.orderModel.orderNo;
 
       this.getCustomerInfo(this.customerCode);
-      // this.orderModel.orderDate= formatDate(new Date(), 'yyyy-MM-dd');
-
-
-      // this.selectCustomer(this.cusId);
-      // this.selectedorderId = this.orderModel.orderId;
-      // this.isReadOnly = true;
-      // this.apiService.findDetailslistByid(this.orderModel.orderId).subscribe(data=>{
-      //   this.orderDetailList= data;
-      //   this.getGrandTotal();
-      //   // console.log(this.prodTwoList);
-      // })
-      // this.roleId = this.productModel.l4Code;
+      // this.getMesurmentInfo(this.orderModel.orderNo);
+      this.getAccountInfo(this.orderModel.orderNo);
+     
     }
-
-    // this.getProdoneList();
   }
+
+
 
   getCustomerInfo(id){
     this.customerService.checkCustomerID(id).subscribe(data=>{
     this.customer= data.obj;
       console.log("this.customer",this.customer); 
+    
+    })
+  }
+  getMesurmentInfo(orderNo){
+    this.apiService.findMesurementByOrderid(orderNo).subscribe(data=>{
+      console.log("this.mesurementList",data); 
+    
+      this.orderDetailsModellist = data;
+    this.mesurementList = data;
+      // this.customer= data.obj;
+      console.log("this.mesurementList",this.orderDetailsModellist); 
+      console.log("this.mesurementList",this.mesurementList); 
+    
+    })
+  }
+
+  getAccountInfo(orderNo){
+    this.apiService.findAccountInfoByOrderid(orderNo).subscribe(data=>{
+
+     this.orderAccountDetailsList= data;
+     this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
+     for (let i = 0; i < this.orderModel.orderAccountDetailsList.length; i++) {
+      this.orderAccountDetails = this.orderModel.orderAccountDetailsList[i];
+        
+      this.apiService.findAccountInfoByOrderidandItemId(this.orderAccountDetails).subscribe(data=>{
+         
+          
+          this.orderModel.orderAccountDetailsList[i].ordermeasurementList =data["items"];
+
+        });
+
+     }
+      console.log(" this.orderAccountDetailsList",this.orderDetailsModellist); 
+     
     
     })
   }
@@ -211,22 +238,27 @@ export class AddOrdersComponent implements OnInit {
       entity.ordermeasurementList[i].id= entity.ordermeasurementList[i].measurementId;
       
     }
+    
     this.mesurementList= entity.ordermeasurementList;
     this.itemId = entity.itemId;
     var splitted = entity.designModel.split(",");
     this.itemModelId2= splitted;
+    let a=[];
     for (let i = 0; i < this.itemModelId2.length; i++) {
-        let a = (Number(this.itemModelId2[i]));
-        this.itemModelId[i]= a;
+        let b= (Number(this.itemModelId2[i]));
+        a[i]= b;
       
     }
 
+    this.itemModelId= a;
 
+    this.orderAccountDetails.itemRate = entity.itemRate;
+    this.orderAccountDetails.qty = entity.qty;
     console.log("this.itemModelId",this.itemModelId);
 
     console.log("entity.ordermeasurementList",entity.ordermeasurementList);
     // this.orderAccountDetails.designModel= this.designModel;
-    this.itemModelId = entity.designModel;
+    // this.itemModelId = entity.designModel;
 
     console.log(entity.ordermeasurementList); 
    
@@ -298,15 +330,19 @@ addod(){
       this.reset();
   }
   submitOrder(): any{
-    this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
-    this.orderModel.totalAmount = this.grandTotal;
 
-    this.apiService.saveOrder(this.orderModel).subscribe(
+    if(this.orderid){
+    this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
+    
+    this.orderModel.totalAmount = this.grandTotal;
+    console.log('Update ', this.orderModel);
+
+    this.apiService.updateOrder(this.orderModel).subscribe(
       (resp) => {
-        console.log('create ', resp);
+        console.log('Update ', resp);
         if (resp) {
           
-           this.toastr.success('', 'Create Successfull');
+           this.toastr.success('', 'Update Successfull');
           this.onClose.next(true);
           this.bsModalRef.hide();
         } else {
@@ -317,6 +353,32 @@ addod(){
          this.toastr.warning('', "There have an error");
       }
     );
+    }else{
+      // this.getGrandTotal();
+
+      // this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
+      // this.orderModel.totalAmount = this.grandTotal;
+  
+      // this.apiService.saveOrder(this.orderModel).subscribe(
+      //   (resp) => {
+      //     console.log('create ', resp);
+      //     if (resp) {
+            
+      //        this.toastr.success('', 'Create Successfull');
+      //       this.onClose.next(true);
+      //       this.bsModalRef.hide();
+      //     } else {
+      //        this.toastr.success('', "Something  wrong");
+      //     }
+      //   },
+      //   (err) => {
+      //      this.toastr.warning('', "There have an error");
+      //   }
+      // );
+
+
+    }
+
   }
 
 
