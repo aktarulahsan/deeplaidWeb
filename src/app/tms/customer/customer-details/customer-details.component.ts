@@ -25,6 +25,7 @@ export class CustomerDetailsComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   bsModalRef: any;
   customerList: Customer[];
+  customer: Customer= new Customer();
   constructor(
     public router: Router,
     public route: ActivatedRoute,
@@ -40,14 +41,14 @@ export class CustomerDetailsComponent implements OnInit {
 //     });
 
   ngOnInit(): void {
+    this.getCustomerList();
+   
 
     this.customerCode= this.route.snapshot.paramMap.get('customerCode');
-    // this.route.params.subscribe(params => {
-    //          this.sendData = params['data']
-    //       });
     console.log('data Param', this.customerCode);
     if(this.customerCode){
       this.showgrid(this.customerCode);
+      this.selectCustomer(this.customerCode);
     }
            
     
@@ -108,11 +109,11 @@ export class CustomerDetailsComponent implements OnInit {
           },
         },
 
-        {
-          title: 'কাস্টমার কোড', 
-          data: 'customerCode',
-          name: 'customerCode',
-        },
+        // {
+        //   title: 'কাস্টমার কোড', 
+        //   data: 'customerCode',
+        //   name: 'customerCode',
+        // },
         
         {
           title: 'অর্ডার আইডি ',
@@ -124,6 +125,15 @@ export class CustomerDetailsComponent implements OnInit {
           data: 'totalAmount',
           name: 'totalAmount',
         },
+        
+        {
+          title: 'ক্রিয়েট  ডেট ',
+          data: 'ssCreatedOn',
+          render: (data) => {
+            return moment(new Date(data)).format("DD/MM/YYYY").toString();
+         },
+          name: 'ssCreatedOn',
+        },
         {
           title: 'আপডেট ডেট ',
           data: 'ssModifiedOn',
@@ -132,13 +142,13 @@ export class CustomerDetailsComponent implements OnInit {
          },
           name: 'ssModifiedOn',
         },
-        {
-          title: 'Action',
-          "orderable": false,
-          render: (data: any, type: any, row: any) => {
-            return '<button type="button"   class="btn btn-info fontsize  details-sloat">Details</button>';
-          }
-        },
+        // {
+        //   title: 'Action',
+        //   "orderable": false,
+        //   render: (data: any, type: any, row: any) => {
+        //     return '<button type="button"   class="icon icon-action-edit fontsize  details-sloat">Details</button>';
+        //   }
+        // },
 
        
       ],
@@ -193,8 +203,21 @@ export class CustomerDetailsComponent implements OnInit {
     })
     }
 
-    selectCustomer(data){
+    selectCustomer(customer):any{  
+      console.log(customer); 
 
+      this.customerService.checkCustomerID(customer).subscribe((data)=>{
+      
+        this.customer = data['obj'];
+        console.log(this.customerList); 
+      })
+       
+  
+      // if(customer !=null){
+      //     this.orderModel.customerCode = customer.customerCode;
+          
+         
+      // }
     }
 
 }

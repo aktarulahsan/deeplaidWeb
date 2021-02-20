@@ -132,14 +132,27 @@
                     <div class="col-md-2" *ngFor="let item of mesurementList let i=index">
                         <div class="form-group">
                             <label>{{item.measurementName}}{{item.measurementId}}</label>
-                           <td> <input type="number"  class="form-control"  [attr.id] = "item.measurementId"
-                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
+                            <td></td>
+                           <td> <input type="number" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
+                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4">{{item.measurementValue}}</td>
                             <label [attr.for] = "item.measurementName" class="form-check-label">{{item.measurementName}}</label>
                         </div>
                     </div>
-<!-- <table>
-    
-</table> -->
+
+                <!-- <table>
+                    <tbody>
+                        <tr>
+                            <td  *ngFor="let item of mesurementList let i=index">
+                                <div class="form-group ">
+                                    <label>{{item.measurementName}}{{item.measurementId}}</label>
+                                <td> <input type="number"  class="form-control"  [attr.id] = "item.measurementId"
+                                    [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
+                                    <label [attr.for] = "item.measurementName" class="form-check-label">{{item.measurementName}}</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
 
                 </div>
 
@@ -148,8 +161,8 @@
                    
                     <div class="form-group col-md-8">
                         <label for="productName">  কাজের মডেল </label>
-                        <ng-select bindLabel="name" placeholder="Select item" appendTo="body" multiple="true"
-                            [searchable]="true" [clearable]="true"   [(ngModel)]="itemModelId" [ngModelOptions]="{standalone: true}">
+                        <ng-select    bindLabel="itemModelId" placeholder="Select item" appendTo="body" multiple="true"
+                            [searchable]="true" [editableSearchTerm]="true" [clearable]="true"  [(ngModel)]="itemModelId" [ngModelOptions]="{standalone: true}">
                             <ng-option [value]="item.itemModelId" [disabled]="item.disabled"
                                 *ngFor="let item of itemEntityList">
 

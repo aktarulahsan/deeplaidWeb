@@ -52,6 +52,7 @@ export class AddOrdersComponent implements OnInit {
 
   itemEntityModel: ItemEntity = new ItemEntity();
   itemModelId: any[]= new Array();
+  itemModelId2: any[]= new Array();
   
   orderModelList: OrderModel[];
   orderAccountDetailsList: any[]= new Array();
@@ -212,6 +213,17 @@ export class AddOrdersComponent implements OnInit {
     }
     this.mesurementList= entity.ordermeasurementList;
     this.itemId = entity.itemId;
+    var splitted = entity.designModel.split(",");
+    this.itemModelId2= splitted;
+    for (let i = 0; i < this.itemModelId2.length; i++) {
+        let a = (Number(this.itemModelId2[i]));
+        this.itemModelId[i]= a;
+      
+    }
+
+
+    console.log("this.itemModelId",this.itemModelId);
+
     console.log("entity.ordermeasurementList",entity.ordermeasurementList);
     // this.orderAccountDetails.designModel= this.designModel;
     this.itemModelId = entity.designModel;

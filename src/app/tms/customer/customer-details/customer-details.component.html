@@ -18,21 +18,43 @@
                       </div>
                     </div>
                   </div>
-
-                  <div class="col-sm-4 form-group">
-                    <label for="groupName">কাস্টমার কোড </label>
-
-                    <ng-select [items]="customerList" 
-                    placeholder="Choose product code"
-                    notFoundText="Product code not found" 
-                    bindLabel="customerName" 
-                    bindValue="customerCode" 
-                    [(ngModel)]= "customerCode"
-                    name="customerCode"
-                    (change)="selectCustomer($event)"
-                    onselect="true" required>
-                    </ng-select>
+                  <div class="row">
+                    <div class="col-sm-4 form-group">
+                      <label for="groupName">কাস্টমার কোড </label>
+  
+                      <!-- <ng-select [items]="customerList" 
+                      placeholder="Choose product code"
+                      notFoundText="Product code not found" 
+                      bindLabel="customerName" 
+                      bindValue="customerCode" 
+                      [(ngModel)]= "customerCode"
+                      name="customerCode"
+                      (change)="selectCustomer($event)"
+                      onselect="true" required>
+                      </ng-select> -->
+                      <input type="text" class="form-control" bindLabel="customer.customerCode" [(ngModel)]="customer.customerCode" name="mobile" readonly />
+                  </div>
+                  <div class="form-group col-md-4 ">
+                    <label for="productName">কাস্টমার নাম </label>
+                    <input type="text" class="form-control" bindLabel="customer.customerName" [(ngModel)]="customer.customerName" name="customerName" readonly />
+                    <!-- <div *ngIf="f.submitted && productName.invalid">
+              <div *ngIf="productName.errors.required">
+                  productName is required
+              </div>
+            </div> -->
                 </div>
+                <div class="form-group col-md-4">
+                    <label for="productName">মোবাইল নাম্বার </label>
+                    <input type="text" class="form-control" bindLabel="customer.mobile" [(ngModel)]="customer.mobile" name="mobile" readonly />
+                    <!-- <div *ngIf="f.submitted && productName.invalid">
+              <div *ngIf="productName.errors.required">
+                  productName is required
+              </div>
+            </div> -->
+                </div>
+                  </div>
+
+                  
 
 
                   <!-- <div class="form-group col-md-7 ">
