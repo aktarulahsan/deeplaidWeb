@@ -9,7 +9,7 @@
                       [heading]="tabz.title"
                       [active]="tabz.active"
                       (selectTab)="tabz.active = true; tabz.initiated = true;onSelect(tabz)"
-                      (click)="updateChildVisibility(tab.tabId)"
+                     
                       (deselect)="tabz.active = true"
                       [disabled]="tabz.disabled"
                       [customClass]="tabz.customClass">

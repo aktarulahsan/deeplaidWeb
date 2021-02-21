@@ -1,0 +1,62 @@
+<!-- <div class="row marginRightAll card"> -->
+    <div class="col-md-12 padding-left-right">
+        <div class="all_content_wrapper all_content_wrapper_sample_collection">
+          <div class="allInner">
+              <div class="tabArea registartionTab ">
+    
+                <tabset #tabset>
+                    <tab *ngFor="let tabz of tabs"
+                          [heading]="tabz.title"
+                          [active]="tabz.active"
+                          (selectTab)="tabz.active = true; tabz.initiated = true;onSelect(tabz)"
+                         
+                          (deselect)="tabz.active = true"
+                          [disabled]="tabz.disabled"
+                          [customClass]="tabz.customClass">
+    
+                          <ng-container *ngIf="tabz.content == 'order' && tabz.initiated">
+                              <app-order></app-order>
+                          </ng-container>                   
+                          <ng-container *ngIf="tabz.content == 'incomplete' && tabz.initiated">
+                         
+                            <app-incomplited (selectedTabEmitter)="getSelectedTab($event)"></app-incomplited>
+                          </ng-container>
+                          <ng-container *ngIf="tabz.content == 'completed' && tabz.initiated">
+                              <app-completed></app-completed>
+                          </ng-container>
+                          <ng-container *ngIf="tabz.content == 'deliveredorder' && tabz.initiated">
+                            <app-delivered-order></app-delivered-order>
+                        </ng-container>
+                    </tab>
+                  </tabset>
+    
+              <!-- <ul class="nav nav-tabs nav-tabs2">
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#collection">Collection</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#pending">Pending</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#collected">Collected</a> </li>
+                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#report">Report</a> </li>
+              </ul>
+    
+              <div class="tab-content">
+    
+                <div id="collection" class="tab-pane active">
+                  <app-category></app-category>
+                </div>
+    
+                <div id="pending" class="tab-pane fade">
+                  <app-sub-category></app-sub-category>
+                </div>
+    
+                <div id="collected" class="tab-pane fade">
+                  <app-measurement></app-measurement>
+                </div>
+     
+    
+              </div> -->
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+    

@@ -3,15 +3,19 @@ import { Routes, RouterModule } from '@angular/router';
  
 import { LoginPageComponent } from './login/login-page/login-page.component';
 import { LoginComponent } from './login/login.component';
+import { AccountsComponent } from './tms/accounts/accounts.component';
 import { AddorderComponent } from './tms/addorder/addorder.component';
 import { CompletedComponent } from './tms/completed/completed.component';
 import { CustomerDetailsComponent } from './tms/customer/customer-details/customer-details.component';
 import { CustomerComponent } from './tms/customer/customer.component';
 import { DeeplaidComponent } from './tms/deeplaid.component';
 import { DeliveredOrderComponent } from './tms/delivered-order/delivered-order.component';
+import { EmployeeComponent } from './tms/employee/employee.component';
 import { HomePageComponent } from './tms/home-page/home-page.component';
 import { IncomplitedComponent } from './tms/incomplited/incomplited.component';
 import { OrderComponent } from './tms/order/order.component';
+import { OrdersComponent } from './tms/orders/orders.component';
+import { PaymentPendingComponent } from './tms/payment-pending/payment-pending.component';
 import { CategoryComponent } from './tms/setting/category/category.component';
 import { MeasurementComponent } from './tms/setting/measurement/measurement.component';
 import { SettingComponent } from './tms/setting/setting.component';
@@ -66,7 +70,7 @@ const routes: Routes = [
       
 
       {
-        path: 'incomplit',
+        path: 'incomplete',
         component: IncomplitedComponent,
      
       },
@@ -80,11 +84,11 @@ const routes: Routes = [
         component: DeliveredOrderComponent,
      
       },
-      {
-        path: 'order',
-        component: OrderComponent,
+      // {
+      //   path: 'order',
+      //   component: OrderComponent,
      
-      },
+      // },
 
       {
         path: 'category',
@@ -108,7 +112,27 @@ const routes: Routes = [
      
       },
 
-
+      {
+        path: 'paymentPending',
+        component: PaymentPendingComponent,
+     
+      },
+      {
+        path: 'accounts ',
+        component: AccountsComponent,
+     
+      },
+      {
+        path: 'employee',
+        component: EmployeeComponent,
+     
+      },
+      {
+        path: 'order',
+        component: OrdersComponent,
+     
+      },
+      
     ],
   },
 ];

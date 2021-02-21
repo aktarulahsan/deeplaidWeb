@@ -1,0 +1,109 @@
+h5.dependentH5 {
+    width: 300px;
+    text-align: cv;
+    text-align: center;
+    border: solid 1px #bcb;
+    background: #dfecdfee;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 15px auto;
+    margin-bottom: 10px;
+}
+.booked{
+   background-color: #e2eee1; 
+}
+th, td {
+    font-size: 14px;
+    
+}
+.btn-custom{
+    margin-top:.4rem;
+    padding:.2rem;
+    /* background-color: #258caf;
+    border-color:#2c3135;*/
+} 
+.searchHeader{ background: #fff;}
+
+.search-pane{
+    background: #f5f5f5;
+}
+.fontsize{ font-size: 13px !important;}
+.pannelBody {
+    padding: 0px;
+}
+.pannelHeading{
+    padding-bottom:1px;
+}
+.addButtonCustom{
+    padding: 3px 12px !important;
+    font-size: 13px !important;
+}
+
+.searchAllField .input-group-text{
+    border-left: 1px solid #a8d7ea;
+    height: 30px;
+    border-radius: 16px 0px 0px 16px;
+    padding: 0px 6px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.searchAllField .form-control{
+    height: 30px;
+    border-radius: 0px 16px 16px 0px;
+}
+
+.clearbtn{
+    padding: 3px 21px;
+    border-radius: 31px;
+    background: #e53d31;
+    font-family: Verdana !important;
+    margin-left: 1%;
+    border: solid 1px #a3251c;
+}
+.containerArea{width:86%; margin: auto; font-size: 14px;}
+.allTableCustom table button {
+    padding: 0px 5px;
+   
+}
+.searchAllField {
+    width: 98%;
+    margin: auto;
+}
+.btnGroupAll .btn{ padding: 3px 8px; margin-left: 3px; border-radius: 40px;}
+.leftSpace{ left:9px; position: relative;}
+.colorB0{
+    background: #075ab3;
+    border: solid 1px #0753a5;
+}
+.colorB1 {
+    background: #086ad4;
+    border: solid 1px #0564ca;
+}
+.colorB2{
+    background: #03655c;
+    border: solid 1px #02524b;
+}
+.colorB3{
+    background: #047b70;
+    border: solid 1px #02524b;
+}
+
+.colorB4{
+    background: #009688;
+border: solid 1px #01776c;
+}
+.doctorTilte{margin-bottom: 0px;}
+.widthAuto{width:auto !important;margin-top: -9px;}
+span.colorBox {
+    width: 16px;
+    height: 16px;
+    border: solid 1px;
+    display: block;  
+}
+.auSpan{ background: #ff8080;}
+.splitSpan{ background: #008080;}
+.splitSpan2{ background: #c0c000;}
+.bookedSpan{ background: #ffc000;}
+.auSpan2{ background: #e08000;}
+.expireSpan{ background: #ff0000;}
+.canSpan{ background: #800000;}

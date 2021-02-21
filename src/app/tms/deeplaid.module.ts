@@ -38,6 +38,10 @@ import { ItemModelComponent } from './setting/item-model/item-model.component';
 import { AddItemModelComponent } from './setting/item-model/add-item-model/add-item-model.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
+import { PaymentPendingComponent } from './payment-pending/payment-pending.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { OrdersComponent } from './orders/orders.component';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
@@ -46,7 +50,7 @@ import { CustomerDetailsComponent } from './customer/customer-details/customer-d
         DeliveryComponent, IncomplitedComponent,
          CompletedComponent, DeliveredOrderComponent,
           AddCustomerComponent, OrderComponent, 
-          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent, CustomerDetailsComponent],
+          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent, CustomerDetailsComponent, PaymentPendingComponent, AccountsComponent, EmployeeComponent, OrdersComponent],
   imports: [
     FormsModule,
     BrowserModule,

@@ -23,7 +23,7 @@
               add Order</a>
           </li>
 
-          <li class="nav-item dropdown menu-large">
+          <!-- <li class="nav-item dropdown menu-large">
             <a [routerLink]="['/incomplit']" class="nav-link"><span class="icon fa fa-list-ul"></span>
               incomplited Order</a>
           </li>
@@ -34,8 +34,20 @@
           <li class="nav-item dropdown menu-large">
             <a [routerLink]="['/deliveredorder']" class="nav-link"><span class="icon fa fa-truck"></span>
               Delivered Order</a>
+          </li> -->
+          <li class="nav-item dropdown menu-large">
+            <a [routerLink]="['/paymentPending']" class="nav-link"><span  class="fas fa-funnel-dollar" > <i></i>  </span>
+                 payment Pending</a>
           </li>
-
+          <li class="nav-item dropdown menu-large">
+            <a [routerLink]="['/accounts']" class="nav-link"><span class="fas fa-file-invoice-dollar"></span> 
+              Accounts</a>
+          </li>
+          <li class="nav-item dropdown menu-large">
+            <a [routerLink]="['/employee']" class="nav-link"><span class="far fa-user-hard-hat"></span> 
+              Employee</a>
+          </li>
+         
         </ul>
         <ul class="navbar-nav ml-auto align-items-center">
           <li class="nav-item dropdown"><a href="javascript:;" data-toggle="dropdown"
