@@ -118,7 +118,7 @@ const routes: Routes = [
      
       },
       {
-        path: 'accounts ',
+        path: 'accounts',
         component: AccountsComponent,
      
       },
