@@ -69,6 +69,7 @@ export class AddOrdersComponent implements OnInit {
   customerCode: any;
   itemId: any;
   orderid: any;
+  isupdate = null;
   constructor(
     
     public bsModalRef: BsModalRef,
@@ -94,7 +95,6 @@ export class AddOrdersComponent implements OnInit {
       this.orderModel = this.sendData;
       this.customerCode = this.orderModel.customerCode;
       this.orderid = this.orderModel.orderNo;
-      console.log("this.orderid",this.orderid); 
 
       this.getCustomerInfo(this.customerCode);
       // this.getMesurmentInfo(this.orderModel.orderNo);
@@ -127,10 +127,9 @@ export class AddOrdersComponent implements OnInit {
 
   getAccountInfo(orderNo){
     this.apiService.findAccountInfoByOrderid(orderNo).subscribe(data=>{
-     
+
      this.orderAccountDetailsList= data;
-    //  this.orderAccountDetailsList = this.orderAccountDetailsList;
-    this.getGrandTotal();
+     this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
      for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
       this.orderAccountDetails = this.orderAccountDetailsList[i];
         
@@ -142,7 +141,7 @@ export class AddOrdersComponent implements OnInit {
         });
 
      }
-      // console.log(" this.orderAccountDetailsList",this.orderModel); 
+      console.log(" this.orderAccountDetailsList",this.orderDetailsModellist); 
      
     
     })
@@ -263,14 +262,12 @@ export class AddOrdersComponent implements OnInit {
     // this.itemModelId = entity.designModel;
 
     console.log(entity.ordermeasurementList); 
-   
+    this.isupdate = entity;
     
   }
-
-
   deleteitem(id) {
     for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
-     
+
       if(i==id){
         this.orderAccountDetailsList.splice(i,1);
         this.getGrandTotal();
@@ -305,21 +302,52 @@ export class AddOrdersComponent implements OnInit {
        
     }
   }
+  update() {
+ 
+    this.designModel="";
+    if(this.itemModelId){
+      for (let index = 0; index < this.itemModelId.length;) {
+        this.designModel += this.itemModelId[index];
+
+        index++;
+        if(index !=this.itemModelId.length){
+
+          this.designModel +=  ",";
+        }
+      }
+    }
+    for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
+      if(this.orderAccountDetailsList[i].itemId == this.orderAccountDetails.itemId){
+        this.orderAccountDetailsList[i].itemRate= this.orderAccountDetails.itemRate;
+        this.orderAccountDetailsList[i].itemName= this.orderAccountDetails.itemName;
+        this.orderAccountDetailsList[i].qty= this.orderAccountDetails.qty;
+        this.orderAccountDetailsList[i].itemTotalAmount= this.orderAccountDetails.itemTotalAmount;
+        this.orderAccountDetailsList[i].designModel= this.orderAccountDetails.designModel;
+        this.orderAccountDetailsList[i].ordermeasurementList= this.mesurementList;
+
+      
+      }
+
+  }
+  this.getGrandTotal();
+      
+  this.reset();
+
+}
 
 addod(){
     console.log(this.orderAccountDetails);
-
-
-    // this.orderAccountDetailsList
-
+  const  model: OrderAccountDetails = new OrderAccountDetails();
+    if (this.isupdate != null) {
+      this.update()
+    }else{
     for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
-      if(this.orderAccountDetailsList[i].itemId== this.orderAccountDetails.itemId){
+      if (this.orderAccountDetailsList[i].itemId == this.orderAccountDetails.itemId) {
         this.toastr.warning('Duplicate Item can not be added');
         return;
       }
 
-}
-
+    }
     this.designModel="";
     if(this.itemModelId){
       for (let index = 0; index < this.itemModelId.length;) {
@@ -352,9 +380,13 @@ addod(){
     this.orderAccountDetailsList.push(this.orderAccountDetails);
 
 
-      this.getGrandTotal();
+    this.getGrandTotal();
       
-      this.reset();
+    this.reset();
+  }
+
+ 
+   
   }
 
 
@@ -383,7 +415,8 @@ addod(){
       }
     );
     }else{
-      this.getGrandTotal();
+      if(this.customerCode){
+        this.getGrandTotal();
 
       this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
       this.orderModel.totalAmount = this.grandTotal;
@@ -404,6 +437,9 @@ addod(){
            this.toastr.warning('', "There have an error");
         }
       );
+      }else{
+        
+      }
 
 
     }
