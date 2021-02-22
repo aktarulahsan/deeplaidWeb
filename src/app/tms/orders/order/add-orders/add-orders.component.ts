@@ -5,18 +5,18 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
-import { Customer } from '../../customer/customer.model';
-import { CustomerService } from '../../customer/customer.service';
-import { OrderModel } from '../../model/order.Model';
-import { OrderAccountDetails } from '../../model/orderAccountDetails.Model';
-import { OrderDetailsModel } from '../../model/orderDetails.Model';
+import { Customer } from '../../../customer/customer.model';
+import { CustomerService } from '../../../customer/customer.service';
+import { OrderModel } from '../../../model/order.Model';
+import { OrderAccountDetails } from '../../../model/orderAccountDetails.Model';
+import { OrderDetailsModel } from '../../../model/orderDetails.Model';
  
-import { StockGroup } from '../../model/stockGroup.Model';
-import { CategoryModel } from '../../setting/model/category.Model';
-import { ItemEntity } from '../../setting/model/itemEntity.Model';
-import { MeasurementModel } from '../../setting/model/measurement.Model';
-import { SubCategoryModel } from '../../setting/model/subCategory.Model';
-import { SettingService } from '../../setting/service/setting.service';
+import { StockGroup } from '../../../model/stockGroup.Model';
+import { CategoryModel } from '../../../setting/model/category.Model';
+import { ItemEntity } from '../../../setting/model/itemEntity.Model';
+import { MeasurementModel } from '../../../setting/model/measurement.Model';
+import { SubCategoryModel } from '../../../setting/model/subCategory.Model';
+import { SettingService } from '../../../setting/service/setting.service';
 import { OrderService } from '../service/order.service';
  
 
@@ -94,6 +94,7 @@ export class AddOrdersComponent implements OnInit {
       this.orderModel = this.sendData;
       this.customerCode = this.orderModel.customerCode;
       this.orderid = this.orderModel.orderNo;
+      console.log("this.orderid",this.orderid); 
 
       this.getCustomerInfo(this.customerCode);
       // this.getMesurmentInfo(this.orderModel.orderNo);
@@ -126,21 +127,22 @@ export class AddOrdersComponent implements OnInit {
 
   getAccountInfo(orderNo){
     this.apiService.findAccountInfoByOrderid(orderNo).subscribe(data=>{
-
+     
      this.orderAccountDetailsList= data;
-     this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
-     for (let i = 0; i < this.orderModel.orderAccountDetailsList.length; i++) {
-      this.orderAccountDetails = this.orderModel.orderAccountDetailsList[i];
+    //  this.orderAccountDetailsList = this.orderAccountDetailsList;
+    this.getGrandTotal();
+     for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
+      this.orderAccountDetails = this.orderAccountDetailsList[i];
         
       this.apiService.findAccountInfoByOrderidandItemId(this.orderAccountDetails).subscribe(data=>{
          
           
-          this.orderModel.orderAccountDetailsList[i].ordermeasurementList =data["items"];
+          this.orderAccountDetailsList[i].ordermeasurementList =data["items"];
 
         });
 
      }
-      console.log(" this.orderAccountDetailsList",this.orderDetailsModellist); 
+      // console.log(" this.orderAccountDetailsList",this.orderModel); 
      
     
     })
@@ -265,6 +267,19 @@ export class AddOrdersComponent implements OnInit {
     
   }
 
+
+  deleteitem(id) {
+    for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
+     
+      if(i==id){
+        this.orderAccountDetailsList.splice(i,1);
+        this.getGrandTotal();
+        return;
+      }
+
+    }
+  }
+
   getTotal():any{
 
     // this.orderAccountDetails.itemTotalAmount = this.orderAccountDetails.itemRate* this.orderAccountDetails.qty;
@@ -293,6 +308,18 @@ export class AddOrdersComponent implements OnInit {
 
 addod(){
     console.log(this.orderAccountDetails);
+
+
+    // this.orderAccountDetailsList
+
+    for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
+      if(this.orderAccountDetailsList[i].itemId== this.orderAccountDetails.itemId){
+        this.toastr.warning('Duplicate Item can not be added');
+        return;
+      }
+
+}
+
     this.designModel="";
     if(this.itemModelId){
       for (let index = 0; index < this.itemModelId.length;) {
@@ -329,6 +356,8 @@ addod(){
       
       this.reset();
   }
+
+
   submitOrder(): any{
 
     if(this.orderid){
@@ -354,27 +383,27 @@ addod(){
       }
     );
     }else{
-      // this.getGrandTotal();
+      this.getGrandTotal();
 
-      // this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
-      // this.orderModel.totalAmount = this.grandTotal;
+      this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
+      this.orderModel.totalAmount = this.grandTotal;
   
-      // this.apiService.saveOrder(this.orderModel).subscribe(
-      //   (resp) => {
-      //     console.log('create ', resp);
-      //     if (resp) {
+      this.apiService.saveOrder(this.orderModel).subscribe(
+        (resp) => {
+          console.log('create ', resp);
+          if (resp) {
             
-      //        this.toastr.success('', 'Create Successfull');
-      //       this.onClose.next(true);
-      //       this.bsModalRef.hide();
-      //     } else {
-      //        this.toastr.success('', "Something  wrong");
-      //     }
-      //   },
-      //   (err) => {
-      //      this.toastr.warning('', "There have an error");
-      //   }
-      // );
+             this.toastr.success('', 'Create Successfull');
+            this.onClose.next(true);
+            this.bsModalRef.hide();
+          } else {
+             this.toastr.success('', "Something  wrong");
+          }
+        },
+        (err) => {
+           this.toastr.warning('', "There have an error");
+        }
+      );
 
 
     }

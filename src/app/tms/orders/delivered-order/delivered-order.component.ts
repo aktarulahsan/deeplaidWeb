@@ -2,17 +2,21 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { OrderService } from 'src/app/service/order.service';
-import { StockGroup } from '../model/stockGroup.Model';
+import { StockGroup } from '../../model/stockGroup.Model';
+import { BsModalService } from 'ngx-bootstrap/modal';
+
+import { environment } from 'src/environments/environment';
 import * as moment from 'moment';
 import { DataTableDirective } from 'angular-datatables';
-import { environment } from 'src/environments/environment';
+import { DeliveryComponent } from '../completed/delivery/delivery.component';
 @Component({
-  selector: 'app-incomplited',
-  templateUrl: './incomplited.component.html',
-  styleUrls: ['./incomplited.component.css']
+  selector: 'app-delivered-order',
+  templateUrl: './delivered-order.component.html',
+  styleUrls: ['./delivered-order.component.css']
 })
-export class IncomplitedComponent implements OnInit {
+export class DeliveredOrderComponent implements OnInit {
 
+  
  
   @ViewChild(DataTableDirective, { static: false })
   dtElement: DataTableDirective;
@@ -34,23 +38,21 @@ export class IncomplitedComponent implements OnInit {
   }
 
   public data = [
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '300', unpaid: '100' },
-    
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
+    { tc: '255', doctorname: 'শাহ আবু  মুহাম্মদ  আক্তারুল আহসান মাসুদ ', qty: '০১৭৭৪২৫৪৯৮৮', total: '500', discount: '100',paid: '400', unpaid: '0',status: 'ok' },
      
 
   ];
-
-
+ 
   showgrid() {
     let that = this;
     this.dtOptions = {
@@ -235,6 +237,7 @@ export class IncomplitedComponent implements OnInit {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
   }
+ 
 
 
 }

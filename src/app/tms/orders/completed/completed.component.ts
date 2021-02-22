@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { OrderService } from 'src/app/service/order.service';
-import { StockGroup } from '../model/stockGroup.Model';
+import { StockGroup } from '../../model/stockGroup.Model';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { DeliveryComponent } from './delivery/delivery.component';
 import { environment } from 'src/environments/environment';

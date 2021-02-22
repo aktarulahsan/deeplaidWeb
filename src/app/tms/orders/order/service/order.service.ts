@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { BaseResponse } from '../../model/baseresponse.model';
-import { OrderModel } from '../../model/order.Model';
-import { OrderAccountDetails } from '../../model/orderAccountDetails.Model';
+import { BaseResponse } from '../../../model/baseresponse.model';
+import { OrderModel } from '../../../model/order.Model';
+import { OrderAccountDetails } from '../../../model/orderAccountDetails.Model';
 
 @Injectable({
   providedIn: 'root'

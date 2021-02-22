@@ -92,7 +92,7 @@
 
                     <div class="form-group col-md-4 ">
                         <label for="productName">অর্ডার নাম্বার </label>
-                        <input type="text" class="form-control" name="productName" readonly />
+                        <input type="text" class="form-control" name="productName" [(ngModel)]="orderid" bindLabel="orderid" readonly />
                         <!-- <div *ngIf="f.submitted && productName.invalid">
               <div *ngIf="productName.errors.required">
                   productName is required
@@ -283,8 +283,8 @@
                 <td>{{group.qty*group.itemRate}}</td>
                
                 <td>
-                  <a class="btn btn-sm btn-info text-white" ><i class="fas fa-edit"></i></a>
-                  <a class="btn btn-sm btn-danger text-white ml-1"  ><i class="fa fa-trash"></i></a>
+                  <a class="btn btn-sm btn-info text-white" (click)="editData(group,this)"><i class="fas fa-edit"></i></a>
+                  <a class="btn btn-sm btn-danger text-white ml-1" (click)='deleteitem(i)' ><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
             </tbody>

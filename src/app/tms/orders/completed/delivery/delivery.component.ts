@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { OrderService } from 'src/app/service/order.service';
-import { StockGroup } from '../../model/stockGroup.Model';
+import { StockGroup } from '../../../model/stockGroup.Model';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   selector: 'app-delivery',

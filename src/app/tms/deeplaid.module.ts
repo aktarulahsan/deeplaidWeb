@@ -15,14 +15,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddordersComponent } from './addorders/addorders.component';
 import { CustomerComponent } from './customer/customer.component';
 import { SettingComponent } from './setting/setting.component';
-import { DeliveryComponent } from './completed/delivery/delivery.component';
-import { IncomplitedComponent } from './incomplited/incomplited.component';
-import { CompletedComponent } from './completed/completed.component';
-import { DeliveredOrderComponent } from './delivered-order/delivered-order.component';
+import { DeliveryComponent } from './orders/completed/delivery/delivery.component';
+import { IncomplitedComponent } from './orders/incomplited/incomplited.component';
+import { CompletedComponent } from './orders/completed/completed.component';
+import { DeliveredOrderComponent } from './orders/delivered-order/delivered-order.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AddCustomerComponent } from './customer/add-customer/add-customer.component';
-import { OrderComponent } from './order/order.component';
-import { AddOrdersComponent } from './order/add-orders/add-orders.component';
+import { OrderComponent } from './orders/order/order.component';
+import { AddOrdersComponent } from './orders/order/add-orders/add-orders.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserModule } from '@angular/platform-browser';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -39,9 +39,10 @@ import { AddItemModelComponent } from './setting/item-model/add-item-model/add-i
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { PaymentPendingComponent } from './payment-pending/payment-pending.component';
-import { AccountsComponent } from './accounts/accounts.component';
+ 
 import { EmployeeComponent } from './employee/employee.component';
 import { OrdersComponent } from './orders/orders.component';
+import { AccountsComponent } from './accounts/accounts.component';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
