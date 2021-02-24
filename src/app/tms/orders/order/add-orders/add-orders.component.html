@@ -20,14 +20,19 @@
                         <label for="groupName">কাস্টমার কোড </label>
 
                         <ng-select [items]="customerList" 
-                        placeholder="Choose product code"
+                        placeholder="Choose customer code"
                         notFoundText="Product code not found" 
                         bindLabel="customerName" 
+                        
                         bindValue="customerCode" 
                         [(ngModel)]= "customerCode"
                         name="customerCode"
                         (change)="selectCustomer($event)"
                         onselect="true" required>
+                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                            <span class="ng-value-label">{{item.customerCode + ' ' + item.customerName}}</span>
+                            <span class="ng-value-icon right" >×</span>
+                        </ng-template>
                         </ng-select>
                     </div>
 
@@ -133,7 +138,7 @@
                         <div class="form-group">
                             <label>{{item.measurementName}}</label>
                             <td></td>
-                           <td> <input type="number" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
+                           <td> <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
                             [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
                             <!-- <label [attr.for] = "item.measurementName" class="form-check-label">{{item.measurementName}}</label> -->
                         </div>
@@ -154,6 +159,25 @@
                     </tbody>
                 </table> -->
 
+                </div>
+                <div class="row bg-light">
+                    <div class="col-md-2" *ngFor="let item of designList let i=index">
+                        <div class="form-group">
+                            <label>{{item.desingName}}</label>
+                            <ng-select    bindLabel="itemModelId" placeholder="Select item" appendTo="body" 
+                            [searchable]="true"  [clearable]="true"  [(ngModel)]="itemModelId" [ngModelOptions]="{standalone: true}">
+                            <ng-option [value]="item.itemModelId" [disabled]="item.disabled"
+                                *ngFor="let item of designList[i].designSubCategoryModelList">
+
+                                {{item.measurement}}
+                            </ng-option>
+                            </ng-select>
+                            
+                           <!-- <td> <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
+                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
+                            -->
+                        </div>
+                    </div>
                 </div>
 
                

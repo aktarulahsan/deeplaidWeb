@@ -43,6 +43,10 @@ import { PaymentPendingComponent } from './payment-pending/payment-pending.compo
 import { EmployeeComponent } from './employee/employee.component';
 import { OrdersComponent } from './orders/orders.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { DesignCategoryComponent } from './setting/design-category/design-category.component';
+import { DesignSubCategoryComponent } from './setting/design-sub-category/design-sub-category.component';
+import { AddDesignCategoryComponent } from './setting/design-category/add-design-category/add-design-category.component';
+import { AddDesignSubCategoryComponent } from './setting/design-sub-category/add-design-sub-category/add-design-sub-category.component';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
@@ -51,7 +55,7 @@ import { AccountsComponent } from './accounts/accounts.component';
         DeliveryComponent, IncomplitedComponent,
          CompletedComponent, DeliveredOrderComponent,
           AddCustomerComponent, OrderComponent, 
-          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent, CustomerDetailsComponent, PaymentPendingComponent, AccountsComponent, EmployeeComponent, OrdersComponent],
+          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent, CustomerDetailsComponent, PaymentPendingComponent, AccountsComponent, EmployeeComponent, OrdersComponent, DesignCategoryComponent, DesignSubCategoryComponent, AddDesignCategoryComponent, AddDesignSubCategoryComponent],
   imports: [
     FormsModule,
     BrowserModule,

@@ -5,6 +5,8 @@ import { NgForm } from '@angular/forms';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { DesignCategoryModel } from 'src/app/tms/setting/model/designCategory.Model';
+import { DesignSubCategoryModel } from 'src/app/tms/setting/model/desingSubCategory.Model';
 import { Customer } from '../../../customer/customer.model';
 import { CustomerService } from '../../../customer/customer.service';
 import { OrderModel } from '../../../model/order.Model';
@@ -41,9 +43,12 @@ export class AddOrdersComponent implements OnInit {
   subcatList: SubCategoryModel[];
   itemEntityList: ItemEntity[];
   customerList: Customer[];
+  designList: DesignCategoryModel[];
+  subDesignList: DesignSubCategoryModel[];
   selected: any[]=new Array();
   orderModel: OrderModel= new OrderModel();
   customer: Customer= new Customer();
+  
   orderDetailsModellist: OrderDetailsModel[];
   orderDetails: OrderDetailsModel= new OrderDetailsModel();
 
@@ -88,6 +93,7 @@ export class AddOrdersComponent implements OnInit {
     this.getItemList();
     this. getItemModelList();
     this.getCustomerList();
+    this.getDesignList();
 
 
     if (this.sendData) {
@@ -112,6 +118,35 @@ export class AddOrdersComponent implements OnInit {
     
     })
   }
+
+  getDesignList() {
+    this.settingService.getDesignList().subscribe(data => {
+      this.designList = data['data'];
+      
+      if (this.designList.length > 0) {
+        for (let i = 0; i < this.designList.length; i++) {
+          this.settingService.findSubDesignlist(this.designList[i].designCategoryId).subscribe(data => {
+            this.subDesignList = data;
+
+            console.log("this.subDesignList", data);
+            this.designList[i].designSubCategoryModelList = this.subDesignList;
+            
+
+          })
+
+        }
+      }
+      console.log("this.designList", this.designList);
+    })
+  }
+  getSubDesignList(id){
+    this.settingService.findSubDesignlist(id).subscribe(data=>{
+    this.subDesignList= data['data'];
+      console.log("this.subDesignList",this.customer); 
+    
+    })
+  }
+
   getMesurmentInfo(orderNo){
     this.apiService.findMesurementByOrderid(orderNo).subscribe(data=>{
       console.log("this.mesurementList",data); 

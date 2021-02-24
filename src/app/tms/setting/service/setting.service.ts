@@ -7,6 +7,9 @@ import { map } from 'rxjs/operators';
 import { CategoryModel } from '../model/category.Model';
 import { SubCategoryModel } from '../model/subCategory.Model';
 import { ItemEntity } from '../model/itemEntity.Model';
+import { DesignCategoryModel } from '../model/designCategory.Model';
+import { DesignSubCategoryModel } from '../model/desingSubCategory.Model';
+ 
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +23,9 @@ export class SettingService {
   private END_POINT = `category`; 
   private END_POINT2 = `subCategory`;
   private END_POINT3 = `itemModel`;
+
+  private END_POINT4 = `designCategory`;
+  private END_POINT5 = `designSubCategory`;
 
   private SAVE_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/create`;
   private UPDATE_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/update`;
@@ -38,6 +44,12 @@ export class SettingService {
   private SAVE_ITEM_MODEL= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT3}/create`;
   private UPDATE_ITEM_MODEL = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT3}/update`;
   private  SUB_ITEM_MODEL_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT3}/list`;
+
+
+
+
+
+
 
 
   getCatList(): Observable<any> {
@@ -128,6 +140,72 @@ export class SettingService {
 
   getSubItemModel(): Observable<any> {
     return this.http.get(`${this.SUB_ITEM_MODEL_LIST}`);
+  }
+
+
+
+
+
+  private SAVE_DESIGN_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT4}/create`;
+  private UPDATE_DESIGN_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT4}/update`;
+  private  DESIGN_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT4}/list`;
+  private FIND_BY_DESIGN_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT4}/findByCategoryId`;
+
+
+  getDesignList(): Observable<any> {
+    return this.http.get(`${this.DESIGN_LIST}`);
+  }
+ 
+  saveDesign(data: DesignCategoryModel): Observable<DesignCategoryModel> {
+    return this.http
+      .post<DesignCategoryModel>(this.SAVE_DESIGN_CAT, data)
+      .pipe(map((data: DesignCategoryModel) => data));
+  }
+
+  
+  updateDesign(data: DesignCategoryModel): Observable<DesignCategoryModel> {
+    return this.http
+      .put<DesignCategoryModel>(this.UPDATE_DESIGN_CAT, data)
+      .pipe(map((data: DesignCategoryModel) => data));
+  }
+
+  findDesignlist(data) {
+    const params = new HttpParams().append('id', data); 
+    return this.http.get(this.FIND_BY_DESIGN_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
+
+
+  
+  private SAVE_SUB_DESIGN_CAT= `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT5}/create`;
+  private UPDATE_SUB_DESIGN_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT5}/update`;
+  private  SUB_DESIGN_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT5}/list`;
+  private FIND_BY_SUB_DESIGN_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT5}/findById`;
+
+
+  getSubDesignList(): Observable<any> {
+    return this.http.get(`${this.SUB_DESIGN_LIST}`);
+  }
+ 
+  saveSubDesign(data: DesignSubCategoryModel): Observable<DesignSubCategoryModel> {
+    return this.http
+      .post<DesignSubCategoryModel>(this.SAVE_SUB_DESIGN_CAT, data)
+      .pipe(map((data: DesignSubCategoryModel) => data));
+  }
+
+  
+  updateSubDesign(data: DesignSubCategoryModel): Observable<DesignSubCategoryModel> {
+    return this.http
+      .put<DesignSubCategoryModel>(this.UPDATE_SUB_DESIGN_CAT, data)
+      .pipe(map((data: DesignSubCategoryModel) => data));
+  }
+
+  findSubDesignlist(data) {
+    const params = new HttpParams().append('designCategoryId', data); 
+    return this.http.get(this.FIND_BY_SUB_DESIGN_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
   }
 
 }

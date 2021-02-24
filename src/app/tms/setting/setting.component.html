@@ -27,6 +27,12 @@
                       <ng-container *ngIf="tabz.content == 'itemModel' && tabz.initiated">
                         <app-item-model></app-item-model>
                     </ng-container>
+                    <ng-container *ngIf="tabz.content == 'desingCat' && tabz.initiated">
+                      <app-design-category></app-design-category>
+                  </ng-container>
+                  <ng-container *ngIf="tabz.content == 'desingSubCat' && tabz.initiated">
+                    <app-design-sub-category></app-design-sub-category>
+                </ng-container>
                 </tab>
               </tabset>
 

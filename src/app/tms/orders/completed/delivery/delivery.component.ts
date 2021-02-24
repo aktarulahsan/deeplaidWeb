@@ -44,13 +44,13 @@ export class DeliveryComponent implements OnInit {
   ];
 
   getgList() {
-    this.apiService.getProductGList().subscribe((data) => {
-      console.log(data);
-      // this.groupList = JSON.parse(data.results);
-      // this.groupList= data['results'];
-      // console.log(this.groupList);
-      // console.log(this.prodOneList)
-    })
+    // this.apiService.getProductGList().subscribe((data) => {
+    //   console.log(data);
+    //   // this.groupList = JSON.parse(data.results);
+    //   // this.groupList= data['results'];
+    //   // console.log(this.groupList);
+    //   // console.log(this.prodOneList)
+    // })
   }
 
   selectL1Item(getItem):any{  

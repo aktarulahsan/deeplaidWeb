@@ -1,0 +1,67 @@
+<div class="modal-content">
+
+
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+           {{title}}
+        </h5>
+        <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="bsModalRef.hide()"
+      >
+        <span>&times;</span>
+      </button>
+    </div>
+
+
+
+
+    <div class="modal-body crudForm">
+        <div class="persoanlInfoArea">
+
+            <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm"
+                novalidate action="index.html">
+
+                <div class="row">
+                    
+
+                    <div class="form-group col-md-3 "></div>
+                     
+                      <div class="form-group col-md-6 ">
+                        <label for="desingName">পোশাকের  নাম </label>
+                        <input type="text" class="form-control" name="desingName"
+                            [(ngModel)]="categoryModel.desingName" #desingName="ngModel" />
+                        <div *ngIf="f.submitted && desingName.invalid">
+                            <div *ngIf="cdesingNamename.errors.required">
+                                desingName is required
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                       
+
+                </div>
+                
+
+                <div class="form-group">
+                   
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i>  সেভ </button>
+
+                </div>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+ 
+
+</div>
