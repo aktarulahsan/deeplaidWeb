@@ -45,6 +45,7 @@ export class AddOrdersComponent implements OnInit {
   customerList: Customer[];
   designList: DesignCategoryModel[];
   subDesignList: DesignSubCategoryModel[];
+  subDesign: DesignSubCategoryModel= new  DesignSubCategoryModel();
   // designSubCategoryId: any;
   selected: any[]=new Array();
   orderModel: OrderModel= new OrderModel();
@@ -118,6 +119,22 @@ export class AddOrdersComponent implements OnInit {
       return item.id; 
     }
 
+
+    ngSelectOpened(val){
+      console.log("index ,  item",val.designCategoryId);
+      console.log("index ,  item",val);
+      if(this.designList.length>0){
+        for (let i = 0; i < this.designList.length; i++) {
+          
+          if( this.designList[i].designCategoryId == val.designCategoryId ){
+            this.designList[i].designSubCategoryId = val.designSubCategoryId;
+          }
+          
+        }
+      }
+      console.log("this.designList ,  item",this.designList);
+
+    }
     // tracktrackmesuremnet (index, item) {
     //   return this.mesurementList ? this.mesurementList : undefined;   }
 
@@ -385,7 +402,7 @@ export class AddOrdersComponent implements OnInit {
 }
 
 addod(){
-    console.log(this.orderAccountDetails);
+    console.log("this.designList",this.designList);
   const  model: OrderAccountDetails = new OrderAccountDetails();
     if (this.isupdate != null) {
       this.update()

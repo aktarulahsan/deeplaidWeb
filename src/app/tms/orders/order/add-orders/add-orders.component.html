@@ -19,7 +19,10 @@
                     <div class="col-sm-4 form-group">
                         <label for="groupName">কাস্টমার কোড </label>
 
-                        <ng-select [items]="customerList" 
+                        <ng-select
+                        [loading]="true"
+                        [dropdownPosition]="'bottom'"
+                        [items]="customerList" 
                         placeholder="Choose customer code"
                         notFoundText="Product code not found" 
                         bindLabel="customerName" 
@@ -29,11 +32,26 @@
                         name="customerCode"
                         (change)="selectCustomer($event)"
                         onselect="true" required>
+                        <!-- <ng-option>{{customerCode + ' ' + customerName}}</ng-option> -->
                         <ng-template ng-label-tmp let-item="item" let-clear="clear">
                             <span class="ng-value-label">{{item.customerCode + ' ' + item.customerName}}</span>
                             <span class="ng-value-icon right" >×</span>
                         </ng-template>
+                        
                         </ng-select>
+
+
+
+                        <!-- <ng-select    bindLabel="customerName" placeholder="Select item" appendTo="body" 
+                            [searchable]="true"  [clearable]="true"  [(ngModel)]="customerCode" [ngModelOptions]="{standalone: true}">
+                            <ng-option [value]="item.customerCode" [disabled]="item.customerCode" (change)="selectCustomer($event)"
+                                *ngFor="let item of customerList">
+
+                                {{item.customerCode}}
+                            </ng-option>
+                            </ng-select> -->
+
+
                     </div>
 
 
@@ -148,10 +166,32 @@
                         </div>
                     </div>
 
-             
+                <!-- <table>
+                    <tbody>
+                        <tr>
+                            <td  *ngFor="let item of mesurementList let i=index">
+                                <div class="form-group ">
+                                    <label>{{item.measurementName}}{{item.measurementId}}</label>
+                                <td> <input type="number"  class="form-control"  [attr.id] = "item.measurementId"
+                                    [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
+                                    <label [attr.for] = "item.measurementName" class="form-check-label">{{item.measurementName}}</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> -->
 
                 </div>
-              
+                <!-- <div class="row bg-light">
+                    <table>
+                        <tr *ngFor="let data of mesurementList; let i = index;trackBy:trackByFn;">
+                          <td>
+                            <input type="number" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
+                          </td>
+                      </table>
+                   
+                </div> -->
+
 
 
                 <div class="row bg-light">
@@ -159,7 +199,7 @@
                         <label>{{item.desingName}}</label>
                         <div class="form-group">
                            
-                          
+                             
                             <ng-select [items]="designList[i].designSubCategoryModelList" 
                             [addTag]="true"
                             
@@ -169,16 +209,59 @@
                             bindLabel="measurement" 
                             bindValue="designSubCategoryId" 
                             name="designSubCategoryId"
+                            (change)="ngSelectOpened($event)"
                             [tracktrackmesuremnet]="tracktrackmesuremnet"
                             [ngModelOptions]="{standalone: true}"
                             onselect="true" required>
                             </ng-select>
 
                             
+
+
+
+                            <!-- <ng-select [items]="people$ | async"
+                            bindLabel="name"
+                            [addTag]="true"
+                            [multiple]="true"
+                            [hideSelected]="true"
+                            [trackByFn]="trackByFn"
+                            [minTermLength]="2"
+                            (open)="ngSelectOpened(pref.name)"
+                            [loading]="peopleLoading"
+                            typeToSearchText="Please enter 2 or more characters"
+                            [typeahead]="peopleInput$"
+                            [(ngModel)]="pref.selected">
+                                </ng-select> -->
+<!-- 
+                            <ng-select    bindLabel="itemModelId" placeholder="Select item" appendTo="body" 
+                            [searchable]="true"  [clearable]="true"  [(ngModel)]="itemModelId" [ngModelOptions]="{standalone: true}">
+                            <ng-option [value]="item.itemModelId" [disabled]="item.disabled"
+                                *ngFor="let item of designList[i].designSubCategoryModelList">
+
+                                {{item.measurement}}
+                            </ng-option>
+                            </ng-select> -->
+                            
+                           <!-- <td> <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
+                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
+                            -->
                         </div>
                     </div>
                 </div>
-               
+                <!-- <div class="row bg-light">
+                    <div class="col-md-2" *ngFor="let item of designList; let i=index; trackBy: trackItem | async " >
+                        <div class="form-group">
+                            <label>{{item.desingName}}</label>
+                        
+                           <td> 
+                            <input type="number" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
+                           
+                        
+                        </td>
+                           
+                        </div>
+                    </div>
+                </div> -->
 
                
                 <div class="row">
