@@ -45,6 +45,7 @@ export class AddOrdersComponent implements OnInit {
   customerList: Customer[];
   designList: DesignCategoryModel[];
   subDesignList: DesignSubCategoryModel[];
+  designSubCategoryId: any;
   selected: any[]=new Array();
   orderModel: OrderModel= new OrderModel();
   customer: Customer= new Customer();
@@ -61,6 +62,7 @@ export class AddOrdersComponent implements OnInit {
   
   orderModelList: OrderModel[];
   orderAccountDetailsList: any[]= new Array();
+  measurementId: any;
 
   itemTotal: any;
 
@@ -109,7 +111,11 @@ export class AddOrdersComponent implements OnInit {
     }
   }
 
-
+  trackItem (index, item) {
+    return this.mesurementList ? this.mesurementList : undefined;   }
+    trackByFn(index, item) { 
+      return item.id; 
+    }
 
   getCustomerInfo(id){
     this.customerService.checkCustomerID(id).subscribe(data=>{

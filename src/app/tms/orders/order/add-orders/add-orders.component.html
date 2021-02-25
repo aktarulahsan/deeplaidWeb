@@ -134,13 +134,17 @@
 
            
                 <div class="row bg-light">
-                    <div class="col-md-2" *ngFor="let item of mesurementList let i=index">
+                    <div class="col-md-2" *ngFor="let item of mesurementList; let i=index; trackBy: trackItem | async " >
                         <div class="form-group">
                             <label>{{item.measurementName}}</label>
-                            <td></td>
-                           <td> <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
-                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
-                            <!-- <label [attr.for] = "item.measurementName" class="form-check-label">{{item.measurementName}}</label> -->
+                        
+                           <td> 
+                            <input type="number" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
+                               <!-- <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
+                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"> -->
+                        
+                        </td>
+                           
                         </div>
                     </div>
 
@@ -160,10 +164,36 @@
                 </table> -->
 
                 </div>
+                <!-- <div class="row bg-light">
+                    <table>
+                        <tr *ngFor="let data of mesurementList; let i = index;trackBy:trackByFn;">
+                          <td>
+                            <input type="number" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
+                          </td>
+                      </table>
+                   
+                </div> -->
+
+
+
                 <div class="row bg-light">
-                    <div class="col-md-2" *ngFor="let item of designList let i=index">
+                    <div class="col-md-2" *ngFor="let item of designList let i=index;  trackBy: trackItem ">
                         <div class="form-group">
                             <label>{{item.desingName}}</label>
+                            <!-- <input type="number" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue"> -->
+                            <ng-select [items]="designList[i].designSubCategoryModelList" 
+                            placeholder="Choose product code"
+                            notFoundText="measurement code not found" 
+                            bindLabel="measurement" 
+                            bindValue="designSubCategoryId" 
+                            name="designSubCategoryId"
+                            [(ngModel)]="designSubCategoryId"
+                            [ngModelOptions]="{standalone: true}"
+                            onselect="true" required>
+                            </ng-select>
+
+
+<!-- 
                             <ng-select    bindLabel="itemModelId" placeholder="Select item" appendTo="body" 
                             [searchable]="true"  [clearable]="true"  [(ngModel)]="itemModelId" [ngModelOptions]="{standalone: true}">
                             <ng-option [value]="item.itemModelId" [disabled]="item.disabled"
@@ -171,7 +201,7 @@
 
                                 {{item.measurement}}
                             </ng-option>
-                            </ng-select>
+                            </ng-select> -->
                             
                            <!-- <td> <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
                             [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
