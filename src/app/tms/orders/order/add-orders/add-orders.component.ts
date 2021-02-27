@@ -1,12 +1,15 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NgSelectComponent } from '@ng-select/ng-select';
  
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
+import { OrderDesignDetaislModel } from 'src/app/tms/model/orderDesignDetaisl.Model';
 import { DesignCategoryModel } from 'src/app/tms/setting/model/designCategory.Model';
 import { DesignSubCategoryModel } from 'src/app/tms/setting/model/desingSubCategory.Model';
+ 
 import { Customer } from '../../../customer/customer.model';
 import { CustomerService } from '../../../customer/customer.service';
 import { OrderModel } from '../../../model/order.Model';
@@ -29,7 +32,7 @@ import { OrderService } from '../service/order.service';
 })
 export class AddOrdersComponent implements OnInit {
 
-  
+ 
   
   onClose: Subject<boolean>;
   purchaseDetailList: any[]=new Array();
@@ -47,6 +50,7 @@ export class AddOrdersComponent implements OnInit {
   subDesignList: DesignSubCategoryModel[];
   subDesign: DesignSubCategoryModel= new  DesignSubCategoryModel();
   // designSubCategoryId: any;
+  designCategoryModel : DesignCategoryModel= new DesignCategoryModel();
   selected: any[]=new Array();
   orderModel: OrderModel= new OrderModel();
   customer: Customer= new Customer();
@@ -63,6 +67,8 @@ export class AddOrdersComponent implements OnInit {
   
   orderModelList: OrderModel[];
   orderAccountDetailsList: any[]= new Array();
+  orderDesignDetaislModelList: OrderDesignDetaislModel[]=new Array();
+  orderDesignDetaislModel: OrderDesignDetaislModel= new OrderDesignDetaislModel();
   measurementId: any;
 
   itemTotal: any;
@@ -78,6 +84,8 @@ export class AddOrdersComponent implements OnInit {
   itemId: any;
   orderid: any;
   isupdate = null;
+  designSubCategoryId = [];
+  
   constructor(
     
     public bsModalRef: BsModalRef,
@@ -115,17 +123,15 @@ export class AddOrdersComponent implements OnInit {
   trackItem (index, item) {
     return this.mesurementList ? this.mesurementList : undefined;   }
 
-    trackByFn(index, item) { 
+    trackByFn(index, item:any) { 
+
       return item.id; 
     }
 
 
     ngSelectOpened(val){
-      console.log("index ,  item",val.designCategoryId);
-      console.log("index ,  item",val);
       if(this.designList.length>0){
         for (let i = 0; i < this.designList.length; i++) {
-          
           if( this.designList[i].designCategoryId == val.designCategoryId ){
             this.designList[i].designSubCategoryId = val.designSubCategoryId;
           }
@@ -161,15 +167,13 @@ export class AddOrdersComponent implements OnInit {
 
             console.log("this.subDesignList", data);
             this.designList[i].designSubCategoryModelList = this.subDesignList;
-            
-
           })
-
         }
       }
       console.log("this.designList", this.designList);
     })
   }
+
   getSubDesignList(id){
     this.settingService.findSubDesignlist(id).subscribe(data=>{
     this.subDesignList= data['data'];
@@ -305,6 +309,29 @@ export class AddOrdersComponent implements OnInit {
       entity.ordermeasurementList[i].id= entity.ordermeasurementList[i].measurementId;
       
     }
+  //  if(entity.designCategoryModelList){
+    // for (let i = 0; i < entity.designCategoryModelList.length; i++) {
+
+   
+       
+    //   // this.designSubCategoryId = entity.designCategoryModelList[i].designSubCategoryId;
+    //   for (let j = 0; j < this.designList[i].designSubCategoryModelList.length; j++) {
+    //     this.designList[i].designSubCategoryModelList[j].designSubCategoryId=entity.designCategoryModelList[i].designSubCategoryId; ;
+        
+    //   }
+      
+    // }
+
+  //  }
+
+  // for (let i = 0; i < this.designList.length; i++) {
+  //   if( this.designList[i].designCategoryId == entity.designCategoryModelList[i].designCategoryId ){
+  //     // this.designList[i].designSubCategoryId = val.designSubCategoryId;
+  //     this.designSubCategoryId
+  //   }
+    
+  // }
+
     
     this.mesurementList= entity.ordermeasurementList;
     this.itemId = entity.itemId;
@@ -321,9 +348,9 @@ export class AddOrdersComponent implements OnInit {
 
     this.orderAccountDetails.itemRate = entity.itemRate;
     this.orderAccountDetails.qty = entity.qty;
-    console.log("this.itemModelId",this.itemModelId);
+    console.log("this.itemModelId",entity);
 
-    console.log("entity.ordermeasurementList",entity.ordermeasurementList);
+    // console.log("entity.ordermeasurementList",entity.ordermeasurementList);
     // this.orderAccountDetails.designModel= this.designModel;
     // this.itemModelId = entity.designModel;
 
@@ -414,6 +441,13 @@ addod(){
       }
 
     }
+
+
+    for (let i = 0; i < this.designList.length; i++) {
+      const element = this.designList[i];
+      
+    }
+    
     this.designModel="";
     if(this.itemModelId){
       for (let index = 0; index < this.itemModelId.length;) {
@@ -435,14 +469,11 @@ addod(){
     plist = this.mesurementList;
 
     this.orderAccountDetails.ordermeasurementList = plist;
-
-      // this.orderModel.designModel= this.designModel;
-
-      // console.log("this.orderModel",this.orderModel);
       this.id += 1;
       this.orderAccountDetails.id = this.id;
       this.orderAccountDetails.designModel= this.designModel;
       console.log("this.orderAccountDetails",this.orderAccountDetails);
+    this.orderAccountDetails.designCategoryModelList = this.designList;
     this.orderAccountDetailsList.push(this.orderAccountDetails);
 
 
@@ -528,6 +559,7 @@ addod(){
     this.itemModelId=[];
     this.mesurementList = [];
     this.orderAccountDetails =new OrderAccountDetails();
+    this.getDesignList();
     // this.model = new OrderDetailsModel();
     //  this.l4Code ="";
     //  this.qty="";

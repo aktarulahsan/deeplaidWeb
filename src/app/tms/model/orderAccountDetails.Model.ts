@@ -1,3 +1,4 @@
+import { DesignCategoryModel } from "../setting/model/designCategory.Model";
 import { MeasurementModel } from "../setting/model/measurement.Model";
 import { BaseModel } from "./base.Model";
 import { OrderDetailsModel } from "./orderDetails.Model";
@@ -15,5 +16,7 @@ export class OrderAccountDetails extends BaseModel {
      designModel: string;
 
      ordermeasurementList:OrderDetailsModel[]= new Array();
+     designCategoryModelList: DesignCategoryModel[]= new Array();
+
 
 }

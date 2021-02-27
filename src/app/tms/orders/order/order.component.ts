@@ -109,8 +109,8 @@ export class OrderComponent implements OnInit {
           name: 'totalAmount',
         },
         {
-          title: 'আপডেট ডেট ',
-          data: 'ssModifiedOn',
+          title: 'অর্ডার ডেট ',
+          data: 'ssCreatedOn',
           render: (data) => {
             return moment(new Date(data)).format("DD/MM/YYYY").toString();
          },

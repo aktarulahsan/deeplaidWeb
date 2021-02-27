@@ -195,7 +195,10 @@
 
 
                 <div class="row bg-light">
-                    <div class="col-md-2" *ngFor="let item of designList;let i=index;  trackBy: trackItem ">
+
+                 
+
+                    <div class="col-md-2" *ngFor="let item of designList;let i=index;  trackBy: trackByFn | async">
                         <label>{{item.desingName}}</label>
                         <div class="form-group">
                            
@@ -207,16 +210,15 @@
                             placeholder="Choose product code"
                             notFoundText="measurement code not found" 
                             bindLabel="measurement" 
+                            
                             bindValue="designSubCategoryId" 
                             name="designSubCategoryId"
+                            ([ngModel])="item.designSubCategoryId"
                             (change)="ngSelectOpened($event)"
                             [tracktrackmesuremnet]="tracktrackmesuremnet"
                             [ngModelOptions]="{standalone: true}"
                             onselect="true" required>
                             </ng-select>
-
-                            
-
 
 
                             <!-- <ng-select [items]="people$ | async"
