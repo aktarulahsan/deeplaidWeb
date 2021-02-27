@@ -20,23 +20,26 @@
                         <label for="groupName">কাস্টমার কোড </label>
 
                         <ng-select
-                        [loading]="true"
+                        [loading]="loading"
                         [dropdownPosition]="'bottom'"
                         [items]="customerList" 
+                        
+                            onselect="true"
+                            [clearable]="true"
                         placeholder="Choose customer code"
                         notFoundText="Product code not found" 
-                        bindLabel="customerName" 
-                        
+                        bindLabel="mobile" 
+                        [searchable]="true"
                         bindValue="customerCode" 
                         [(ngModel)]= "customerCode"
                         name="customerCode"
                         (change)="selectCustomer($event)"
                         onselect="true" required>
                         <!-- <ng-option>{{customerCode + ' ' + customerName}}</ng-option> -->
-                        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+                        <!-- <ng-template ng-label-tmp let-item="item" let-clear="clear">
                             <span class="ng-value-label">{{item.customerCode + ' ' + item.customerName}}</span>
                             <span class="ng-value-icon right" >×</span>
-                        </ng-template>
+                        </ng-template> -->
                         
                         </ng-select>
 
@@ -65,8 +68,8 @@
                 </div> -->
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="productName">মোবাইল নাম্বার </label>
-                        <input type="text" class="form-control" bindLabel="customer.mobile" [(ngModel)]="customer.mobile" name="mobile" />
+                        <label for="productName">কারিগরি </label>
+                        <input type="text" class="form-control" bindLabel=" "   name="mobile" />
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                   <div *ngIf="productName.errors.required">
                       productName is required
@@ -192,7 +195,11 @@
                    
                 </div> -->
 
-
+<div>
+    <hr class="dashed">
+    <label for="productName">  কাজের মডেল </label>
+   
+</div>
 
                 <div class="row bg-light">
 
@@ -207,6 +214,8 @@
                             [addTag]="true"
                             
                             [hideSelected]="true"
+                            onselect="true"
+                            [clearable]="true"
                             placeholder="Choose product code"
                             notFoundText="measurement code not found" 
                             bindLabel="measurement" 
@@ -217,7 +226,7 @@
                             (change)="ngSelectOpened($event)"
                             [tracktrackmesuremnet]="tracktrackmesuremnet"
                             [ngModelOptions]="{standalone: true}"
-                            onselect="true" required>
+                            required>
                             </ng-select>
 
 
@@ -265,7 +274,7 @@
                     </div>
                 </div> -->
 
-               
+                <hr class="dashed">
                 <div class="row">
                    
                     <div class="form-group col-md-8">
@@ -282,6 +291,14 @@
 
                     </div>
 
+                </div>
+                <div>
+                    <div class="form-group col-md-10 ">
+                        <label for="purchaseRate">অন্যান্য </label>
+
+                        <textarea class="form-control" rows="2" id="comment" bindLabel="comments"   name="address"></textarea>
+
+                    </div>
                 </div>
 
                 <div class="row">
@@ -307,7 +324,7 @@
                     </div>
                     <div class="form-group col-md-2 ">
                         <label for="productName">মূল্য </label>
-                        <input type="number" readonly class="form-control" bindLabel="orderAccountDetails.itemRate" [(ngModel)]="orderAccountDetails.itemRate" name="itemRate" />
+                        <input type="number"   class="form-control" bindLabel="orderAccountDetails.itemRate" [(ngModel)]="orderAccountDetails.itemRate" name="itemRate" />
                         <!-- <input type="text" class="form-control" name="productName" /> -->
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                                             <div *ngIf="productName.errors.required">

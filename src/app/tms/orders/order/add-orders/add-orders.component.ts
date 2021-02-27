@@ -85,7 +85,7 @@ export class AddOrdersComponent implements OnInit {
   orderid: any;
   isupdate = null;
   designSubCategoryId = [];
-  
+  loading= true;
   constructor(
     
     public bsModalRef: BsModalRef,
@@ -388,7 +388,7 @@ export class AddOrdersComponent implements OnInit {
   selectCustomer(customer):any{  
     console.log(customer); 
     this.customer = customer;
-
+this.loading = false;
     if(customer !=null){
         this.orderModel.customerCode = customer.customerCode;
         
