@@ -17,8 +17,11 @@
          
                     
                     <div class="col-sm-4 form-group">
-                        <label for="groupName">কাস্টমার কোড </label>
-
+                        <label for="groupName">কাস্টমার মোবাইল   </label>
+                        <span></span><span></span>
+                        <label for="groupName"><span>
+                            <button class="btn"><i class="fa fa-plus"></i></button>    
+                        </span></label>
                         <ng-select
                         [loading]="loading"
                         [dropdownPosition]="'bottom'"
@@ -80,12 +83,16 @@
                 </div>
                 <div class="row">
 
-                    <div class="form-group col-md-8 ">
+                    <div class="form-group col-md-6 ">
                         <label for="purchaseRate">ঠিকানা </label>
 
                         <textarea class="form-control" rows="2" id="comment" bindLabel="customer.address" [(ngModel)]="customer.address"  name="address"></textarea>
 
                     </div>
+                    <div class="form-group col-md-2">
+                        <label for="productName">অগ্রিম টাকা </label>
+                        <input type="text"   class="form-control"  name="itemRate" />
+                      </div>
                     <div class="form-group col-md-4">
                         <label for="qty">অর্ডার ডেট </label>
                         <input type="text" 
@@ -305,6 +312,7 @@
 
 
                     <div class="form-group col-md-3 ">
+                      <div>
                         <label for="productName">ডেলিভারী তারিখ </label>
                         <input type="text" 
                         class="form-control datePicker" 
@@ -315,6 +323,8 @@
                         #deliveryDate="ngModel"
                         name="deliveryDate"
                         required/>
+                      </div>
+                     
                      
                         <!-- <div *ngIf="f.submitted && deliveryDate.invalid">
                                             <div *ngIf="deliveryDate.errors.required">
