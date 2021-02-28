@@ -160,7 +160,7 @@
                             <label>{{item.measurementName}}</label>
                         
                            <td> 
-                            <input type="number" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
+                            <input type="text" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
                                <!-- <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
                             [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"> -->
                         
@@ -195,11 +195,11 @@
                    
                 </div> -->
 
-<div>
-    <hr class="dashed">
-    <label for="productName">  কাজের মডেল </label>
-   
-</div>
+                    <div>
+                        <hr class="dashed">
+                        <label for="productName">  কাজের মডেল </label>
+                    
+                    </div>
 
                 <div class="row bg-light">
 
@@ -344,11 +344,12 @@
                                             </div>
                                             </div> -->
                     </div>
-                    <div class="form-group col-md-3 ">
+                    <div class="form-group col-md-5 ">
                         <label for="productName">মোটা মূল্য</label>
                         
-                        <input type="number" readonly class="form-control"     bindLabel="grandTotal" [(ngModel)]="grandTotal" name="grandTotal" />
-                         
+                        <!-- <input type="number" readonly class="form-control"     bindLabel="grandTotal" [(ngModel)]="grandTotal" name="grandTotal" /> -->
+                        <input style="font-size: 52px; font-weight: bold; color: red;text-align: center; background-color: white;"
+                        type="text" value="{{grandTotal}}" class="form-control" readonly />
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                                             <div *ngIf="productName.errors.required">
                                                 productName is required
@@ -356,7 +357,6 @@
                                             </div> -->
                     </div>
                    
-
                 </div>
 
 
