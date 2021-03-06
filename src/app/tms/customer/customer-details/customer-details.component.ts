@@ -32,6 +32,7 @@ export class CustomerDetailsComponent implements OnInit {
     private toastr: ToastrService,
     private modalService: BsModalService,
     public customerService: CustomerService,
+    
  
   ) { }
 
@@ -58,6 +59,19 @@ export class CustomerDetailsComponent implements OnInit {
     // this.getgList();   
     // this.getProdoneList();
     
+  }
+  printData(){
+    this.customerService.viewReportRole().subscribe(
+      res => {
+        // console.log('create ', resp);
+          this.toastr.success('', 'Update Successfull');
+          this.bsModalRef.hide();
+      },
+      err => {
+        console.log("create err: ",err);
+        this.toastr.warning('', 'Error occured');
+      }
+    );
   }
 
   showgrid(customerCode) {

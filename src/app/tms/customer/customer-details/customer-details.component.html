@@ -1,28 +1,30 @@
 <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="all_content_wrapper card">
-          <!-- <div id="apgeTitle">Employee List</div> -->
-          <div class="allInner">
-            <div class="row">
-              <div class="col-lg-12 paddin4">
-                <!-- crudArea -->
-                <div class="card-header" style="background:  #194771; color: white;" >
-                  <div class="row">
-                    <div class="col-md-8"><h4>কাস্টমার </h4></div>
-                    <div class="col-md-4" style="position: relative;">
-                      <div class="btnAllRow">
-                       
-                       
-                       
-                      </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="all_content_wrapper card">
+        <!-- <div id="apgeTitle">Employee List</div> -->
+        <div class="allInner">
+          <div class="row">
+            <div class="col-lg-12 paddin4">
+              <!-- crudArea -->
+              <div class="card-header" style="background:  #194771; color: white;">
+                <div class="row">
+                  <div class="col-md-8">
+                    <h4>কাস্টমার </h4>
+                  </div>
+                  <div class="col-md-4" style="position: relative;">
+                    <div class="btnAllRow">
+
+
+
                     </div>
                   </div>
-                  <div class="row">
-                    <div class="col-sm-4 form-group">
-                      <label for="groupName">কাস্টমার কোড </label>
-  
-                      <!-- <ng-select [items]="customerList" 
+                </div>
+                <div class="row">
+                  <div class="col-sm-4 form-group">
+                    <label for="groupName">কাস্টমার কোড </label>
+
+                    <!-- <ng-select [items]="customerList" 
                       placeholder="Choose product code"
                       notFoundText="Product code not found" 
                       bindLabel="customerName" 
@@ -32,32 +34,46 @@
                       (change)="selectCustomer($event)"
                       onselect="true" required>
                       </ng-select> -->
-                      <input type="text" class="form-control" bindLabel="customer.customerCode" [(ngModel)]="customer.customerCode" name="mobile" readonly />
+                    <input type="text" class="form-control" bindLabel="customer.customerCode"
+                      [(ngModel)]="customer.customerCode" name="mobile" readonly />
                   </div>
                   <div class="form-group col-md-4 ">
                     <label for="productName">কাস্টমার নাম </label>
-                    <input type="text" class="form-control" bindLabel="customer.customerName" [(ngModel)]="customer.customerName" name="customerName" readonly />
+                    <input type="text" class="form-control" bindLabel="customer.customerName"
+                      [(ngModel)]="customer.customerName" name="customerName" readonly />
                     <!-- <div *ngIf="f.submitted && productName.invalid">
               <div *ngIf="productName.errors.required">
                   productName is required
               </div>
             </div> -->
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="productName">মোবাইল নাম্বার </label>
-                    <input type="text" class="form-control" bindLabel="customer.mobile" [(ngModel)]="customer.mobile" name="mobile" readonly />
-                    <!-- <div *ngIf="f.submitted && productName.invalid">
-              <div *ngIf="productName.errors.required">
-                  productName is required
-              </div>
-            </div> -->
-                </div>
                   </div>
-
+                  <div class="form-group col-md-4">
+                    <label for="productName">মোবাইল নাম্বার </label>
+                    <input type="text" class="form-control" bindLabel="customer.mobile" [(ngModel)]="customer.mobile"
+                      name="mobile" readonly />
+                    <!-- <div *ngIf="f.submitted && productName.invalid">
+              <div *ngIf="productName.errors.required">
+                  productName is required
+              </div>
+            </div> -->
+                  </div>
+                  <button
+                  title="Edit Role"
+                  style="margin: 2px;"
+                  data-toggle="modal"
+                  data-target="#edit"
+                  class="btn btn-warning"
+                  (click)= "printData()"
                   
+                >
+                  <i class="fas fa-print" aria-hidden="true"></i>&nbsp;Edit
+                </button>
+                </div>
 
 
-                  <!-- <div class="form-group col-md-7 ">
+
+
+                <!-- <div class="form-group col-md-7 ">
                     <label for="customerName">কাস্টমার নাম </label>
                     <input type="text" class="form-control" name="customerName"
                         [(ngModel)]="customerCode" #customerCode="ngModel" />
@@ -67,17 +83,11 @@
                         </div>
                     </div>
                 </div> -->
-                </div>
-  
-                <div class="employeeTable selectedTable">
-                  <div class="table-responsive">
-                    <table
-                      datatable
-                      [dtOptions]="dtOptions"
-                      [dtTrigger]="dtTrigger"
-                      class="row-border hover"
-                    ></table>
-                  </div>
+              </div>
+
+              <div class="employeeTable selectedTable">
+                <div class="table-responsive">
+                  <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
                 </div>
               </div>
             </div>
@@ -86,4 +96,4 @@
       </div>
     </div>
   </div>
-  
+</div>

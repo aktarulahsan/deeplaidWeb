@@ -35,6 +35,9 @@ export class CustomerService {
   private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/findDetailsById`;
 
 
+  private ORDER_REPORT = `${environment.baseUrl}${environment.reportApiUrl}/rolereport`;
+
+
   getCustomerList(): Observable<any> {
     return this.http.get(`${this.CUSTOMER_LIST}`);
   }
@@ -84,4 +87,7 @@ export class CustomerService {
   }
 
 
+  viewReportRole(): Observable<any> {
+    return this.http.get(`${this.ORDER_REPORT}`);
+  }
 }
