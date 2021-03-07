@@ -14,6 +14,7 @@ export const environment = {
     authApiUrl: 'auth-api',
  orderApiUrl: 'tms',
  tmsApiUrl: 'tms',
+ apiUrl: 'api',
  reportApiUrl: 'report',
 };
 

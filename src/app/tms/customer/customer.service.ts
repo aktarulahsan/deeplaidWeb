@@ -35,7 +35,7 @@ export class CustomerService {
   private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/findDetailsById`;
 
 
-  private ORDER_REPORT = `${environment.baseUrl}${environment.reportApiUrl}/rolereport`;
+  private ORDER_REPORT = `${environment.baseUrl}${environment.apiUrl}/report/rolereport`;
 
 
   getCustomerList(): Observable<any> {
