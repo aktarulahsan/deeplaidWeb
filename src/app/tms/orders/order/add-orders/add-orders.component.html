@@ -21,10 +21,10 @@
                         <label for="groupName">কাস্টমার মোবাইল   </label>
                         <span></span><span></span>
                         <label for="groupName"><span>
-                            <button class="btn"><i class="fa fa-plus"></i></button>    
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            <button class="btn"><i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i></button>    
+                            <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                                 Open modal
-                              </button>
+                              </button> -->
                         </span></label>
                         <ng-select
                         [loading]="loading"
@@ -432,6 +432,7 @@
 
     </div>
     <div class="modal-footer">
+        <i type="submit" class="far fa-print " (click)="submitOrder()"> </i>
         <button type="submit" class="btn btn-outline-success " (click)="submitOrder()">সাবমিট </button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="bsModalRef.hide()">বাতিল </button>
       </div>
