@@ -385,6 +385,12 @@ export class AddOrdersComponent implements OnInit {
   }
 
 
+  onSaveOrUpdates(form: NgForm){
+
+
+  }
+
+
   selectCustomer(customer):any{  
     console.log(customer); 
     this.customer = customer;

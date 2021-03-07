@@ -156,13 +156,15 @@ export class CustomerDetailsComponent implements OnInit {
          },
           name: 'ssModifiedOn',
         },
-        // {
-        //   title: 'Action',
-        //   "orderable": false,
-        //   render: (data: any, type: any, row: any) => {
-        //     return '<button type="button"   class="icon icon-action-edit fontsize  details-sloat">Details</button>';
-        //   }
-        // },
+        {
+          title: 'Action',
+          "orderable": false,
+          render: (data: any, type: any, row: any) => {
+            return '<i class="far fa-eye"></i>'
+            
+            // '<button type="button"   class="icon icon-action-edit fontsize  details-sloat">Details</button>';
+          }
+        },
 
        
       ],
