@@ -1,5 +1,5 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
  
@@ -23,7 +23,7 @@ import { MeasurementModel } from '../../../setting/model/measurement.Model';
 import { SubCategoryModel } from '../../../setting/model/subCategory.Model';
 import { SettingService } from '../../../setting/service/setting.service';
 import { OrderService } from '../service/order.service';
- 
+
 
 @Component({
   selector: 'app-add-orders',
@@ -32,7 +32,10 @@ import { OrderService } from '../service/order.service';
 })
 export class AddOrdersComponent implements OnInit {
 
- 
+  name = 'Angular Html To Pdf ';
+  userName: string;
+
+  @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
   
   onClose: Subject<boolean>;
   purchaseDetailList: any[]=new Array();
@@ -541,12 +544,8 @@ addod(){
         }
       );
       }else{
-        
       }
-
-
     }
-
   }
 
 
@@ -660,4 +659,32 @@ addod(){
   //   );
   // }
 
+//   public downloadAsPDF() {
+//     const doc = new jsPDF();
+
+//     var x = document.getElementById("myTd");
+//     x.innerHTML = this.userName;
+
+//     const specialElementHandlers = {
+//       '#editor': function (element, renderer) {
+//         return true;
+//       }
+//     };
+
+//     const pdfTable = this.pdfTable.nativeElement;
+//     doc.text("Hello world!", 1, 1);
+// doc.save("two-by-four.pdf");
+
+//     doc.fromHTML(pdfTable.innerHTML, 15, 15, {
+//       width: 190,
+//       'elementHandlers': specialElementHandlers
+//     });
+
+//   console.log(doc.output('dataurl'));
+//   console.log(this.userName);
+
+
+//   }
+
+  
 }

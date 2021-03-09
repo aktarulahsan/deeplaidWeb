@@ -60,19 +60,7 @@ export class CustomerDetailsComponent implements OnInit {
     // this.getProdoneList();
     
   }
-  printData(){
-    this.customerService.viewReportRole().subscribe(
-      res => {
-        // console.log('create ', resp);
-          this.toastr.success('', 'Update Successfull');
-          this.bsModalRef.hide();
-      },
-      err => {
-        console.log("create err: ",err);
-        this.toastr.warning('', 'Error occured');
-      }
-    );
-  }
+
 
   showgrid(customerCode) {
     let that = this;
@@ -210,6 +198,38 @@ export class CustomerDetailsComponent implements OnInit {
     this.dtTrigger.unsubscribe();
   }
 
+  showCertificate() {
+    // let reportObj: EwvmCertificateModel = res.obj
+    const data ={
+      "layout":"1",
+      "client":"ewvm",
+      "reportData":"reportObj"
+    }
+    
+    this.customerService.generateCertificate(data).subscribe(
+      res => {
+        let file = new Blob([res], { type: 'application/pdf' });
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      },
+      err => {
+        console.log("Error occured in Certificate generation", err," reportObj");
+      })
+  }
+
+  printData(){
+    this.customerService.viewReportRole().subscribe(
+      res => {
+        // console.log('create ', resp);
+          this.toastr.success('', 'Update Successfull');
+          this.bsModalRef.hide();
+      },
+      err => {
+        console.log("create err: ",err);
+        this.toastr.warning('', 'Error occured');
+      }
+    );
+  }
 
   getCustomerList(){
     this.customerService.getCustomerList().subscribe((data)=>{

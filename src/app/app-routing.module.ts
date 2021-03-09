@@ -20,6 +20,7 @@ import { CategoryComponent } from './tms/setting/category/category.component';
 import { MeasurementComponent } from './tms/setting/measurement/measurement.component';
 import { SettingComponent } from './tms/setting/setting.component';
 import { SubCategoryComponent } from './tms/setting/sub-category/sub-category.component';
+import { OrderDetailsComponent } from './tms/orders/order/order-details/order-details.component';
  
 
 const routes: Routes = [
@@ -130,6 +131,11 @@ const routes: Routes = [
       {
         path: 'order',
         component: OrdersComponent,
+     
+      },
+      {
+        path: 'orderDetails',
+        component: OrderDetailsComponent,
      
       },
       

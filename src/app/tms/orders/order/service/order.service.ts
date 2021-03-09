@@ -90,4 +90,14 @@ export class OrderService {
       .post<BaseResponse>(this.FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID, data);
   }
 
+  findOrderByid(data){
+    const params = new HttpParams().append('orderId', data); 
+    return this.http.get(this.FIND_BY_ID_ORDER, { params }).pipe(
+      map((data: any) => data.obj
+      ));
+
+  }
+
+
+
 }

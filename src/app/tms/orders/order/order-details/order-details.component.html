@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="all_content_wrapper card">
+                <!-- <div id="apgeTitle">Employee List</div> -->
+                <div class="allInner">
+                    <div class="row">
+                        <div class="col-lg-12 paddin4">
+                            <!-- crudArea -->
+                            <div class="card-header" style="background:  #194771; color: white;">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h4>Order Details </h4>
+                                    </div>
+                                    <div class="col-md-4" style="position: relative;">
+                                        <div class="btnAllRow">
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-3 form-group">
+                                    <label for="groupName">কাস্টমার কোড </label>
+
+
+                                    <input type="text" class="form-control" bindLabel="customer.customerCode"
+                                        [(ngModel)]="customer.customerCode" name="mobile" readonly />
+                                </div>
+                                <div class="form-group col-md-3 ">
+                                    <label for="productName">কাস্টমার নাম </label>
+                                    <input type="text" class="form-control" bindLabel="customer.customerName"
+                                        [(ngModel)]="customer.customerName" name="customerName" readonly />
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="productName">মোবাইল নাম্বার </label>
+                                    <input type="text" class="form-control" bindLabel="customer.mobile"
+                                        [(ngModel)]="customer.mobile" name="mobile" readonly />
+
+                                </div>
+                                <!-- <div class="form-group col-md-3">
+                                    <label for="productName">date </label>
+                                    <input type="text" class="form-control" bindLabel="orderModel.orderDate"
+                                        [(ngModel)]="orderModel.orderDate" name="mobile" readonly />
+
+                                </div> -->
+                               
+                            </div>
+                            <div class="row col-md-8">
+                                <div class="col-md-2"><u>Item Name</u></div>
+                                <div  class="col-md-2"><u>Item Rate</u></div>
+                                <div  class="col-md-2"><u>Qty</u></div>
+                                <div  class="col-md-4"><u>Measurement</u></div>
+                            </div>
+                            <hr class="dashed">
+                            <div class="row " style="margin: 20px;" *ngFor="let item of orderAccountDetailsList; let i=index;" >
+                                <div class="col-md-2">{{item.itemName}}</div>
+                                <div  class="col-md-1">{{item.itemRate}}</div>
+                                <div  class="col-md-1">{{item.qty}}</div>
+                                
+                              
+                                    <div class="col-md-1" *ngFor="let items of item.ordermeasurementList; let i=index; trackBy: trackByFn | async " >
+                                        <div class="form-group">
+                                            <label>{{items.measurementName}}</label>
+                                        
+                                           <td> 
+                                            <input type="text" readonly class="form-control" name=a{{i}} [(ngModel)]="items.measurementValue">
+                                             
+                                        </td>
+                                           
+                                        </div>
+                                    </div>
+                                    <hr class="dashed">
+                                
+
+
+                              
+
+                            </div>
+                            <hr class="dashed">
+                            <div class="row bg-light">
+
+                 
+
+                                <!-- <div class="col-md-2" *ngFor="let item of designList;let i=index;  trackBy: trackByFn | async">
+                                    <label>{{item.desingName}}</label>
+                                    <div class="form-group">
+                                       
+                                         
+                                        <ng-select [items]="designList[i].designSubCategoryModelList" 
+                                        [addTag]="true"
+                                        
+                                        [hideSelected]="true"
+                                        onselect="true"
+                                        [clearable]="true"
+                                        placeholder="Choose product code"
+                                        notFoundText="measurement code not found" 
+                                        bindLabel="measurement" 
+                                        
+                                        bindValue="designSubCategoryId" 
+                                        name="designSubCategoryId"
+                                        ([ngModel])="item.designSubCategoryId"
+                                        (change)="ngSelectOpened($event)"
+                                        [tracktrackmesuremnet]="tracktrackmesuremnet"
+                                        [ngModelOptions]="{standalone: true}"
+                                        required>
+                                        </ng-select>
+            
+             
+                                    </div>
+                                </div> -->
+                            </div>
+
+
+                            <div class="employeeTable selectedTable">
+                                <!-- <div class="table-responsive">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"></table>
+                  </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

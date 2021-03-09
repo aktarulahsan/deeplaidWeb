@@ -9,7 +9,7 @@
         </button>
     </div>
 
-    <div class="modal-body crudForm">
+    <div class="modal-body crudForm" id="pdfTable" #pdfTable>
         <div class="persoanlInfoArea">
 
             <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm" novalidate action="index.html">
@@ -240,50 +240,11 @@
                             required>
                             </ng-select>
 
-
-                            <!-- <ng-select [items]="people$ | async"
-                            bindLabel="name"
-                            [addTag]="true"
-                            [multiple]="true"
-                            [hideSelected]="true"
-                            [trackByFn]="trackByFn"
-                            [minTermLength]="2"
-                            (open)="ngSelectOpened(pref.name)"
-                            [loading]="peopleLoading"
-                            typeToSearchText="Please enter 2 or more characters"
-                            [typeahead]="peopleInput$"
-                            [(ngModel)]="pref.selected">
-                                </ng-select> -->
-<!-- 
-                            <ng-select    bindLabel="itemModelId" placeholder="Select item" appendTo="body" 
-                            [searchable]="true"  [clearable]="true"  [(ngModel)]="itemModelId" [ngModelOptions]="{standalone: true}">
-                            <ng-option [value]="item.itemModelId" [disabled]="item.disabled"
-                                *ngFor="let item of designList[i].designSubCategoryModelList">
-
-                                {{item.measurement}}
-                            </ng-option>
-                            </ng-select> -->
-                            
-                           <!-- <td> <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
-                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
-                            -->
+ 
                         </div>
                     </div>
                 </div>
-                <!-- <div class="row bg-light">
-                    <div class="col-md-2" *ngFor="let item of designList; let i=index; trackBy: trackItem | async " >
-                        <div class="form-group">
-                            <label>{{item.desingName}}</label>
-                        
-                           <td> 
-                            <input type="number" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
-                           
-                        
-                        </td>
-                           
-                        </div>
-                    </div>
-                </div> -->
+                 
 
                 <hr class="dashed">
                 <div class="row">
@@ -432,7 +393,8 @@
 
     </div>
     <div class="modal-footer">
-        <i type="submit" class="far fa-print " (click)="submitOrder()"> </i>
+        <a [routerLink]="['/orderDetails']"(click)="bsModalRef.hide()" class="nav-link"><span  class="fas fa-funnel-dollar" > <i></i>  </span>
+           print</a>
         <button type="submit" class="btn btn-outline-success " (click)="submitOrder()">সাবমিট </button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="bsModalRef.hide()">বাতিল </button>
       </div>

@@ -47,6 +47,7 @@ import { DesignCategoryComponent } from './setting/design-category/design-catego
 import { DesignSubCategoryComponent } from './setting/design-sub-category/design-sub-category.component';
 import { AddDesignCategoryComponent } from './setting/design-category/add-design-category/add-design-category.component';
 import { AddDesignSubCategoryComponent } from './setting/design-sub-category/add-design-sub-category/add-design-sub-category.component';
+import { OrderDetailsComponent } from './orders/order/order-details/order-details.component';
 @NgModule({
   declarations: [DeeplaidComponent,
      HomePageComponent, AddorderComponent,
@@ -55,7 +56,7 @@ import { AddDesignSubCategoryComponent } from './setting/design-sub-category/add
         DeliveryComponent, IncomplitedComponent,
          CompletedComponent, DeliveredOrderComponent,
           AddCustomerComponent, OrderComponent, 
-          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent, CustomerDetailsComponent, PaymentPendingComponent, AccountsComponent, EmployeeComponent, OrdersComponent, DesignCategoryComponent, DesignSubCategoryComponent, AddDesignCategoryComponent, AddDesignSubCategoryComponent],
+          AddOrdersComponent, AddcategoryComponent, AddSubCatComponent, CategoryComponent, SubCategoryComponent, MeasurementComponent, AddMesurementComponent, ItemModelComponent, AddItemModelComponent, CustomerDetailsComponent, PaymentPendingComponent, AccountsComponent, EmployeeComponent, OrdersComponent, DesignCategoryComponent, DesignSubCategoryComponent, AddDesignCategoryComponent, AddDesignSubCategoryComponent, OrderDetailsComponent],
   imports: [
     FormsModule,
     BrowserModule,

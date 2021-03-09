@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataTableDirective } from 'angular-datatables';
 import * as moment from 'moment';
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddOrdersComponent } from './add-orders/add-orders.component';
@@ -22,12 +24,15 @@ export class OrderComponent implements OnInit {
   bsModalRef: any;
 
   constructor(
+    public router: Router,
+    private toastr: ToastrService,
     private modalService: BsModalService
   ) { }
 
   ngOnInit(): void {
 
     this.showgrid();
+    
   }
 
 
@@ -168,7 +173,13 @@ export class OrderComponent implements OnInit {
         //   name: 'ssModifier',
         // },
         
-
+        {
+          title: 'Action',
+          "orderable": false,
+          render: (data: any, type: any, row: any) => {
+            return '<button type="button"   class="btn btn-info fontsize  details-sloat">Details</button>';
+          }
+        },
 
         
          
@@ -193,6 +204,9 @@ export class OrderComponent implements OnInit {
           this.selectData = data;
         
           console.log('Selected User ', this.selectData);
+        });
+        $(row).find(".details-sloat").click(function () {
+          that.showDetails(data);
         });
 
         return row;
@@ -249,6 +263,20 @@ export class OrderComponent implements OnInit {
       }
     });
   }
+  }
+
+  showDetails(data: any){
+    var orderNo = this.selectData;
+    console.log('Selectedeeeeeeeeeeeeeeeeeeeeeeeeee User ', orderNo);
+    if(orderNo){
+      const initialState={
+        title: 'Order Status ',
+        sendData: this.selectData,
+      }
+        this.router.navigate(['/orderDetails', { 'customerCode': this.selectData.customerCode,'orderNo': this.selectData.orderNo, }]);
+    }else{
+        this.toastr.warning('', "Please select a patient"); 
+    }
   }
 
 }

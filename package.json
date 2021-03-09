@@ -39,6 +39,8 @@
     "font-awesome": "^4.7.0",
     "istanbul-api": "^3.0.0",
     "jquery": "^3.5.1",
+    "jspdf": "^2.3.0",
+    "jspdf-autotable": "^3.5.14",
     "moment": "^2.29.1",
     "ngx-bootstrap": "^6.1.0",
     "ngx-cookie-service": "^11.0.2",

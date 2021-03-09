@@ -90,4 +90,13 @@ export class CustomerService {
   viewReportRole(): Observable<any> {
     return this.http.get(`${this.ORDER_REPORT}`);
   }
+
+
+  generateCertificate(data) {
+    const httpOptions = { 'responseType': 'arraybuffer' as 'json' };
+    return this.http.post<any>(this.ORDER_REPORT, data, httpOptions); 
+}
+
+
+
 }
