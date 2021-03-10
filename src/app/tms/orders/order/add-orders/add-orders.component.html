@@ -166,19 +166,87 @@
 
            
                 <div class="row bg-light">
-                    <div class="col-md-2" *ngFor="let item of mesurementList; let i=index; trackBy: trackItem | async " >
+                    <!-- <div class="col-md-2" *ngFor="let item of mesurementList; let i=index; trackBy: trackItem | async " >
                         <div class="form-group">
                             <label>{{item.measurementName}}</label>
                         
                            <td> 
                             <input type="text" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
-                               <!-- <input type="text" id="item.measurementId"  class="form-control"  [attr.id] = "item.measurementId"
-                            [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"> -->
-                        
                         </td>
                            
                         </div>
+                    </div> -->
+
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">লম্বা  </label>
+                        <input type="text" class="form-control"maxlength=5 name=lomba [(ngModel)]="orderDetailsModels.lomba">
+                         
                     </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">বুক </label>
+                        <input type="text" class="form-control"maxlength=5 name=buk [(ngModel)]="orderDetailsModels.buk">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">পেট </label>
+                        <input type="text" class="form-control"maxlength=5 name=pet [(ngModel)]="orderDetailsModels.pet">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">হিপ </label>
+                        <input type="text" class="form-control"maxlength=5 name=hip [(ngModel)]="orderDetailsModels.hip">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">কাধ  </label>
+                        <input type="text" class="form-control"maxlength=5 name=kad [(ngModel)]="orderDetailsModels.kad">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">হাত</label>
+                        <input type="text" class="form-control"maxlength=5 name=hata [(ngModel)]="orderDetailsModels.hata">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">গলা </label>
+                        <input type="text" class="form-control"maxlength=5 name=gola [(ngModel)]="orderDetailsModels.gola">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">কাফ </label>
+                        <input type="text" class="form-control"maxlength=5 name=kaf [(ngModel)]="orderDetailsModels.kaf">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">মহুরী </label>
+                        <input type="text" class="form-control"maxlength=5 name=mohori [(ngModel)]="orderDetailsModels.mohori">
+                         
+                    </div>
+
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">ঘের </label>
+                        <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="orderDetailsModels.ger">
+                         
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label>কফ_ডিসাইন</label>
+
+
+                        <ng-select [items]="kof_designlist" 
+                      
+                        bindLabel="kof_design" 
+                        bindValue="kof_design" 
+                        [(ngModel)]="kof_design">
+                         </ng-select>
+
+                        <!-- <ng-select [(ngModel)]="orderDetailsModels.kof_design">
+                            <ng-option *ngFor="let cof of kof_designlist" [value]="cof.name">{{cof.name}}</ng-option>
+                         </ng-select> -->
+                         <!-- <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="orderDetailsModels.ger"> -->
+                    </div>
+
+
+
 
                 <!-- <table>
                     <tbody>
@@ -213,6 +281,49 @@
                     </div>
 
                 <div class="row bg-light">
+                    <div class="col-md-2 form-group">
+                        <label>কফ_ডিসাইন</label>
+                        <ng-select [(ngModel)]="orderDetailsModels.kof_design">
+                            <ng-option *ngFor="let cof of kof_designlist" [value]="cof.name">{{cof.name}}</ng-option>
+                         </ng-select>
+                         <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="orderDetailsModels.ger">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label>কোলোর_ডিসাইন</label>
+                        <ng-select [(ngModel)]="orderDetailsModels.kolor_design">
+                            <ng-option *ngFor="let cof of kolor_designlist" [value]="cof.name">{{cof.name}}</ng-option>
+                         </ng-select>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                        <label>বাটন_ডিসাইন</label>
+                        <ng-select [(ngModel)]="orderDetailsModels.button_design">
+                            <ng-option *ngFor="let cof of button_designlist" [value]="cof.name">{{cof.name}}</ng-option>
+                         </ng-select>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                        <label>পকেট_ডিসাইন</label>
+                        <ng-select [(ngModel)]="orderDetailsModels.poket_design">
+                            <ng-option *ngFor="let cof of poket_designlist" [value]="cof.name">{{cof.name}}</ng-option>
+                         </ng-select>
+                    </div>
+
+                    <div class="col-md-2 form-group">
+                        <label>সেলাই_ডিসাইন</label>
+                        <ng-select [(ngModel)]="orderDetailsModels.selay_design">
+                            <ng-option *ngFor="let cof of selay_designlist" [value]="cof.name">{{cof.name}}</ng-option>
+                         </ng-select>
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label>চেন_ডিসাইন</label>
+                        <ng-select [(ngModel)]="orderDetailsModels.chain_design">
+                            <ng-option *ngFor="let cof of chain_designlist" [value]="cof.name">{{cof.name}}</ng-option>
+                         </ng-select>
+                    </div>
+                </div>    
+
+                <div class="row bg-light">
 
                  
 
@@ -232,8 +343,8 @@
                             bindLabel="measurement" 
                             
                             bindValue="designSubCategoryId" 
-                            name="designSubCategoryId"
-                            ([ngModel])="item.designSubCategoryId"
+                            name=a{{i}}
+                            ([ngModel])="designList[i].designSubCategoryId"
                             (change)="ngSelectOpened($event)"
                             [tracktrackmesuremnet]="tracktrackmesuremnet"
                             [ngModelOptions]="{standalone: true}"

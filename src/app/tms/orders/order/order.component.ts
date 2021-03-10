@@ -206,7 +206,7 @@ export class OrderComponent implements OnInit {
           console.log('Selected User ', this.selectData);
         });
         $(row).find(".details-sloat").click(function () {
-          that.showDetails(data);
+          // that.showDetails();
         });
 
         return row;
@@ -265,7 +265,7 @@ export class OrderComponent implements OnInit {
   }
   }
 
-  showDetails(data: any){
+  showDetails(){
     var orderNo = this.selectData;
     console.log('Selectedeeeeeeeeeeeeeeeeeeeeeeeeee User ', orderNo);
     if(orderNo){

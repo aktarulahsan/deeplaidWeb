@@ -4,6 +4,7 @@ import { BaseModel } from "./base.Model";
 import { OrderAccountDetails } from "./orderAccountDetails.Model";
  
 import { OrderDetailsModel } from "./orderDetails.Model";
+import { OrderDetailsModels } from "./orderDetailsModel.Model";
 
 export class OrderModel extends BaseModel {
 
@@ -21,5 +22,6 @@ export class OrderModel extends BaseModel {
      ordermeasurementList:MeasurementModel[]= new Array();
      orderAccountDetailsList:OrderAccountDetails[]= new Array();
      designCategoryModelList: DesignCategoryModel[]= new Array();
+     detailsList: OrderDetailsModels[]= new Array();
 
 }

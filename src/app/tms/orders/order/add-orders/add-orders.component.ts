@@ -7,6 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { OrderDesignDetaislModel } from 'src/app/tms/model/orderDesignDetaisl.Model';
+import { OrderDetailsModels } from 'src/app/tms/model/orderDetailsModel.Model';
 import { DesignCategoryModel } from 'src/app/tms/setting/model/designCategory.Model';
 import { DesignSubCategoryModel } from 'src/app/tms/setting/model/desingSubCategory.Model';
  
@@ -88,6 +89,48 @@ export class AddOrdersComponent implements OnInit {
   orderid: any;
   isupdate = null;
   designSubCategoryId = [];
+  orderDetailsModels: OrderDetailsModels = new OrderDetailsModels();
+  kof_design: any;
+  kof_designlist = [
+    { id: 1, kof_design: '12.25' },
+    { id: 2, kof_design: '12.50' },
+    { id: 3, kof_design: '12.75' },
+    { id: 4, kof_design: '13.00' },
+    ];
+    kolor_designlist = [
+      { id: 1, name: '12.25' },
+      { id: 2, name: '12.50' },
+      { id: 3, name: '12.75' },
+      { id: 4, name: '13.00' },
+    ];
+
+    button_designlist = [
+      { id: 1, name: '12.25' },
+      { id: 2, name: '12.50' },
+      { id: 3, name: '12.75' },
+      { id: 4, name: '13.00' },
+    ];
+
+    poket_designlist = [
+      { id: 1, name: '12.25' },
+      { id: 2, name: '12.50' },
+      { id: 3, name: '12.75' },
+      { id: 4, name: '13.00' },
+    ];
+
+    selay_designlist = [
+      { id: 1, name: '12.25' },
+      { id: 2, name: '12.50' },
+      { id: 3, name: '12.75' },
+      { id: 4, name: '13.00' },
+    ];
+    chain_designlist = [
+      { id: 1, name: '12.25' },
+      { id: 2, name: '12.50' },
+      { id: 3, name: '12.75' },
+      { id: 4, name: '13.00' },
+    ];
+
   loading= true;
   constructor(
     
@@ -475,6 +518,9 @@ addod(){
       this.mesurementList[i].id= this.mesurementList[i].measurementId; 
     }
 
+    this.orderDetailsModels.kof_design = this.kof_design;
+
+
     plist = this.mesurementList;
 
     this.orderAccountDetails.ordermeasurementList = plist;
@@ -482,10 +528,11 @@ addod(){
       this.orderAccountDetails.id = this.id;
       this.orderAccountDetails.designModel= this.designModel;
       console.log("this.orderAccountDetails",this.orderAccountDetails);
+    this.orderAccountDetails.detailsList.push(this.orderDetailsModels);
     this.orderAccountDetails.designCategoryModelList = this.designList;
     this.orderAccountDetailsList.push(this.orderAccountDetails);
 
-
+    console.log("this.orderAccountDetailsList ",this.orderAccountDetailsList);
     this.getGrandTotal();
       
     this.reset();
