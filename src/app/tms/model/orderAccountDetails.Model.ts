@@ -18,7 +18,7 @@ export class OrderAccountDetails extends BaseModel {
 
      ordermeasurementList:OrderDetailsModel[]= new Array();
      designCategoryModelList: DesignCategoryModel[]= new Array();
-     detailsList: OrderDetailsModels[]= new Array();
+     detailsModel: OrderDetailsModels =new OrderDetailsModels();
 
 
 }

@@ -91,11 +91,32 @@ export class AddOrdersComponent implements OnInit {
   designSubCategoryId = [];
   orderDetailsModels: OrderDetailsModels = new OrderDetailsModels();
   kof_design: any;
+
+  kofDesign: any;
+  kolordesign: any;
+  buttondesign: any;
+  poketdesign: any;
+  selaydesign: any;
+  chaindesign: any;
+  lombas: number;
+  buks: number;
+  pets: number;
+  hips: number;
+  kads: number;
+  hatas: number;
+  golas: number;
+  kafs: number;
+  mohoris: number;
+  gers: number;
+
+
+
+
   kof_designlist = [
-    { id: 1, kof_design: '12.25' },
-    { id: 2, kof_design: '12.50' },
-    { id: 3, kof_design: '12.75' },
-    { id: 4, kof_design: '13.00' },
+    { id: 1, names: '12.25' },
+    { id: 2, names: '12.50' },
+    { id: 3, names: '12.75' },
+    { id: 4, names: '13.00' },
     ];
     kolor_designlist = [
       { id: 1, name: '12.25' },
@@ -251,13 +272,14 @@ export class AddOrdersComponent implements OnInit {
         
       this.apiService.findAccountInfoByOrderidandItemId(this.orderAccountDetails).subscribe(data=>{
          
-          
-          this.orderAccountDetailsList[i].ordermeasurementList =data["items"];
+        console.log(" datadatadatadatadatadatadatadata", data); 
+          this.orderAccountDetailsList[i].detailsModel =data["obj"];
+          // this.orderDetailsModels = data["obj"];
 
         });
 
      }
-      console.log(" this.orderAccountDetailsList",this.orderDetailsModellist); 
+      console.log(" this.orderAccountDetailsList", this.orderAccountDetailsList); 
      
     
     })
@@ -350,48 +372,52 @@ export class AddOrdersComponent implements OnInit {
   }
  
   editData(entity, s) {
-    
-    for (let i = 0; i < entity.ordermeasurementList.length; i++) {
-      entity.ordermeasurementList[i].id= entity.ordermeasurementList[i].measurementId;
+    console.log("entity entityentityentityentityentityentity",entity);
+    // for (let i = 0; i < entity.ordermeasurementList.length; i++) {
+    //   entity.ordermeasurementList[i].id= entity.ordermeasurementList[i].measurementId;
+    //   this.orderAccountDetailsList[i].detailsModel
       
-    }
-  //  if(entity.designCategoryModelList){
-    // for (let i = 0; i < entity.designCategoryModelList.length; i++) {
+    // }
+  if(entity.detailsModel !=null){
 
-   
-       
-    //   // this.designSubCategoryId = entity.designCategoryModelList[i].designSubCategoryId;
-    //   for (let j = 0; j < this.designList[i].designSubCategoryModelList.length; j++) {
-    //     this.designList[i].designSubCategoryModelList[j].designSubCategoryId=entity.designCategoryModelList[i].designSubCategoryId; ;
-        
-    //   }
+    this.orderDetailsModels = entity.detailsModel;
+    this.itemId = this.orderDetailsModels.i_id;
+  }
+
+  this.kofDesign=this.orderDetailsModels.kof_design;
+  this.kolordesign= this.orderDetailsModels.kolor_design ;
+  this.buttondesign =this.orderDetailsModels.button_design;
+  this.poketdesign =this.orderDetailsModels.poket_design;
+  this.selaydesign =this.orderDetailsModels.selay_design;
+  this.chaindesign = this.orderDetailsModels.chain_design;
+  this.lombas = this.orderDetailsModels.lomba;
+  this.buks = this.orderDetailsModels.buk;
+  this.pets = this.orderDetailsModels.pet;
+  this.hips= this.orderDetailsModels.hip;
+  this.hips = this.orderDetailsModels.kad;
+  this.hatas= this.orderDetailsModels.hata;
+  this.golas= this.orderDetailsModels.gola;
+  this.kafs= this.orderDetailsModels.kaf;
+  this.mohoris = this.orderDetailsModels.mohori;
+  this.gers = this.orderDetailsModels.ger;
+
+
+
+  console.log("this.itemModelId",entity.orderDetailsModels);
+    
+    // this.mesurementList= entity.ordermeasurementList;
+    this.itemId = entity.itemId;
+    // var splitted = entity.designModel.split(",");
+    // this.itemModelId2= splitted;
+    // let a=[];
+    // for (let i = 0; i < this.itemModelId2.length; i++) {
+    //     let b= (Number(this.itemModelId2[i]));
+    //     a[i]= b;
       
     // }
 
-  //  }
-
-  // for (let i = 0; i < this.designList.length; i++) {
-  //   if( this.designList[i].designCategoryId == entity.designCategoryModelList[i].designCategoryId ){
-  //     // this.designList[i].designSubCategoryId = val.designSubCategoryId;
-  //     this.designSubCategoryId
-  //   }
-    
-  // }
-
-    
-    this.mesurementList= entity.ordermeasurementList;
-    this.itemId = entity.itemId;
-    var splitted = entity.designModel.split(",");
-    this.itemModelId2= splitted;
-    let a=[];
-    for (let i = 0; i < this.itemModelId2.length; i++) {
-        let b= (Number(this.itemModelId2[i]));
-        a[i]= b;
-      
-    }
-
-    this.itemModelId= a;
-
+    // this.itemModelId= a;
+    this.orderDetailsModels = entity.detailsModel;
     this.orderAccountDetails.itemRate = entity.itemRate;
     this.orderAccountDetails.qty = entity.qty;
     console.log("this.itemModelId",entity);
@@ -450,17 +476,39 @@ this.loading = false;
   update() {
  
     this.designModel="";
-    if(this.itemModelId){
-      for (let index = 0; index < this.itemModelId.length;) {
-        this.designModel += this.itemModelId[index];
+    // if(this.itemModelId){
+    //   for (let index = 0; index < this.itemModelId.length;) {
+    //     this.designModel += this.itemModelId[index];
 
-        index++;
-        if(index !=this.itemModelId.length){
+    //     index++;
+    //     if(index !=this.itemModelId.length){
 
-          this.designModel +=  ",";
-        }
-      }
-    }
+    //       this.designModel +=  ",";
+    //     }
+    //   }
+    // }
+
+    // this.orderDetailsModels.kof_design= this.kofDesign;
+    this.orderDetailsModels.kolor_design= this.kolordesign ;
+    this.orderDetailsModels.button_design=this.buttondesign ;
+    this.orderDetailsModels.poket_design=this.poketdesign;
+    this.orderDetailsModels.selay_design=this.selaydesign;
+    this.orderDetailsModels.chain_design=this.chaindesign;
+    this.orderDetailsModels.lomba=this.lombas;
+    this.orderDetailsModels.buk=this.buks;
+    this.orderDetailsModels.pet=this.pets;
+    this.orderDetailsModels.hip=this.hips;
+    this.orderDetailsModels.kad=this.hips;
+    this.orderDetailsModels.hata=this.hatas;
+    this.orderDetailsModels.gola=this.golas;
+    this.orderDetailsModels.kaf=this.kafs;
+    this.orderDetailsModels.mohori=this.mohoris;
+    this.orderDetailsModels.ger=this.gers;
+
+    this.orderDetailsModels.i_id=this.gers;
+ 
+
+
     for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
       if(this.orderAccountDetailsList[i].itemId == this.orderAccountDetails.itemId){
         this.orderAccountDetailsList[i].itemRate= this.orderAccountDetails.itemRate;
@@ -468,10 +516,11 @@ this.loading = false;
         this.orderAccountDetailsList[i].qty= this.orderAccountDetails.qty;
         this.orderAccountDetailsList[i].itemTotalAmount= this.orderAccountDetails.itemTotalAmount;
         this.orderAccountDetailsList[i].designModel= this.orderAccountDetails.designModel;
-        this.orderAccountDetailsList[i].ordermeasurementList= this.mesurementList;
-
+        // this.orderAccountDetailsList[i].ordermeasurementList= this.mesurementList;
+        this.orderAccountDetailsList[i].detailsModel = this.orderDetailsModels;
+        
       
-      }
+      } 
 
   }
   this.getGrandTotal();
@@ -493,8 +542,23 @@ addod(){
       }
 
     }
-
-
+    this.orderDetailsModels.kof_design= this.kofDesign;
+    this.orderDetailsModels.kolor_design= this.kolordesign ;
+    this.orderDetailsModels.button_design=this.buttondesign ;
+    this.orderDetailsModels.poket_design=this.poketdesign;
+    this.orderDetailsModels.selay_design=this.selaydesign;
+    this.orderDetailsModels.chain_design=this.chaindesign;
+    this.orderDetailsModels.lomba=this.lombas;
+    this.orderDetailsModels.buk=this.buks;
+    this.orderDetailsModels.pet=this.pets;
+    this.orderDetailsModels.hip=this.hips;
+    this.orderDetailsModels.kad=this.hips;
+    this.orderDetailsModels.hata=this.hatas;
+    this.orderDetailsModels.gola=this.golas;
+    this.orderDetailsModels.kaf=this.kafs;
+    this.orderDetailsModels.mohori=this.mohoris;
+    this.orderDetailsModels.ger=this.gers;
+ 
     for (let i = 0; i < this.designList.length; i++) {
       const element = this.designList[i];
       
@@ -518,8 +582,9 @@ addod(){
       this.mesurementList[i].id= this.mesurementList[i].measurementId; 
     }
 
-    this.orderDetailsModels.kof_design = this.kof_design;
-
+    // console.log("this.kofDesign",this.kofDesign);
+    this.orderDetailsModels.i_id= this.orderAccountDetails.itemId;
+    // console.log("this.orderAccountDetails",this.orderDetailsModels);
 
     plist = this.mesurementList;
 
@@ -527,8 +592,8 @@ addod(){
       this.id += 1;
       this.orderAccountDetails.id = this.id;
       this.orderAccountDetails.designModel= this.designModel;
-      console.log("this.orderAccountDetails",this.orderAccountDetails);
-    this.orderAccountDetails.detailsList.push(this.orderDetailsModels);
+     
+    this.orderAccountDetails.detailsModel=this.orderDetailsModels;
     this.orderAccountDetails.designCategoryModelList = this.designList;
     this.orderAccountDetailsList.push(this.orderAccountDetails);
 
@@ -617,7 +682,29 @@ addod(){
     //  this.qty="";
     //  this.productName="";
     // this.rate = 0;
+    this.kofDesign="";
+    this.kolordesign="";
+    this.buttondesign ="";
+    this.poketdesign ="";
+    this.selaydesign ="";
+    this.chaindesign = "";
+    this.lombas =0;
+    this.buks =0;
+    this.pets =0;
+    this.hips= 0;
+    this.hips = 0;
+    this.hatas= 0;
+    this.golas= 0;
+    this.kafs= 0;
+    this.mohoris =0;
+    this.gers = 0;
+
+
+
+
+
   }
+  
 
   createOrder(form: NgForm): void {
    

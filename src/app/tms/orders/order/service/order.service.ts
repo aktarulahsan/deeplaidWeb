@@ -27,6 +27,7 @@ export class OrderService {
   private FIND_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findMesurementByOrderid`;
   private FIND_ACCOUNT_INFO_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderid`;
   private FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderidandItemId`;
+  private ORDER_REPORT = `${environment.baseUrl}report/rolereport`;
    
   getOrderList(): Observable<any> {
     return this.http.get(`${this.ORDER_LIST}`);
@@ -97,6 +98,13 @@ export class OrderService {
       ));
 
   }
+
+
+  
+  orderPrint(data) {
+    const httpOptions = { 'responseType': 'arraybuffer' as 'json' };
+    return this.http.post<any>(this.ORDER_REPORT, data, httpOptions); 
+}
 
 
 

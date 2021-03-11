@@ -68,6 +68,7 @@ import { OrderDetailsComponent } from './orders/order/order-details/order-detail
     DataTablesModule,
     ModalModule.forRoot(),
     NgSelectModule,
+    
     FontAwesomeModule,
     ToastrModule.forRoot(),
     TabsModule.forRoot(),

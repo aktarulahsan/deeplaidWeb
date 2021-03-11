@@ -179,73 +179,56 @@
 
                     <div class="col-sm-2 form-group">
                         <label for="groupName">লম্বা  </label>
-                        <input type="text" class="form-control"maxlength=5 name=lomba [(ngModel)]="orderDetailsModels.lomba">
+                        <input type="text" class="form-control"maxlength=5 name=lomba [(ngModel)]="lombas">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">বুক </label>
-                        <input type="text" class="form-control"maxlength=5 name=buk [(ngModel)]="orderDetailsModels.buk">
+                        <input type="text" class="form-control"maxlength=5 name=buk [(ngModel)]="buks">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">পেট </label>
-                        <input type="text" class="form-control"maxlength=5 name=pet [(ngModel)]="orderDetailsModels.pet">
+                        <input type="text" class="form-control"maxlength=5 name=pet [(ngModel)]="pets">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">হিপ </label>
-                        <input type="text" class="form-control"maxlength=5 name=hip [(ngModel)]="orderDetailsModels.hip">
+                        <input type="text" class="form-control"maxlength=5 name=hip [(ngModel)]="hips">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">কাধ  </label>
-                        <input type="text" class="form-control"maxlength=5 name=kad [(ngModel)]="orderDetailsModels.kad">
+                        <input type="text" class="form-control"maxlength=5 name=kad [(ngModel)]="kads">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">হাত</label>
-                        <input type="text" class="form-control"maxlength=5 name=hata [(ngModel)]="orderDetailsModels.hata">
+                        <input type="text" class="form-control"maxlength=5 name=hata [(ngModel)]="hatas">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">গলা </label>
-                        <input type="text" class="form-control"maxlength=5 name=gola [(ngModel)]="orderDetailsModels.gola">
+                        <input type="text" class="form-control"maxlength=5 name=gola [(ngModel)]="golas">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">কাফ </label>
-                        <input type="text" class="form-control"maxlength=5 name=kaf [(ngModel)]="orderDetailsModels.kaf">
+                        <input type="text" class="form-control"maxlength=5 name=kaf [(ngModel)]="kafs">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">মহুরী </label>
-                        <input type="text" class="form-control"maxlength=5 name=mohori [(ngModel)]="orderDetailsModels.mohori">
+                        <input type="text" class="form-control"maxlength=5 name=mohori [(ngModel)]="mohoris">
                          
                     </div>
 
                     <div class="col-sm-2 form-group">
                         <label for="groupName">ঘের </label>
-                        <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="orderDetailsModels.ger">
+                        <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="gers">
                          
                     </div>
-                    <div class="col-md-2 form-group">
-                        <label>কফ_ডিসাইন</label>
-
-
-                        <ng-select [items]="kof_designlist" 
-                      
-                        bindLabel="kof_design" 
-                        bindValue="kof_design" 
-                        [(ngModel)]="kof_design">
-                         </ng-select>
-
-                        <!-- <ng-select [(ngModel)]="orderDetailsModels.kof_design">
-                            <ng-option *ngFor="let cof of kof_designlist" [value]="cof.name">{{cof.name}}</ng-option>
-                         </ng-select> -->
-                         <!-- <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="orderDetailsModels.ger"> -->
-                    </div>
-
-
+                   
 
 
                 <!-- <table>
@@ -281,49 +264,66 @@
                     </div>
 
                 <div class="row bg-light">
-                    <div class="col-md-2 form-group">
+                    <!-- <div class="col-md-2 form-group">
                         <label>কফ_ডিসাইন</label>
-                        <ng-select [(ngModel)]="orderDetailsModels.kof_design">
+                        <ng-select [items]="kof_designlist" 
+                        [ngModelOptions]="{standalone: true}"
+                        bindLabel="names" 
+                        bindValue="names" 
+                        [(ngModel)]="kofDesign">
+                         </ng-select>
+                    </div> -->
+
+
+                    <!-- <div class="col-md-2 form-group">
+                        <label>কফ_ডিসাইন</label>
+                        <ng-select [(ngModel)]="kofDesign" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of kof_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
-                         <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="orderDetailsModels.ger">
+                        
+                    </div> -->
+                    <div class="col-md-2 form-group">
+                        <label>কফ_ডিসাইন</label>
+                        <ng-select [(ngModel)]="kofDesign" [ngModelOptions]="{standalone: true}">
+                            <ng-option *ngFor="let cof of kof_designlist" [value]="cof.names">{{cof.names}}</ng-option>
+                         </ng-select>
                     </div>
                     <div class="col-md-2 form-group">
                         <label>কোলোর_ডিসাইন</label>
-                        <ng-select [(ngModel)]="orderDetailsModels.kolor_design">
+                        <ng-select [(ngModel)]="kolordesign" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of kolor_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
 
                     <div class="col-md-2 form-group">
                         <label>বাটন_ডিসাইন</label>
-                        <ng-select [(ngModel)]="orderDetailsModels.button_design">
+                        <ng-select [(ngModel)]="buttondesign" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of button_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
 
                     <div class="col-md-2 form-group">
                         <label>পকেট_ডিসাইন</label>
-                        <ng-select [(ngModel)]="orderDetailsModels.poket_design">
+                        <ng-select [(ngModel)]="poketdesign" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of poket_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
 
                     <div class="col-md-2 form-group">
                         <label>সেলাই_ডিসাইন</label>
-                        <ng-select [(ngModel)]="orderDetailsModels.selay_design">
+                        <ng-select [(ngModel)]="selaydesign" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of selay_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
                     <div class="col-md-2 form-group">
                         <label>চেন_ডিসাইন</label>
-                        <ng-select [(ngModel)]="orderDetailsModels.chain_design">
+                        <ng-select [(ngModel)]="chaindesign" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of chain_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
                 </div>    
 
-                <div class="row bg-light">
+                <!-- <div class="row bg-light">
 
                  
 
@@ -354,11 +354,11 @@
  
                         </div>
                     </div>
-                </div>
+                </div> -->
                  
 
                 <hr class="dashed">
-                <div class="row">
+                <!-- <div class="row">
                    
                     <div class="form-group col-md-8">
                         <label for="productName">  কাজের মডেল </label>
@@ -374,7 +374,7 @@
 
                     </div>
 
-                </div>
+                </div> -->
                 <div>
                     <div class="form-group col-md-10 ">
                         <label for="purchaseRate">অন্যান্য </label>

@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AddOrdersComponent } from './add-orders/add-orders.component';
+import { OrderService } from './service/order.service';
 
 @Component({
   selector: 'app-order',
@@ -25,6 +26,7 @@ export class OrderComponent implements OnInit {
 
   constructor(
     public router: Router,
+    public apiService: OrderService,
     private toastr: ToastrService,
     private modalService: BsModalService
   ) { }
@@ -264,6 +266,32 @@ export class OrderComponent implements OnInit {
     });
   }
   }
+
+
+
+  
+  orderPrint() {
+    // let reportObj: EwvmCertificateModel = res.obj
+    const data ={
+      "orderNo":this.selectData.orderNo,
+      "client":"ewvm",
+      "reportData":"reportObj"
+    }
+    
+    this.apiService.orderPrint(data).subscribe(
+      res => {
+        let file = new Blob([res], { type: 'application/pdf' });
+        
+        var fileURL = URL.createObjectURL(file);
+        window.open(fileURL);
+      },
+      err => {
+        console.log("Error occured in Certificate generation", err," reportObj");
+      })
+  }
+
+
+
 
   showDetails(){
     var orderNo = this.selectData;
