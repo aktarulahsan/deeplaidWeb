@@ -90,6 +90,9 @@ export class AddOrdersComponent implements OnInit {
   isupdate = null;
   designSubCategoryId = [];
   orderDetailsModels: OrderDetailsModels = new OrderDetailsModels();
+  orderDetailList: OrderDetailsModels[]=new Array();
+  tempEdit = null;
+
   kof_design: any;
 
   kofDesign: any;
@@ -182,7 +185,9 @@ export class AddOrdersComponent implements OnInit {
 
       this.getCustomerInfo(this.customerCode);
       // this.getMesurmentInfo(this.orderModel.orderNo);
-      this.getAccountInfo(this.orderModel.orderNo);
+      // this.getAccountInfo(this.orderModel.orderNo);
+
+      this.getOrderDetails(this.orderModel.orderNo);
      
     }
   }
@@ -262,6 +267,17 @@ export class AddOrdersComponent implements OnInit {
     })
   }
 
+  getOrderDetails(orderNo){
+    this.apiService.findOrderDetailsByid(orderNo).subscribe(data=>{
+         
+     
+       this.orderDetailList = data;
+       console.log(" datadatadatadatadatadatadatadata", data); 
+        // this.orderDetailsModels = data["obj"];
+
+      });
+  }
+
   getAccountInfo(orderNo){
     this.apiService.findAccountInfoByOrderid(orderNo).subscribe(data=>{
 
@@ -287,7 +303,7 @@ export class AddOrdersComponent implements OnInit {
 
 
   getmesurementList(itemId):any{
-    console.log(itemId); 
+    // console.log(itemId); 
     
     
     this.apiService.getMesurementlistByItemId(itemId).subscribe(data=>{
@@ -311,7 +327,7 @@ export class AddOrdersComponent implements OnInit {
         this.settingService.getCatList().subscribe((data)=>{
           
           this.catList= data['data'];
-          console.log(this.catList); 
+          // console.log(this.catList); 
         })
         }
 
@@ -319,7 +335,7 @@ export class AddOrdersComponent implements OnInit {
       this.settingService.getSubCatList().subscribe((data)=>{
         
         this.subcatList= data['data'];
-        console.log(this.subcatList); 
+        // console.log(this.subcatList); 
       })
       }
 
@@ -327,7 +343,7 @@ export class AddOrdersComponent implements OnInit {
         this.settingService.getSubItemModel().subscribe((data)=>{
           
           this.itemEntityList= data['data'];
-          console.log(this.itemEntityList); 
+          // console.log(this.itemEntityList); 
         })
         }
     
@@ -349,16 +365,130 @@ export class AddOrdersComponent implements OnInit {
     }
 
   
-  onSaveOrUpdate(form: NgForm) {
+  // onSaveOrUpdate(form: NgForm) {
 
     
-    if(this.orderModel.orderNo){
-      // this.updateSupplier(form);
-    } else {
-      console.log("CREATE",form);
-      this.createOrder(form);
+  //   if(this.orderModel.orderNo){
+  //     // this.updateSupplier(form);
+  //   } else {
+  //     console.log("CREATE",form);
+  //     this.createOrder(form);
+  //   } 
+  // }
+
+
+  onSaveOrUpdate(form: NgForm) {
+    console.log("update", 1);
+    this.addorder(form);
+  }
+
+  addorder(form: NgForm){
+    console.log("this.orderModel", this.orderModel);
+    
+    if(this.id ==0){
+      console.log("one", 1);
+      this.id= this.orderModel.orderNo;
+      this.addods(form)
+    }else if(this.id == this.orderModel.orderNo){
+      console.log("two", 2);
+      this.addods(form)
+    }else{
+      console.log("three", 3);
+      this.id= this.orderModel.orderNo;
+      // this.orderDetailList = new Array();
+      this.addods(form)
     } 
   }
+
+  addods(form: NgForm){
+    //this.model.rate;
+    if(this.orderAccountDetails.itemRate>0){
+      const  model: OrderDetailsModels = new OrderDetailsModels();
+      if (this.isupdate != null) {
+        this.updates(this.tempEdit, model)
+      } else {
+  
+    for (let i = 0; i < this.orderDetailList.length; i++) {
+            if(this.orderDetailList[i].i_id== this.orderDetailsModels.i_id){
+              this.toastr.warning('Duplicate Item can not be added');
+              return;
+            }
+      
+    }
+    this.id += 1;
+      model.id = this.id;
+      model.orderd_no = this.orderModel.orderNo;
+      model.i_id= this.itemId;
+      model.qty= this.orderAccountDetails.qty;
+      model.item_price= this.orderDetailsModels.item_total_val;
+      model.item_total_val = this.orderDetailsModels.qty * this.orderDetailsModels.item_total_val;
+
+
+      model.kof_design=this.orderDetailsModels.kof_design;
+      model.kolor_design= this.orderDetailsModels.kolor_design ;
+      model.button_design =this.orderDetailsModels.button_design;
+      model.poket_design =this.orderDetailsModels.poket_design;
+      model.poket_design =this.orderDetailsModels.selay_design;
+      model.chain_design = this.orderDetailsModels.chain_design;
+      model.lomba = this.orderDetailsModels.lomba;
+      model.buk = this.orderDetailsModels.buk;
+      model.pet = this.orderDetailsModels.pet;
+      model.hip= this.orderDetailsModels.hip;
+      model.hip = this.orderDetailsModels.kad;
+      model.hata= this.orderDetailsModels.hata;
+      model.gola= this.orderDetailsModels.gola;
+      model.kaf= this.orderDetailsModels.kaf;
+      model.mohori = this.orderDetailsModels.mohori;
+      model.ger= this.orderDetailsModels.ger;
+
+      this.orderDetailList.push(model);
+      console.log(" this.orderDetailList this.orderDetailList", this.orderDetailList);
+      this.getGrandTotal();
+      
+      this.reset();
+   }
+}else{
+      this.toastr.warning(' salse rate is not valid');
+    }
+}
+
+updates(models, entity) {
+  console.log("entity",entity);
+  console.log("models",models);
+  console.log("model",this.orderDetailsModels);
+  for(let i=0; i < this.orderDetailList.length; ++i){
+      if(this.orderDetailList[i].i_id == models.i_id){
+        
+         this.orderDetailList[i].i_id = models.i_id;
+         this.orderDetailList[i].qty = models.qty;
+        //  this.orderDetailList[i].productName = models.productName;
+        
+         this.orderDetailList[i].item_price = models.item_price;
+         this.orderDetailList[i].kof_design = models.kof_design;
+         this.orderDetailList[i].kolor_design = models.kolor_design ;
+         this.orderDetailList[i].button_design = models.button_design;
+         this.orderDetailList[i].poket_design = models.poket_design;
+         this.orderDetailList[i].poket_design = models.selay_design;
+         this.orderDetailList[i].chain_design = models.chain_design;
+         this.orderDetailList[i].lomba = models.lomba;
+         this.orderDetailList[i].buk = models.buk;
+         this.orderDetailList[i].pet = models.pet;
+         this.orderDetailList[i].hip= models.hip;
+         this.orderDetailList[i].hip = models.kad;
+         this.orderDetailList[i].hata= models.hata;
+         this.orderDetailList[i].gola= models.gola;
+         this.orderDetailList[i].kaf= models.kaf;
+         this.orderDetailList[i].mohori = models.mohori;
+         this.orderDetailList[i].ger= models.ger;
+   
+      }
+  }
+  this.getGrandTotal();
+  this.reset();
+  this.isupdate = null;
+}
+
+
 
   selectL1Item(getItem):any{  
 
@@ -370,6 +500,41 @@ export class AddOrdersComponent implements OnInit {
 
     this.getmesurementList(getItem.itemId);
   }
+
+
+  editDatas(entity, s) {
+    console.log("total",entity);
+    this.orderDetailsModels.id= entity.id;
+    this.orderDetailsModels.i_id = entity.i_id;
+    this.orderDetailsModels.qty = entity.qty;
+    
+    // this.orderDetailsModels.item_price = entity.item_price;
+
+    this.orderDetailsModels.item_price = entity.item_price;
+    this.orderDetailsModels.kof_design = entity.kof_design;
+    this.orderDetailsModels.kolor_design = entity.kolor_design ;
+    this.orderDetailsModels.button_design = entity.button_design;
+    this.orderDetailsModels.poket_design = entity.poket_design;
+    this.orderDetailsModels.poket_design = entity.selay_design;
+    this.orderDetailsModels.chain_design = entity.chain_design;
+    this.orderDetailsModels.lomba = entity.lomba;
+    this.orderDetailsModels.buk = entity.buk;
+    this.orderDetailsModels.pet = entity.pet;
+    this.orderDetailsModels.hip= entity.hip;
+    this.orderDetailsModels.hip = entity.kad;
+    this.orderDetailsModels.hata= entity.hata;
+    this.orderDetailsModels.gola= entity.gola;
+    this.orderDetailsModels.kaf= entity.kaf;
+    this.orderDetailsModels.mohori = entity.mohori;
+    this.orderDetailsModels.ger= entity.ger;
+
+
+    // model.mobile = entity.mobile;
+
+    this.tempEdit =  this.orderDetailsModels;
+    this.isupdate = entity;
+  }
+
  
   editData(entity, s) {
     console.log("entity entityentityentityentityentityentity",entity);
@@ -430,6 +595,9 @@ export class AddOrdersComponent implements OnInit {
     this.isupdate = entity;
     
   }
+
+  
+
   deleteitem(id) {
     for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
 
@@ -473,198 +641,313 @@ this.loading = false;
        
     }
   }
-  update() {
+//   update() {
  
-    this.designModel="";
-    // if(this.itemModelId){
-    //   for (let index = 0; index < this.itemModelId.length;) {
-    //     this.designModel += this.itemModelId[index];
+//     this.designModel="";
+//     // if(this.itemModelId){
+//     //   for (let index = 0; index < this.itemModelId.length;) {
+//     //     this.designModel += this.itemModelId[index];
 
-    //     index++;
-    //     if(index !=this.itemModelId.length){
+//     //     index++;
+//     //     if(index !=this.itemModelId.length){
 
-    //       this.designModel +=  ",";
-    //     }
-    //   }
-    // }
+//     //       this.designModel +=  ",";
+//     //     }
+//     //   }
+//     // }
 
-    // this.orderDetailsModels.kof_design= this.kofDesign;
-    this.orderDetailsModels.kolor_design= this.kolordesign ;
-    this.orderDetailsModels.button_design=this.buttondesign ;
-    this.orderDetailsModels.poket_design=this.poketdesign;
-    this.orderDetailsModels.selay_design=this.selaydesign;
-    this.orderDetailsModels.chain_design=this.chaindesign;
-    this.orderDetailsModels.lomba=this.lombas;
-    this.orderDetailsModels.buk=this.buks;
-    this.orderDetailsModels.pet=this.pets;
-    this.orderDetailsModels.hip=this.hips;
-    this.orderDetailsModels.kad=this.hips;
-    this.orderDetailsModels.hata=this.hatas;
-    this.orderDetailsModels.gola=this.golas;
-    this.orderDetailsModels.kaf=this.kafs;
-    this.orderDetailsModels.mohori=this.mohoris;
-    this.orderDetailsModels.ger=this.gers;
+//     // this.orderDetailsModels.kof_design= this.kofDesign;
+//     this.orderDetailsModels.kolor_design= this.kolordesign ;
+//     this.orderDetailsModels.button_design=this.buttondesign ;
+//     this.orderDetailsModels.poket_design=this.poketdesign;
+//     this.orderDetailsModels.selay_design=this.selaydesign;
+//     this.orderDetailsModels.chain_design=this.chaindesign;
+//     this.orderDetailsModels.lomba=this.lombas;
+//     this.orderDetailsModels.buk=this.buks;
+//     this.orderDetailsModels.pet=this.pets;
+//     this.orderDetailsModels.hip=this.hips;
+//     this.orderDetailsModels.kad=this.hips;
+//     this.orderDetailsModels.hata=this.hatas;
+//     this.orderDetailsModels.gola=this.golas;
+//     this.orderDetailsModels.kaf=this.kafs;
+//     this.orderDetailsModels.mohori=this.mohoris;
+//     this.orderDetailsModels.ger=this.gers;
 
-    this.orderDetailsModels.i_id=this.gers;
+//     this.orderDetailsModels.i_id=this.gers;
  
 
 
-    for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
-      if(this.orderAccountDetailsList[i].itemId == this.orderAccountDetails.itemId){
-        this.orderAccountDetailsList[i].itemRate= this.orderAccountDetails.itemRate;
-        this.orderAccountDetailsList[i].itemName= this.orderAccountDetails.itemName;
-        this.orderAccountDetailsList[i].qty= this.orderAccountDetails.qty;
-        this.orderAccountDetailsList[i].itemTotalAmount= this.orderAccountDetails.itemTotalAmount;
-        this.orderAccountDetailsList[i].designModel= this.orderAccountDetails.designModel;
-        // this.orderAccountDetailsList[i].ordermeasurementList= this.mesurementList;
-        this.orderAccountDetailsList[i].detailsModel = this.orderDetailsModels;
+//     for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
+//       if(this.orderAccountDetailsList[i].itemId == this.orderAccountDetails.itemId){
+//         this.orderAccountDetailsList[i].itemRate= this.orderAccountDetails.itemRate;
+//         this.orderAccountDetailsList[i].itemName= this.orderAccountDetails.itemName;
+//         this.orderAccountDetailsList[i].qty= this.orderAccountDetails.qty;
+//         this.orderAccountDetailsList[i].itemTotalAmount= this.orderAccountDetails.itemTotalAmount;
+//         this.orderAccountDetailsList[i].designModel= this.orderAccountDetails.designModel;
+//         // this.orderAccountDetailsList[i].ordermeasurementList= this.mesurementList;
+//         this.orderAccountDetailsList[i].detailsModel = this.orderDetailsModels;
         
       
-      } 
+//       } 
 
-  }
-  this.getGrandTotal();
+//   }
+//   this.getGrandTotal();
       
-  this.reset();
+//   this.reset();
 
-}
+// }
 
-addod(){
-    console.log("this.designList",this.designList);
-  const  model: OrderAccountDetails = new OrderAccountDetails();
-    if (this.isupdate != null) {
-      this.update()
-    }else{
-    for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
-      if (this.orderAccountDetailsList[i].itemId == this.orderAccountDetails.itemId) {
-        this.toastr.warning('Duplicate Item can not be added');
-        return;
-      }
+// addod(){
+//     console.log("this.designList",this.designList);
+//   const  model: OrderAccountDetails = new OrderAccountDetails();
+//     if (this.isupdate != null) {
+//       this.update()
+//     }else{
+//     for (let i = 0; i < this.orderAccountDetailsList.length; i++) {
+//       if (this.orderAccountDetailsList[i].itemId == this.orderAccountDetails.itemId) {
+//         this.toastr.warning('Duplicate Item can not be added');
+//         return;
+//       }
 
-    }
-    this.orderDetailsModels.kof_design= this.kofDesign;
-    this.orderDetailsModels.kolor_design= this.kolordesign ;
-    this.orderDetailsModels.button_design=this.buttondesign ;
-    this.orderDetailsModels.poket_design=this.poketdesign;
-    this.orderDetailsModels.selay_design=this.selaydesign;
-    this.orderDetailsModels.chain_design=this.chaindesign;
-    this.orderDetailsModels.lomba=this.lombas;
-    this.orderDetailsModels.buk=this.buks;
-    this.orderDetailsModels.pet=this.pets;
-    this.orderDetailsModels.hip=this.hips;
-    this.orderDetailsModels.kad=this.hips;
-    this.orderDetailsModels.hata=this.hatas;
-    this.orderDetailsModels.gola=this.golas;
-    this.orderDetailsModels.kaf=this.kafs;
-    this.orderDetailsModels.mohori=this.mohoris;
-    this.orderDetailsModels.ger=this.gers;
+//     }
+//     // this.orderDetailsModels.kof_design= this.kofDesign;
+//     // this.orderDetailsModels.kolor_design= this.kolordesign ;
+//     // this.orderDetailsModels.button_design=this.buttondesign ;
+//     // this.orderDetailsModels.poket_design=this.poketdesign;
+//     // this.orderDetailsModels.selay_design=this.selaydesign;
+//     // this.orderDetailsModels.chain_design=this.chaindesign;
+//     // this.orderDetailsModels.lomba=this.lombas;
+//     // this.orderDetailsModels.buk=this.buks;
+//     // this.orderDetailsModels.pet=this.pets;
+//     // this.orderDetailsModels.hip=this.hips;
+//     // this.orderDetailsModels.kad=this.hips;
+//     // this.orderDetailsModels.hata=this.hatas;
+//     // this.orderDetailsModels.gola=this.golas;
+//     // this.orderDetailsModels.kaf=this.kafs;
+//     // this.orderDetailsModels.mohori=this.mohoris;
+//     // this.orderDetailsModels.ger=this.gers;
  
-    for (let i = 0; i < this.designList.length; i++) {
-      const element = this.designList[i];
+//     for (let i = 0; i < this.designList.length; i++) {
+//       const element = this.designList[i];
       
-    }
+//     }
     
-    this.designModel="";
-    if(this.itemModelId){
-      for (let index = 0; index < this.itemModelId.length;) {
-        this.designModel += this.itemModelId[index];
+//     this.designModel="";
+//     if(this.itemModelId){
+//       for (let index = 0; index < this.itemModelId.length;) {
+//         this.designModel += this.itemModelId[index];
 
-        index++;
-        if(index !=this.itemModelId.length){
+//         index++;
+//         if(index !=this.itemModelId.length){
 
-          this.designModel +=  ",";
-        }
-      }
-    }
-    var plist = [];
+//           this.designModel +=  ",";
+//         }
+//       }
+//     }
+//     var plist = [];
 
-    for (let i = 0; i < this.mesurementList.length; i++) {
-      this.mesurementList[i].id= this.mesurementList[i].measurementId; 
-    }
+//     for (let i = 0; i < this.mesurementList.length; i++) {
+//       this.mesurementList[i].id= this.mesurementList[i].measurementId; 
+//     }
 
-    // console.log("this.kofDesign",this.kofDesign);
-    this.orderDetailsModels.i_id= this.orderAccountDetails.itemId;
-    // console.log("this.orderAccountDetails",this.orderDetailsModels);
+//     // console.log("this.kofDesign",this.kofDesign);
+//     this.orderDetailsModels.i_id= this.orderAccountDetails.itemId;
+//     // console.log("this.orderAccountDetails",this.orderDetailsModels);
 
-    plist = this.mesurementList;
+//     plist = this.mesurementList;
 
-    this.orderAccountDetails.ordermeasurementList = plist;
-      this.id += 1;
-      this.orderAccountDetails.id = this.id;
-      this.orderAccountDetails.designModel= this.designModel;
-     
-    this.orderAccountDetails.detailsModel=this.orderDetailsModels;
-    this.orderAccountDetails.designCategoryModelList = this.designList;
-    this.orderAccountDetailsList.push(this.orderAccountDetails);
+//     this.orderAccountDetails.ordermeasurementList = plist;
+//       this.id += 1;
+//       this.orderAccountDetails.id = this.id;
+//       this.orderAccountDetails.designModel= this.designModel;
 
-    console.log("this.orderAccountDetailsList ",this.orderAccountDetailsList);
-    this.getGrandTotal();
+//     this.orderDetailsModels.id = this.id;
+//     this.orderAccountDetails.detailsModel=this.orderDetailsModels;
+//     this.orderAccountDetails.designCategoryModelList = this.designList;
+//     this.orderAccountDetailsList.push(this.orderAccountDetails);
+
+//     console.log("this.orderAccountDetailsList ",this.orderAccountDetailsList);
+//     this.getGrandTotal();
       
-    this.reset();
-  }
+//     this.reset();
+//   }
 
  
    
-  }
+//   }
 
+  submitOrders():any{
+    if(this.orderid !=null){
+      if(this.orderid == this.orderModel.orderNo){
+        this.updateOrder();
 
-  submitOrder(): any{
-
-    if(this.orderid){
-    this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
-    
-    this.orderModel.totalAmount = this.grandTotal;
-    console.log('Update ', this.orderModel);
-
-    this.apiService.updateOrder(this.orderModel).subscribe(
-      (resp) => {
-        console.log('Update ', resp);
-        if (resp) {
-          
-           this.toastr.success('', 'Update Successfull');
-          this.onClose.next(true);
-          this.bsModalRef.hide();
-        } else {
-           this.toastr.success('', "Something  wrong");
-        }
-      },
-      (err) => {
-         this.toastr.warning('', "There have an error");
       }
-    );
+
     }else{
-      if(this.customerCode){
-        this.getGrandTotal();
-
-      this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
-      this.orderModel.totalAmount = this.grandTotal;
-  
-      this.apiService.saveOrder(this.orderModel).subscribe(
-        (resp) => {
-          console.log('create ', resp);
-          if (resp) {
-            
-             this.toastr.success('', 'Create Successfull');
-            this.onClose.next(true);
-            this.bsModalRef.hide();
-          } else {
-             this.toastr.success('', "Something  wrong");
-          }
-        },
-        (err) => {
-           this.toastr.warning('', "There have an error");
-        }
-      );
-      }else{
-      }
+      this.saveOrder();
     }
   }
+
+  updateOrder():any{
+
+    console.log('orderModel', this.orderModel);
+    if(this.orderModel.orderNo !=null){
+      // this.orderModel.ssModifier= this.token.getUsername();
+      this.orderModel.status = 1;
+      // this.orderModel.deliveryStatus = "1"
+      this.orderModel.detailsList = this.orderDetailList;
+
+      // console.log('orderdetaillist', this.orderDetailList);
+      // console.log('orderdetaillist', this.orderModel.orderDetailList);
+
+
+      if(this.orderModel.detailsList.length !=0){
+
+
+        // for (let i = 0; i < this.orderModel.orderDetailList.length; i++) {
+        //   this.orderModel.orderDetailList[i].orderId = this.orderModel.orderId;
+        // }
+
+        console.log('orderdetaillist', this.orderModel.detailsList.length);
+        for (let i = 0; i < this.orderModel.detailsList.length; i++) {
+          console.log('i_value', i);
+
+          this.orderModel.detailsList[i].orderd_no = this.orderModel.orderNo;
+
+          
+        }
+       
+        console.log('orderdetaillist', this.orderModel);
+  
+        this.apiService.updateOrder(this.orderModel).subscribe(
+          (resp) => {
+            console.log('update ', resp);
+            if (resp) {
+              
+               this.toastr.success('', 'Successfully Update Order');
+              this.onClose.next(true);
+              this.bsModalRef.hide();
+            } else {
+               this.toastr.success('', 'Successfully Update order');
+            }
+          },
+          (err) => {
+            this.toastr.warning('', 'Error occurred');
+          }
+        );
+      }else{
+      this.toastr.warning('Item list is null');
+      return;
+    }
+    }else{
+      this.toastr.warning('order id null');
+      return;
+    }
+  }
+
+
+  saveOrder():any{
+      
+    console.log('orderModel list', this.orderModel);
+    // if(this.orderModel.orderId !=null){
+         
+      // this.orderModel.ssCreator= this.token.getUsername();
+      this.orderModel.status = 1;
+      // this.orderModel.deliveryStatus = "1"
+      this.orderModel.detailsList = this.orderDetailList;
+      console.log('orderdetaillist', this.orderDetailList);
+      console.log('orderdetaillist', this.orderModel.orderDetailList);
+
+      if(this.orderModel.detailsList.length!=0){
+
+        console.log('orderdetaillist', this.orderModel.detailsList.length);
+        for (let i = 0; i < this.orderModel.detailsList.length; i++) {
+          console.log('i_value', i);
+
+          this.orderModel.detailsList[i].orderd_no = this.orderModel.orderNo; 
+        }
+        this.apiService.saveOrder(this.orderModel).subscribe(
+          (resp) => {
+            console.log('create ', resp);
+            if (resp) {
+             
+              this.toastr.success('', resp.message);
+              this.onClose.next(true);
+              this.bsModalRef.hide();
+            } else {
+            
+            }
+          },
+          (err) => {
+            this.toastr.warning('', "something wrong");
+          },
+        );
+      }else{
+      this.toastr.warning('Item list is null');
+      return;
+    }
+  }
+
+
+
+
+  // submitOrder(): any{
+
+  //   if(this.orderid){
+  //   this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
+    
+  //   this.orderModel.totalAmount = this.grandTotal;
+  //   console.log('Update ', this.orderModel);
+
+  //   this.apiService.updateOrder(this.orderModel).subscribe(
+  //     (resp) => {
+  //       console.log('Update ', resp);
+  //       if (resp) {
+          
+  //          this.toastr.success('', 'Update Successfull');
+  //         this.onClose.next(true);
+  //         this.bsModalRef.hide();
+  //       } else {
+  //          this.toastr.success('', "Something  wrong");
+  //       }
+  //     },
+  //     (err) => {
+  //        this.toastr.warning('', "There have an error");
+  //     }
+  //   );
+  //   }else{
+  //     if(this.customerCode){
+  //       this.getGrandTotal();
+
+  //     this.orderModel.orderAccountDetailsList = this.orderAccountDetailsList;
+  //     this.orderModel.totalAmount = this.grandTotal;
+  
+  //     this.apiService.saveOrder(this.orderModel).subscribe(
+  //       (resp) => {
+  //         console.log('create ', resp);
+  //         if (resp) {
+            
+  //            this.toastr.success('', 'Create Successfull');
+  //           this.onClose.next(true);
+  //           this.bsModalRef.hide();
+  //         } else {
+  //            this.toastr.success('', "Something  wrong");
+  //         }
+  //       },
+  //       (err) => {
+  //          this.toastr.warning('', "There have an error");
+  //       }
+  //     );
+  //     }else{
+  //     }
+  //   }
+  // }
 
 
 
   getGrandTotal():any{
     this.grandTotal=0;
-    console.log("addorder", this.orderAccountDetailsList);
+    // console.log("addorder", this.orderAccountDetailsList);
     this.orderAccountDetailsList.forEach(element => {
       this.grandTotal += element.qty*element.itemRate;
       //this.getVatamount();
@@ -676,149 +959,10 @@ addod(){
     this.itemModelId=[];
     this.mesurementList = [];
     this.orderAccountDetails =new OrderAccountDetails();
-    this.getDesignList();
-    // this.model = new OrderDetailsModel();
-    //  this.l4Code ="";
-    //  this.qty="";
-    //  this.productName="";
-    // this.rate = 0;
-    this.kofDesign="";
-    this.kolordesign="";
-    this.buttondesign ="";
-    this.poketdesign ="";
-    this.selaydesign ="";
-    this.chaindesign = "";
-    this.lombas =0;
-    this.buks =0;
-    this.pets =0;
-    this.hips= 0;
-    this.hips = 0;
-    this.hatas= 0;
-    this.golas= 0;
-    this.kafs= 0;
-    this.mohoris =0;
-    this.gers = 0;
-
-
-
-
-
+    this.orderDetailsModels = new OrderDetailsModels();
   }
   
-
-  createOrder(form: NgForm): void {
-   
-    // this.orderModel.customerCode = this.customer.cusId;
-    // this.orderModel.totalAmount = this.orderAccountDetails.itemTotalAmount;
-
-      // if(this.mesurementList.length>0){
-      //   this.orderModel.ordermeasurementList= this.mesurementList;
-      // }
-      // this.orderModel.orderAccountDetails= this.orderAccountDetails;
-      // var designModel= "";
-      // if(this.itemModelId){
-      //   for (let index = 0; index < this.itemModelId.length;) {
-      //     designModel += this.itemModelId[index];
-      //     index++;
-      //     if(index !=this.itemModelId.length){
-
-      //       designModel +=  ",";
-      //     }
-      //   }
-      // }
-      // var plist = [];
-      // plist = this.mesurementList;
-      // this.orderAccountDetails.ordermeasurementList = plist;
-      
-
-      //   this.orderModel.designModel= designModel;
-
-      //   console.log(this.orderAccountDetails);
-      //   console.log(this.orderAccountDetailsList);
-
-      //   this.id += 1;
-      //   this.orderAccountDetails.id = this.id;
-   
-      // this.orderAccountDetailsList.push(this.orderAccountDetails);
-      // this.orderAccountDetailsList.
-      
-      
-
-    
-
-    // console.log(this.orderModel); // print room obj
-    // this.orderModel.ssCreator= this.token.getUsername();
-    
-     
-    // this.apiService.saveOrder(this.orderModel).subscribe(
-    //   (resp) => {
-    //     console.log('create ', resp);
-    //     if (resp) {
-    //       form.resetForm();
-    //        this.toastr.success('', 'Create Successfull');
-    //       this.onClose.next(true);
-    //       this.bsModalRef.hide();
-    //     } else {
-    //        this.toastr.success('', "Something  wrong");
-    //     }
-    //   },
-    //   (err) => {
-    //      this.toastr.warning('', "There have an error");
-    //   }
-    // );
-  }
-
-  
-
-
-  // updateSupplier(form: NgForm): void {
-  //   console.log(this.supplier); // print room obj
-  //   this.supplier.ssModifier= this.token.getUsername();
-  
-  //   this.apiService.updateSupplier(this.supplier).subscribe(
-  //     (resp) => {
-  //       console.log('update ', resp);
-  //       if (resp) {
-  //         form.resetForm();
-  //         this.toastr.success('', 'Update Successfull');
-  //         this.onClose.next(true);
-  //         this.bsModalRef.hide();
-  //       } else {
-  //          this.toastr.warning('', "Something wrong");
-  //       }
-  //     },
-  //     (err) => {
-  //       this.toastr.warning('', 'Error occured');
-  //     }
-  //   );
-  // }
-
-//   public downloadAsPDF() {
-//     const doc = new jsPDF();
-
-//     var x = document.getElementById("myTd");
-//     x.innerHTML = this.userName;
-
-//     const specialElementHandlers = {
-//       '#editor': function (element, renderer) {
-//         return true;
-//       }
-//     };
-
-//     const pdfTable = this.pdfTable.nativeElement;
-//     doc.text("Hello world!", 1, 1);
-// doc.save("two-by-four.pdf");
-
-//     doc.fromHTML(pdfTable.innerHTML, 15, 15, {
-//       width: 190,
-//       'elementHandlers': specialElementHandlers
-//     });
-
-//   console.log(doc.output('dataurl'));
-//   console.log(this.userName);
-
-
-//   }
+ 
 
   
 }

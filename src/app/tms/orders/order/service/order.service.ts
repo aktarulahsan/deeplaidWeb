@@ -27,6 +27,12 @@ export class OrderService {
   private FIND_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findMesurementByOrderid`;
   private FIND_ACCOUNT_INFO_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderid`;
   private FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderidandItemId`;
+
+  private FIND_DETAILS_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findOrderDetailsByOrderid`;
+
+  
+
+
   private ORDER_REPORT = `${environment.baseUrl}report/rolereport`;
   private FIND_ORDERVIEW_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findViewByOrderid`; 
 
@@ -98,7 +104,14 @@ export class OrderService {
     return this.http
       .post<BaseResponse>(this.FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID, data);
   }
+ 
+  findOrderDetailsByid(data){
+    const params = new HttpParams().append('orderId', data); 
+    return this.http.get(this.FIND_DETAILS_BY_ORDER_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
 
+  }
   findOrderByid(data){
     const params = new HttpParams().append('orderId', data); 
     return this.http.get(this.FIND_BY_ID_ORDER, { params }).pipe(
