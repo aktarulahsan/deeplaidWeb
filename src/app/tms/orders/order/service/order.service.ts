@@ -28,7 +28,8 @@ export class OrderService {
   private FIND_ACCOUNT_INFO_BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderid`;
   private FIND_ACCOUNT_INFO_BY_ORDER_ID_ITEMID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findAccountInfoByOrderidandItemId`;
   private ORDER_REPORT = `${environment.baseUrl}report/rolereport`;
-   
+  private FIND_ORDERVIEW_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findViewByOrderid`; 
+
   getOrderList(): Observable<any> {
     return this.http.get(`${this.ORDER_LIST}`);
   }
@@ -82,6 +83,13 @@ export class OrderService {
   findAccountInfoByOrderid(data) {
     const params = new HttpParams().append('orderId', data); 
     return this.http.get(this.FIND_ACCOUNT_INFO_BY_ORDER_ID, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
+
+  findOrderidview(data) {
+    const params = new HttpParams().append('orderId', data); 
+    return this.http.get(this.FIND_ORDERVIEW_ORDER_ID, { params }).pipe(
       map((data: any) => data.items
       ));
   }

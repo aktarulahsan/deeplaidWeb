@@ -148,9 +148,9 @@ export class CustomerDetailsComponent implements OnInit {
           title: 'Action',
           "orderable": false,
           render: (data: any, type: any, row: any) => {
-            return '<i class="far fa-eye"></i>'
+             
             
-            // '<button type="button"   class="icon icon-action-edit fontsize  details-sloat">Details</button>';
+            return '<button type="button"   class="btn btn-info fontsize  details-sloat">Details</button>';
           }
         },
 
@@ -166,9 +166,9 @@ export class CustomerDetailsComponent implements OnInit {
             console.log('hello delete data', data);
             that.rerender();
           });
-          // $(row).find(".details-sloat").click(function () {
-          //   that.showDetails(data);
-          // });
+          $(row).find(".details-sloat").click(function () {
+            that.printData();
+          });
   
         $(row).bind('click', () => {
           this.selectData = data;

@@ -50,17 +50,103 @@
                                 </div> -->
                                
                             </div>
-                            <div class="row col-md-8" style="margin: 20px;">
+                            <!-- <div class="row col-md-8" style="margin: 20px;">
                                 <div class="col-md-2"><u>Item Name</u></div>
                                 <div  class="col-md-2"><u>Item Rate</u></div>
                                 <div  class="col-md-2"><u>Qty</u></div>
                                 <div  class="col-md-4"><u>Measurement</u></div>
-                            </div>
+                            </div> -->
                             <hr class="dashed">
-                            <div class="row " style="margin: 20px;" *ngFor="let item of orderAccountDetailsList; let i=index;" >
-                                <div class="col-md-2">{{item.itemName}}</div>
-                                <div  class="col-md-1">{{item.itemRate}}</div>
-                                <div  class="col-md-1">{{item.qty}}</div>
+                            <div class="row " style="margin: 20px;" *ngFor="let item of orderViewModelList; let i=index;" >
+                                <div class="row col-md-3">
+                                    <div class="col-md-5">
+                                        <label>পোশাকের নাম</label>
+                                       <div>{{item.i_id}}</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>মূল্য</label>
+                                        <div>{{item.item_price}}</div>
+                                        </div>
+                                    <div class="col-md-2">
+                                        <label>পরিমান</label>
+                                        <div>{{item.qty}}</div>
+                                    </div>
+                                </div>
+                                <hr class="dashed">
+                                <div class="row col-sm-5"style="border:double; border-width: 2;">
+                                    <div class="col-md-2">
+                                        <label>লম্বা</label>
+                                        <div>{{item.lomba}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>বুক</label>
+                                        <div>{{item.buk}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>পেট</label>
+                                        <div>{{item.pet}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>হিপ</label>
+                                        <div>{{item.hip}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>কাধ</label>
+                                        <div>{{item.kad}}</div>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <label>হাত</label>
+                                        <div>{{item.hata}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>গলা</label>
+                                        <div>{{item.gola}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>কাফ</label>
+                                        <div>{{item.kaf}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>মহুরী</label>
+                                        <div>{{item.mohori}}</div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label>ঘের</label>
+                                        <div>{{item.ger}}</div>
+                                    </div>
+                                  
+
+                                   
+
+                                </div>
+                                <hr class="dashed">
+                                <div class="row col-sm-4" style="border:dotted; border-width: 2; padding-left: 10;">
+                                    <div class="col-md-4">
+                                        <label>কফ</label>
+                                        <div>{{item.kof_design}}</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>কোলোর</label>
+                                        <div>{{item.kolor_design}}</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>পকেট</label>
+                                        <div>{{item.poket_design}}</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>সেলাই</label>
+                                        <div>{{item.selay_design}}</div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>চেন</label>
+                                        <div>{{item.chain_design}}</div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+                               
                                 
                               
                                     <div class="col-md-1" *ngFor="let items of item.ordermeasurementList; let i=index;  " >
@@ -70,7 +156,7 @@
                                            <td> 
                                             <input type="text" readonly class="form-control" name=a{{i}} [(ngModel)]="items.measurementValue">
                                              
-                                        </td>
+                                            </td>
                                            
                                         </div>
                                     </div>
