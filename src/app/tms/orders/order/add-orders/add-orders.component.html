@@ -12,7 +12,7 @@
     <div class="modal-body crudForm" id="pdfTable" #pdfTable>
         <div class="persoanlInfoArea">
 
-            <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm" novalidate action="index.html">
+          
 
                 <div class="row">
          
@@ -163,7 +163,7 @@
            
 
                 </div>
-
+            <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm" novalidate action="index.html">
            
                 <div class="row bg-light">
                     <!-- <div class="col-md-2" *ngFor="let item of mesurementList; let i=index; trackBy: trackItem | async " >
@@ -179,53 +179,53 @@
 
                     <div class="col-sm-2 form-group">
                         <label for="groupName">লম্বা  </label>
-                        <input type="text" class="form-control"maxlength=5 name=lomba [(ngModel)]="lombas">
+                        <input type="text" class="form-control"maxlength=5 name=lomba [(ngModel)]="orderDetailsModels.lomba">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">বুক </label>
-                        <input type="text" class="form-control"maxlength=5 name=buk [(ngModel)]="buks">
+                        <input type="text" class="form-control"maxlength=5 name=buk [(ngModel)]="orderDetailsModels.buk">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">পেট </label>
-                        <input type="text" class="form-control"maxlength=5 name=pet [(ngModel)]="pets">
+                        <input type="text" class="form-control"maxlength=5 name=pet [(ngModel)]="orderDetailsModels.pet">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">হিপ </label>
-                        <input type="text" class="form-control"maxlength=5 name=hip [(ngModel)]="hips">
+                        <input type="text" class="form-control"maxlength=5 name=hip [(ngModel)]="orderDetailsModels.hip">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">কাধ  </label>
-                        <input type="text" class="form-control"maxlength=5 name=kad [(ngModel)]="kads">
+                        <input type="text" class="form-control"maxlength=5 name=kad [(ngModel)]="orderDetailsModels.kad">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">হাত</label>
-                        <input type="text" class="form-control"maxlength=5 name=hata [(ngModel)]="hatas">
+                        <input type="text" class="form-control"maxlength=5 name=hata [(ngModel)]="orderDetailsModels.hata">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">গলা </label>
-                        <input type="text" class="form-control"maxlength=5 name=gola [(ngModel)]="golas">
+                        <input type="text" class="form-control"maxlength=5 name=gola [(ngModel)]="orderDetailsModels.gola">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">কাফ </label>
-                        <input type="text" class="form-control"maxlength=5 name=kaf [(ngModel)]="kafs">
+                        <input type="text" class="form-control"maxlength=5 name=kaf [(ngModel)]="orderDetailsModels.kaf">
                          
                     </div>
                     <div class="col-sm-2 form-group">
                         <label for="groupName">মহুরী </label>
-                        <input type="text" class="form-control"maxlength=5 name=mohori [(ngModel)]="mohoris">
+                        <input type="text" class="form-control"maxlength=5 name=mohori [(ngModel)]="orderDetailsModels.mohori">
                          
                     </div>
 
                     <div class="col-sm-2 form-group">
                         <label for="groupName">ঘের </label>
-                        <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="gers">
+                        <input type="text" class="form-control"maxlength=5 name=ger [(ngModel)]="orderDetailsModels.ger">
                          
                     </div>
                    
@@ -284,40 +284,40 @@
                     </div> -->
                     <div class="col-md-2 form-group">
                         <label>কফ_ডিসাইন</label>
-                        <ng-select [(ngModel)]="kofDesign" [ngModelOptions]="{standalone: true}">
+                        <ng-select [(ngModel)]="orderDetailsModels.kof_design" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of kof_designlist" [value]="cof.names">{{cof.names}}</ng-option>
                          </ng-select>
                     </div>
                     <div class="col-md-2 form-group">
                         <label>কোলোর_ডিসাইন</label>
-                        <ng-select [(ngModel)]="kolordesign" [ngModelOptions]="{standalone: true}">
+                        <ng-select [(ngModel)]="orderDetailsModels.kolor_design" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of kolor_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
 
                     <div class="col-md-2 form-group">
                         <label>বাটন_ডিসাইন</label>
-                        <ng-select [(ngModel)]="buttondesign" [ngModelOptions]="{standalone: true}">
+                        <ng-select [(ngModel)]="orderDetailsModels.button_design" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of button_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
 
                     <div class="col-md-2 form-group">
                         <label>পকেট_ডিসাইন</label>
-                        <ng-select [(ngModel)]="poketdesign" [ngModelOptions]="{standalone: true}">
+                        <ng-select [(ngModel)]="orderDetailsModels.poket_design" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of poket_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
 
                     <div class="col-md-2 form-group">
                         <label>সেলাই_ডিসাইন</label>
-                        <ng-select [(ngModel)]="selaydesign" [ngModelOptions]="{standalone: true}">
+                        <ng-select [(ngModel)]="orderDetailsModels.selay_design" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of selay_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
                     <div class="col-md-2 form-group">
                         <label>চেন_ডিসাইন</label>
-                        <ng-select [(ngModel)]="chaindesign" [ngModelOptions]="{standalone: true}">
+                        <ng-select [(ngModel)]="orderDetailsModels.chain_design" [ngModelOptions]="{standalone: true}">
                             <ng-option *ngFor="let cof of chain_designlist" [value]="cof.name">{{cof.name}}</ng-option>
                          </ng-select>
                     </div>
@@ -444,14 +444,12 @@
                     </div>
                    
                 </div>
-
-
-
                 <div class="form-group">
-
-                    <button  (click)="addod()" class="btn btn-dark"><i class="fa fa-plus"></i>  অ্যাড করুন   </button>
-
-                </div>
+        
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i> Add to List</button>
+                   
+                  </div>
+                  <br>
 
             </form>
 
@@ -478,13 +476,13 @@
               <!-- <th> Grand Total = {{grandTotal}}</th> -->
             </thead>
             <tbody>
-              <tr *ngIf="orderAccountDetailsList.length==0" [class.text-danger]="!isValid && orderAccountDetailsList.length==0">
+              <tr *ngIf="orderDetailList.length==0" [class.text-danger]="!isValid && orderDetailList.length==0">
                 <td class="font-italic text-center" colspan="5">
                   No item selected for this order.
                 </td>
               </tr>
         
-              <tr *ngFor="let group of orderAccountDetailsList; let i=index;">
+              <tr *ngFor="let group of orderDetailList; let i=index;">
                 <td>{{i+1}}</td>
                 <td>{{group.itemId}}</td>
                 <td>{{group.itemName}}</td>
@@ -495,7 +493,7 @@
                 <td>{{group.qty*group.itemRate}}</td>
                
                 <td>
-                  <a class="btn btn-sm btn-info text-white" (click)="editData(group,this)"><i class="fas fa-edit"></i></a>
+                  <a class="btn btn-sm btn-info text-white" (click)="editDatas(group,this)"><i class="fas fa-edit"></i></a>
                   <a class="btn btn-sm btn-danger text-white ml-1" (click)='deleteitem(i)' ><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
@@ -506,7 +504,7 @@
     <div class="modal-footer">
         <a [routerLink]="['/orderDetails']"(click)="bsModalRef.hide()" class="nav-link"><span  class="fas fa-funnel-dollar" > <i></i>  </span>
            print</a>
-        <button type="submit" class="btn btn-outline-success " (click)="submitOrder()">সাবমিট </button>
+        <button type="submit" class="btn btn-outline-success " (click)="submitOrders()">সাবমিট </button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="bsModalRef.hide()">বাতিল </button>
       </div>
 
