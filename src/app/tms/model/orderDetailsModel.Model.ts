@@ -34,4 +34,5 @@ export class OrderDetailsModels{
       create_date: number;
       updated_by: number;
       update_date: number;
+      comments: string;
 }

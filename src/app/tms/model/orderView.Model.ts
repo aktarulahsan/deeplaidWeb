@@ -12,6 +12,8 @@ deliveryDate: Date;
 totalAmount: number;
 adAmunt: number;
 status: number;
+worker: string;
+comments: string;
 i_id: number;
 lomba: number;
 buk: number;

@@ -14,8 +14,10 @@ export class OrderModel extends BaseModel {
      orderDate: Date;
      deliveryDate: Date;
      totalAmount: number;
-     designModel: String;
+     designModel: string;
      status: number;
+     worker: string;
+     comments: string;
 
      orderDetailList: OrderDetailsModel[]=new Array();
      orderAccountDetails: OrderAccountDetails;
