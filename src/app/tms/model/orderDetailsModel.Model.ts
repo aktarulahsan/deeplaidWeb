@@ -4,6 +4,7 @@ export class OrderDetailsModels{
      orderd_no: number;
      cust_code: number;
       i_id: number;
+      productName: string;
       lomba: number;
       buk: number;
       pet: number;

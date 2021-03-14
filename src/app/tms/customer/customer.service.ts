@@ -67,7 +67,7 @@ export class CustomerService {
   }
 
   findCustomerlist(data) {
-    const params = new HttpParams().append('id', data); 
+    const params = new HttpParams().append('mobile', data); 
     return this.http.get(this.FIND_BY_ID_CUSTOMER, { params }).pipe(
       map((data: any) => data.items
       ));

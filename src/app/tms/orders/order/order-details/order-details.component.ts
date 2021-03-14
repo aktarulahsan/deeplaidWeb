@@ -55,7 +55,7 @@ export class OrderDetailsComponent implements OnInit {
     
     if(this.customerCode){
       this.getCustomerInfo(this.customerCode);
-      this.getAccountInfo(this.orderid);
+      this.getOrderDetails(this.orderid);
       // this.getOrderMaster(this.orderid);
     }
   }
@@ -76,6 +76,16 @@ export class OrderDetailsComponent implements OnInit {
      
      })
 
+  }
+  getOrderDetails(orderNo){
+    this.apiService.findOrderDetailsByid(orderNo).subscribe(data=>{
+         
+     
+       this.orderViewModelList = data;
+       console.log(" datadatadatadatadatadatadatadata", data); 
+        // this.orderDetailsModels = data["obj"];
+
+      });
   }
 
   getAccountInfo(orderNo){

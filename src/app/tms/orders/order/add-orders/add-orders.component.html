@@ -76,7 +76,8 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="productName">কারিগরি </label>
-                        <input type="text" class="form-control" bindLabel=" "   name="mobile" />
+                        <input type="text" class="form-control" bindLabel="worker" [(ngModel)]="worker" name="worker" />
+                        <!-- <input type="text" class="form-control" bindLabel=" "   name="mobile" /> -->
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                   <div *ngIf="productName.errors.required">
                       productName is required
@@ -99,21 +100,18 @@
                       </div>
                     <div class="form-group col-md-4">
                         <label for="qty">অর্ডার ডেট </label>
+
                         <input type="text" 
                         class="form-control datePicker" 
-                        placeholder="Select Date (DD-MM-YYYY)"      
+                        placeholder="Select Date (DD/MM/YYYY)"      
                         bsDatepicker
-                        [(ngModel)]="orderModel.orderDate"
-                        [maxDate]="maxDate"
+                        autocomplete="off"
+                        [(ngModel)]="fDate"
+                        #dp="bsDatepicker"
                         [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
-                        #orderDate="ngModel"
-                        name="orderDate"
+                        
+                        name="fDate"                                
                         required/>
-
-
-
-
-
                         <!-- <input type="date" class="form-control" max="maxDate" name="orderDate" required /> -->
                         <!-- <div *ngIf="f.submitted && qty.invalid">
                   <div *ngIf="qty.errors.required">
@@ -379,16 +377,47 @@
                     <div class="form-group col-md-10 ">
                         <label for="purchaseRate">অন্যান্য </label>
 
-                        <textarea class="form-control" rows="2" id="comment" bindLabel="comments"   name="address"></textarea>
+                        <textarea class="form-control" rows="2" id="comments" [(ngModel)]="comments" bindLabel="comments"   name="comments"></textarea>
 
                     </div>
                 </div>
 
                 <div class="row">
+                    <div class="form-group mb-1 col-md-3">
+                        <label class="control-label">
+                            ডেলিভারী তারিখ<b class="text-danger">*</b>
+                        </label>
+                        <div class="input-group">
+                            
+                            <input type="text" class="form-control datePicker" placeholder="Select Date (DD/MM/YYYY)"
+                                bsDatepicker autocomplete="off" [(ngModel)]="dDate" #dp="bsDatepicker"
+                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" 
+                                name="dDate" required />
+                            <div class="input-group-append" data-target="#datePicker-FromDateString"
+                                data-toggle="datetimepicker">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-
-                    <div class="form-group col-md-3 ">
-                      <div>
+                    <!-- <div class="form-group col-md-3 ">
+                        <div class="input-group">
+                            <label for="productName">ডেলিভারী তারিখ </label>
+                            <span></span><span></span>
+                            <input type="text" class="form-control datePicker" placeholder="Select Date (DD/MM/YYYY)"
+                                bsDatepicker autocomplete="off" [(ngModel)]="dDate" #dp="bsDatepicker"
+                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }" 
+                                name="dDate" required />
+                            <div class="input-group-append" data-target="#datePicker-FromDateString"
+                                data-toggle="datetimepicker">
+                                <div class="input-group-text">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div> -->
+                      <!-- <div>
                         <label for="productName">ডেলিভারী তারিখ </label>
                         <input type="text" 
                         class="form-control datePicker" 
@@ -399,7 +428,7 @@
                         #deliveryDate="ngModel"
                         name="deliveryDate"
                         required/>
-                      </div>
+                      </div> -->
                      
                      
                         <!-- <div *ngIf="f.submitted && deliveryDate.invalid">
@@ -407,7 +436,7 @@
                                                 deliveryDate is required
                                             </div>
                                             </div> -->
-                    </div>
+                    <!-- </div> -->
                     <div class="form-group col-md-2 ">
                         <label for="productName">মূল্য </label>
                         <input type="number"   class="form-control" bindLabel="orderAccountDetails.itemRate" [(ngModel)]="orderAccountDetails.itemRate" name="itemRate" />
@@ -484,13 +513,13 @@
         
               <tr *ngFor="let group of orderDetailList; let i=index;">
                 <td>{{i+1}}</td>
-                <td>{{group.itemId}}</td>
-                <td>{{group.itemName}}</td>
+                <td>{{group.i_id}}</td>
+                <td>{{group.productName}}</td>
                
                
                 <td>{{group.qty}}</td>
-                <td>{{group.itemRate}}</td>
-                <td>{{group.qty*group.itemRate}}</td>
+                <td>{{group.item_price}}</td>
+                <td>{{group.qty*group.item_price}}</td>
                
                 <td>
                   <a class="btn btn-sm btn-info text-white" (click)="editDatas(group,this)"><i class="fas fa-edit"></i></a>
@@ -502,8 +531,8 @@
 
     </div>
     <div class="modal-footer">
-        <a [routerLink]="['/orderDetails']"(click)="bsModalRef.hide()" class="nav-link"><span  class="fas fa-funnel-dollar" > <i></i>  </span>
-           print</a>
+        <!-- <a [routerLink]="['/orderDetails']"(click)="bsModalRef.hide()" class="nav-link"><span  class="fas fa-funnel-dollar" > <i></i>  </span>
+           print</a> -->
         <button type="submit" class="btn btn-outline-success " (click)="submitOrders()">সাবমিট </button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="bsModalRef.hide()">বাতিল </button>
       </div>
@@ -577,8 +606,22 @@
                       </div>
                     <div class="form-group col-md-3">
                         <label for="mobile">মোবাইল নাম্বার </label>
-                        <input type="number" class="form-control" name="mobile" [(ngModel)]="customer.mobile"
-                            #mobile="ngModel" required />
+                        <input
+                        class="form-control"
+                        id=""
+                        
+                        type="text"
+                        [(ngModel)]="customer.mobile"
+                        name="mobile"
+                        #mobile="ngModel"
+                        (blur) ="checkUserId()"
+                        required
+                        />
+                       
+                       
+                       
+                        <!-- <input type="number" class="form-control" name="mobile" [(ngModel)]="customer.mobile"  (blur) ="findUserId()"
+                            #mobile="ngModel" required /> -->
                         <div *ngIf="f.submitted && mobile.invalid">
                             <div *ngIf="mobile.errors.required">
                                 mobile is required

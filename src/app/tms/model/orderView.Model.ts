@@ -15,6 +15,7 @@ status: number;
 worker: string;
 comments: string;
 i_id: number;
+productName: string;
 lomba: number;
 buk: number;
 pet: number;
