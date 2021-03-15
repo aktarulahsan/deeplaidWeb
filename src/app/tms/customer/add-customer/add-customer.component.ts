@@ -26,6 +26,9 @@ export class AddCustomerComponent implements OnInit {
   customer: Customer = new Customer;
   customerId: any;
 
+  isReadOnly: boolean;
+  userValidetor: string;
+
   constructor(
     // private token: TokenStorageService,
     public bsModalRef: BsModalRef,
@@ -39,6 +42,7 @@ export class AddCustomerComponent implements OnInit {
     this.onClose = new Subject(); 
     // this.getProdOneList();
     if (this.sendData) {
+      this.isReadOnly = true;
       this.customer = this.sendData;
       this.customerId = this.customer.customerCode;
     }
@@ -63,6 +67,29 @@ export class AddCustomerComponent implements OnInit {
     //   console.log('data list', this.model.purchaseRate);
     // }
   }
+
+
+  checkUserId(){
+    console.log('data list', this.customer.mobile);
+    if(!this.isReadOnly){
+      if (this.userValidetor != this.customer.mobile) {
+        const data = {
+          "uid": this.customer.mobile
+        }
+        
+        this.apiService.findCustomerbyMobile(this.customer.mobile).subscribe(res => {
+          if (res.success) {
+            this.toastr.warning("User Id exists. Please choose a different one!")
+            this.customer.mobile = ""
+          }
+        })
+      } 
+    }
+       
+}
+
+
+
   createCustomre(form: NgForm): void {
     console.log(this.customer); // print room obj
     // this.customer.ssCreator= this.token.getUsername();

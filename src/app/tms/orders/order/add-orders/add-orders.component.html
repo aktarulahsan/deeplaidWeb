@@ -96,8 +96,8 @@
                     </div>
                     <div class="form-group col-md-2">
                         <label for="productName">অগ্রিম টাকা </label>
-                        <input type="text"   class="form-control"  name="itemRate" />
-                      </div>
+                        <input type="text"  [(ngModel)]="orderModel.adAmunt"  class="form-control"  name="adAmunt" />
+                    </div>
                     <div class="form-group col-md-4">
                         <label for="qty">অর্ডার ডেট </label>
 
@@ -125,15 +125,27 @@
                 <div class="row">
 
 
-                    <div class="form-group col-md-4 ">
+                    <!-- <div class="form-group col-md-4 ">
                         <label for="productName">অর্ডার নাম্বার </label>
                         <input type="text" class="form-control" name="productName" [(ngModel)]="orderid" bindLabel="orderid" readonly />
-                        <!-- <div *ngIf="f.submitted && productName.invalid">
-              <div *ngIf="productName.errors.required">
-                  productName is required
-              </div>
-            </div> -->
-                    </div>
+                  
+                    </div> -->
+                    <div class="col-md-4 col-sm- genDiv genderTitle">
+                        <label for="" class="col-md-8 col-sm-10 control-label text-right paddingLeft0">পোশাক টাইপ &nbsp;*&nbsp;:</label>
+                        <div [ngClass]="{'invalid-input':f.submitted && gender.invalid}">
+                         
+                          <!-- <input name="type" [(ngModel)]="drestype" type="radio" [value]="1"  /> শার্ট
+                          <input name="type" [(ngModel)]="drestype" type="radio" [value]="0"  /> প্যান্ট -->
+                          <label class="radio-inline col-md-5 p-1 col-sm-12 fontWn">
+                            <input name="drestype" [(ngModel)]="drestype" type="radio" [value]="0"  />
+                                   <span>&nbsp;&nbsp;শার্ট</span>
+                                  </label>
+                          <label class="radio-inline col-md-5 p-1 col-sm-8 fontWn">
+                            <input name="drestype" [(ngModel)]="drestype" type="radio" [value]="1"  />
+                                   <span>&nbsp;&nbsp;প্যান্ট</span>
+                                  </label>
+                           </div>
+                      </div>
 
                     <div class="col-sm-4 form-group">
                         <label for="groupName">পোশাকের নাম </label>
@@ -163,17 +175,8 @@
                 </div>
             <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm" novalidate action="index.html">
            
-                <div class="row bg-light">
-                    <!-- <div class="col-md-2" *ngFor="let item of mesurementList; let i=index; trackBy: trackItem | async " >
-                        <div class="form-group">
-                            <label>{{item.measurementName}}</label>
-                        
-                           <td> 
-                            <input type="text" class="form-control" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
-                        </td>
-                           
-                        </div>
-                    </div> -->
+                <div *ngIf="drestype == 0" class="row bg-light">
+                    
 
                     <div class="col-sm-2 form-group">
                         <label for="groupName">লম্বা  </label>
@@ -227,33 +230,48 @@
                          
                     </div>
                    
-
-
-                <!-- <table>
-                    <tbody>
-                        <tr>
-                            <td  *ngFor="let item of mesurementList let i=index">
-                                <div class="form-group ">
-                                    <label>{{item.measurementName}}{{item.measurementId}}</label>
-                                <td> <input type="number"  class="form-control"  [attr.id] = "item.measurementId"
-                                    [attr.name] = "item.measurementName"   [(ngModel)]="item.measurementValue"  name="measurementValue" maxlength="4"></td>
-                                    <label [attr.for] = "item.measurementName" class="form-check-label">{{item.measurementName}}</label>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table> -->
+ 
 
                 </div>
-                <!-- <div class="row bg-light">
-                    <table>
-                        <tr *ngFor="let data of mesurementList; let i = index;trackBy:trackByFn;">
-                          <td>
-                            <input type="number" name=a{{i}} [(ngModel)]="mesurementList[i].measurementValue">
-                          </td>
-                      </table>
+                <div *ngIf="drestype == 1" class="row bg-light">
+                    
+
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">লম্বা  </label>
+                        <input type="text" class="form-control"maxlength=5 name=lomba [(ngModel)]="orderDetailsModels.lomba">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">কমর    </label>
+                        <input type="text" class="form-control"maxlength=5 name=komor [(ngModel)]="orderDetailsModels.komor">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">হিফ   </label>
+                        <input type="text" class="form-control"maxlength=5 name=hif [(ngModel)]="orderDetailsModels.hif">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">থাই    </label>
+                        <input type="text" class="form-control"maxlength=5 name=thai [(ngModel)]="orderDetailsModels.thai">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">হাই   </label>
+                        <input type="text" class="form-control"maxlength=5 name=hai [(ngModel)]="orderDetailsModels.hai">
+                         
+                    </div>
+                    <div class="col-sm-2 form-group">
+                        <label for="groupName">মহুরী </label>
+                        <input type="text" class="form-control"maxlength=5 name=mohori [(ngModel)]="orderDetailsModels.mohori">
+                         
+                    </div>
                    
-                </div> -->
+                   
+ 
+
+                </div>
+               
 
                     <div>
                         <hr class="dashed">
@@ -262,24 +280,7 @@
                     </div>
 
                 <div class="row bg-light">
-                    <!-- <div class="col-md-2 form-group">
-                        <label>কফ_ডিসাইন</label>
-                        <ng-select [items]="kof_designlist" 
-                        [ngModelOptions]="{standalone: true}"
-                        bindLabel="names" 
-                        bindValue="names" 
-                        [(ngModel)]="kofDesign">
-                         </ng-select>
-                    </div> -->
-
-
-                    <!-- <div class="col-md-2 form-group">
-                        <label>কফ_ডিসাইন</label>
-                        <ng-select [(ngModel)]="kofDesign" [ngModelOptions]="{standalone: true}">
-                            <ng-option *ngFor="let cof of kof_designlist" [value]="cof.name">{{cof.name}}</ng-option>
-                         </ng-select>
-                        
-                    </div> -->
+                   
                     <div class="col-md-2 form-group">
                         <label>কফ_ডিসাইন</label>
                         <ng-select [(ngModel)]="orderDetailsModels.kof_design" [ngModelOptions]="{standalone: true}">

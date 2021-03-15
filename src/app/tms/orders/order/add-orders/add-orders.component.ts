@@ -96,7 +96,7 @@ export class AddOrdersComponent implements OnInit {
   dDate: any;
   worker: any;
   comments: any;
-
+  drestype =0;
   kof_design: any;
 
   kofDesign: any;
@@ -158,6 +158,8 @@ export class AddOrdersComponent implements OnInit {
       { id: 3, name: '12.75' },
       { id: 4, name: '13.00' },
     ];
+
+  
 
   loading= true;
   constructor(
@@ -229,11 +231,17 @@ export class AddOrdersComponent implements OnInit {
       }
 
   getCustomerInfo(id){
-    this.customerService.checkCustomerID(id).subscribe(data=>{
+    this.customerService.findCustomerbyMobile(id).subscribe(data=>{
     this.customer= data.obj;
       console.log("this.customer",this.customer); 
     
     })
+  }
+  selecttype(v){
+
+
+    console.log("this.customer",this.drestype); 
+
   }
 
   getDesignList() {
@@ -585,7 +593,7 @@ updates(models, entity) {
   }
 
   checkUserId(){
-    this.customerService.findCustomerlist(this.customer.mobile).subscribe(res => {
+    this.customerService.findCustomerbyMobile(this.customer.mobile).subscribe(res => {
       if (res.success) {
         this.toastr.warning("User Id exists. Please choose a different one!")
         this.customer.mobile = ""

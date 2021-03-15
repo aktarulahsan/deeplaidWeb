@@ -14,6 +14,7 @@ export class OrderModel extends BaseModel {
      orderDate: Date;
      deliveryDate: Date;
      totalAmount: number;
+     adAmunt: number;
      designModel: string;
      status: number;
      worker: string;

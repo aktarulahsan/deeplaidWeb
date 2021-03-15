@@ -35,10 +35,10 @@ export class SettingComponent implements OnInit {
   tabs: any[] = [
     { title: 'পোশাকের নাম ',  content: 'category', initiated : true, active: true },
     { title: 'সাবক্যাটেগরী' , content: 'subCategory', initiated : false,  active: false },
-    { title: 'পোশাকের মাপ' , content: 'measurement', initiated : false, active: false },
-    { title: 'পোশাকের মডেল নাম ' , content: 'itemModel', initiated : false, active: false },
-    { title: 'পোশাকের ডিজাইন   ' , content: 'desingCat', initiated : false, active: false },
-    { title: 'পোশাকের ডিজাইন মেজারমেন্ট  ' , content: 'desingSubCat', initiated : false, active: false }
+    // { title: 'পোশাকের মাপ' , content: 'measurement', initiated : false, active: false },
+    // { title: 'পোশাকের মডেল নাম ' , content: 'itemModel', initiated : false, active: false },
+    // { title: 'পোশাকের ডিজাইন   ' , content: 'desingCat', initiated : false, active: false },
+    // { title: 'পোশাকের ডিজাইন মেজারমেন্ট  ' , content: 'desingSubCat', initiated : false, active: false }
     // { title: 'Report', content: 'report', initiated : false, active: false}
   ];
  

@@ -31,7 +31,7 @@ export class CustomerService {
   private SAVE_CUSTOMER= `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/create`;
   private UPDATE_CUSTOMER = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/update`;
   private  CUSTOMER_LIST = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/list`;
-  private FIND_BY_ID_CUSTOMER = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/findById`;
+  private FIND_BY_ID_CUSTOMER = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/findByMobile`;
   private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.orderApiUrl}/${this.CUSTOMER_END_POINT}/findDetailsById`;
 
 
@@ -66,11 +66,17 @@ export class CustomerService {
       .pipe(map((data: Customer) => data));
   }
 
-  findCustomerlist(data) {
-    const params = new HttpParams().append('mobile', data); 
-    return this.http.get(this.FIND_BY_ID_CUSTOMER, { params }).pipe(
-      map((data: any) => data.items
-      ));
+  // findCustomerbyMobile(data) {
+  //   const params = new HttpParams().append('mobile', data); 
+  //   return this.http.get(this.FIND_BY_ID_CUSTOMER, { params }).pipe(
+  //     map((data: any) => data.items
+  //     ));
+  // }
+
+  findCustomerbyMobile(labNo: any) {
+    return this.http.get<any>(`${this.FIND_BY_ID_CUSTOMER}`, {
+      params: new HttpParams().set('mobile', labNo)
+    })
   }
 
   checkCustomerID(id: any) {
