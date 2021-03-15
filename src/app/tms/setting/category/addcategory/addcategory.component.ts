@@ -22,7 +22,7 @@ export class AddcategoryComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   title: any;
-  
+  drestype =0;
   sendData: any;
 
   categoryModel: CategoryModel = new CategoryModel;
@@ -45,13 +45,17 @@ export class AddcategoryComponent implements OnInit {
 
   
   onSaveOrUpdate(form: NgForm) {
-    if (this.categoryId) {
-      console.log("UPDATE",form); 
-      this.updateCustomre(form);
-    } else {
-      console.log("CREATE",form);
-      this.createCustomre(form);
-    } 
+    if(this.categoryModel.ctype >0){
+      if (this.categoryId) {
+        console.log("UPDATE",form); 
+        this.updateCustomre(form);
+      } else {
+        console.log("CREATE",form);
+        this.createCustomre(form);
+      } 
+    }else{
+      this.toastr.warning('', 'Please select category type');
+    }
   }
    
   createCustomre(form: NgForm): void {

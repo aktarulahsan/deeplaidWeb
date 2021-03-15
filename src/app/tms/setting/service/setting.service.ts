@@ -31,6 +31,7 @@ export class SettingService {
   private UPDATE_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/update`;
   private  CAT_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/list`;
   private FIND_BY_ID_CAT = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findById`;
+  private FIND_DRESS_TYPE_LIST = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findDType`;
   private FIND_DETAILS_BY_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findDetailsById`;
   private FIND__BY_ORDER_ID = `${environment.baseUrl}${environment.tmsApiUrl}/${this.END_POINT}/findByOrderId`;
 
@@ -81,6 +82,20 @@ export class SettingService {
       params: new HttpParams().set('categoryId', categoryId)
     })
   }
+
+  findDTypeList(data) {
+    const params = new HttpParams().append('ctype', data); 
+    return this.http.get(this.FIND_DRESS_TYPE_LIST, { params }).pipe(
+      map((data: any) => data.items
+      ));
+  }
+
+
+
+
+
+
+
 
   findDetailslistByid(data) {
     const params = new HttpParams().append('orderId', data); 

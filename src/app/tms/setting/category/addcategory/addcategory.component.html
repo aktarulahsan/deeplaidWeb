@@ -26,6 +26,22 @@
                 novalidate action="index.html">
 
                 <div class="row">
+                    <div class="col-md-4 col-sm- genDiv genderTitle">
+                        <label for="" class="col-md-8 col-sm-10 control-label text-right paddingLeft0">পোশাক টাইপ &nbsp;*&nbsp;:</label>
+                        <div  >
+                         
+                          <!-- <input name="type" [(ngModel)]="drestype" type="radio" [value]="1"  /> শার্ট
+                          <input name="type" [(ngModel)]="drestype" type="radio" [value]="0"  /> প্যান্ট -->
+                          <label class="radio-inline col-md-5 p-1 col-sm-12 fontWn">
+                            <input name="ctype" [(ngModel)]="categoryModel.ctype" type="radio" [value]="1"  />
+                                   <span>&nbsp;&nbsp;আপ</span>
+                                  </label>
+                          <label class="radio-inline col-md-5 p-1 col-sm-8 fontWn">
+                            <input name="ctype" [(ngModel)]="categoryModel.ctype" type="radio" [value]="2"  />
+                                   <span>&nbsp;&nbsp;ডাউন</span>
+                                  </label>
+                           </div>
+                      </div>
                     
 
                     <div class="form-group col-md-3 "></div>

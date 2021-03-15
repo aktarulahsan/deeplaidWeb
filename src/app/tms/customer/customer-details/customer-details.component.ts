@@ -167,7 +167,9 @@ export class CustomerDetailsComponent implements OnInit {
             that.rerender();
           });
           $(row).find(".details-sloat").click(function () {
-            that.printData();
+            // var data = ( $(this).parents('tr') ).data();
+            // alert( data[3] +"'s salary is: "+ data[ 5 ] );
+            that.showDetails( data);
           });
   
         $(row).bind('click', () => {
@@ -215,6 +217,23 @@ export class CustomerDetailsComponent implements OnInit {
       err => {
         console.log("Error occured in Certificate generation", err," reportObj");
       })
+  }
+
+
+  showDetails(data){
+
+    this.selectData= data;
+    var orderNo = this.selectData;
+    console.log('Selectedeeeeeeeeeeeeeeeeeeeeeeeeee User ', orderNo);
+    if(orderNo){
+      const initialState={
+        title: 'Order Status ',
+        sendData: this.selectData,
+      }
+        this.router.navigate(['/orderDetails', { 'customerCode': this.selectData.customerCode,'orderNo': this.selectData.orderNo, }]);
+    }else{
+        this.toastr.warning('', "Please select a patient"); 
+    }
   }
 
   printData(){

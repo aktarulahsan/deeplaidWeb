@@ -11,6 +11,95 @@
 
     <div class="modal-body crudForm" id="pdfTable" #pdfTable>
         <div class="persoanlInfoArea">
+                <div *ngIf="addCustomer == 1">
+                    <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdates(f)" #f="ngForm"
+                    novalidate action="index.html">
+    
+                    <div class="row">
+                        <div class="form-group col-md-5 ">
+                            <label for="customerName">কাস্টমার নাম </label>
+                            <input type="text" class="form-control" name="customerName"
+                                [(ngModel)]="customer.customerName" #customerName="ngModel" />
+                            <div *ngIf="f.submitted && customerName.invalid">
+                                <div *ngIf="customerName.errors.required">
+                                    customerName is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="mobile">মোবাইল নাম্বার </label>
+                            <input
+                            class="form-control"
+                            id=""
+                            
+                            type="text"
+                            [(ngModel)]="customer.mobile"
+                            name="mobile"
+                            #mobile="ngModel"
+                            (blur) ="checkUserId()"
+                            required
+                            />
+                            <div *ngIf="f.submitted && mobile.invalid">
+                                <div *ngIf="mobile.errors.required">
+                                    mobile is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="address">ঠিকানা </label>
+                            <input type="text" class="form-control" name="address" [(ngModel)]="customer.address"
+                                #address="ngModel" required />
+                            <div *ngIf="f.submitted && address.invalid">
+                                <div *ngIf="address.errors.required">
+                                    address is required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                          <div class="col-md-5 col-sm-6 genDiv genderTitle">
+                            <div [ngClass]="{'invalid-input':f.submitted && gender.invalid}">
+                              <label for="" class="col-md-4 col-sm-6 control-label text-right paddingLeft0">জেন্ডার&nbsp;*&nbsp;:</label>
+                              <label class="radio-inline col-md-3 p-1 col-sm-12 fontWn">
+                                <input type="radio" 
+                                class="mr-1" 
+                                [(ngModel)]="customer.gender" 
+                                value="পুরুষ " 
+                                name="gender"
+                                #gender="ngModel"
+                                required>
+                                <span>পুরুষ</span>
+                               </label>
+                       <label class="radio-inline col-md-5 p-1 col-sm-3 fontWn">
+                         <input type="radio" 
+                                class="mr-1" 
+                                [(ngModel)]="customer.gender" 
+                                value="মহিলা " 
+                                name="gender"
+                                #gender="ngModel"
+                                required>
+                                <span>মহিলা </span>
+                               </label>
+                               </div>
+                          </div>
+                        
+                        
+                    </div>
+    
+                    <div class="form-group">
+     
+                        <button   (click)="createCustomre()" class="btn btn-dark"><i class="fa fa-plus"></i>  সেভ </button>
+                        <button (click)="offd()" type="button" class="btn btn-danger" data-dismiss="modal" >বাতিল </button>
+                        <!-- <button   (click)="createCustomre()" class="btn btn-dark"><i class="fa fa-plus"></i>  বাতিল </button> -->
+                        <!-- <button  type="button" class="btn btn-danger pull-right" (click)="closeModal()">Close modal</button> -->
+    
+                    </div>
+    
+                </form>
+            </div>
+
+
 
           
 
@@ -21,35 +110,24 @@
                         <label for="groupName">কাস্টমার মোবাইল   </label>
                         <span></span><span></span>
                         <label for="groupName"><span>
-                            <button class="btn"><i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i></button>    
+                            <!-- <button class="btn"><i class="fa fa-plus" data-toggle="modal" data-target="#myModal"></i></button>     -->
                             <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                                 Open modal
                               </button> -->
+                    <button class="btn" (click)="addNewCustomer(this)">
+                        <i class="fa fa-plus" ></i>
+                    </button> 
                         </span></label>
-                        <ng-select
-                        [loading]="loading"
-                        [dropdownPosition]="'bottom'"
-                        [items]="customerList" 
-                        
-                            onselect="true"
-                            [clearable]="true"
-                        placeholder="Choose customer code"
+                         <ng-select [items]="customerList" 
+                        placeholder="Choose User Mobile"
                         notFoundText="Product code not found" 
                         bindLabel="mobile" 
-                        [searchable]="true"
                         bindValue="customerCode" 
-                        [(ngModel)]= "customerCode"
                         name="customerCode"
+                        [(ngModel)]="customerCode"
                         (change)="selectCustomer($event)"
                         onselect="true" required>
-                        <!-- <ng-option>{{customerCode + ' ' + customerName}}</ng-option> -->
-                        <!-- <ng-template ng-label-tmp let-item="item" let-clear="clear">
-                            <span class="ng-value-label">{{item.customerCode + ' ' + item.customerName}}</span>
-                            <span class="ng-value-icon right" >×</span>
-                        </ng-template> -->
-                        
                         </ng-select>
-
 
 
                         <!-- <ng-select    bindLabel="customerName" placeholder="Select item" appendTo="body" 
@@ -57,7 +135,7 @@
                             <ng-option [value]="item.customerCode" [disabled]="item.customerCode" (change)="selectCustomer($event)"
                                 *ngFor="let item of customerList">
 
-                                {{item.customerCode}}
+                                {{item.mobile}}
                             </ng-option>
                             </ng-select> -->
 
@@ -132,17 +210,17 @@
                     </div> -->
                     <div class="col-md-4 col-sm- genDiv genderTitle">
                         <label for="" class="col-md-8 col-sm-10 control-label text-right paddingLeft0">পোশাক টাইপ &nbsp;*&nbsp;:</label>
-                        <div [ngClass]="{'invalid-input':f.submitted && gender.invalid}">
+                        <div >
                          
                           <!-- <input name="type" [(ngModel)]="drestype" type="radio" [value]="1"  /> শার্ট
                           <input name="type" [(ngModel)]="drestype" type="radio" [value]="0"  /> প্যান্ট -->
                           <label class="radio-inline col-md-5 p-1 col-sm-12 fontWn">
-                            <input name="drestype" [(ngModel)]="drestype" type="radio" [value]="0"  />
-                                   <span>&nbsp;&nbsp;শার্ট</span>
+                            <input name="drestype" [(ngModel)]="drestype" (click)="checktype(1)" type="radio" [value]="1"  />
+                                   <span>&nbsp;&nbsp;আপ</span>
                                   </label>
                           <label class="radio-inline col-md-5 p-1 col-sm-8 fontWn">
-                            <input name="drestype" [(ngModel)]="drestype" type="radio" [value]="1"  />
-                                   <span>&nbsp;&nbsp;প্যান্ট</span>
+                            <input name="drestype" [(ngModel)]="drestype" (click)="checktype(2)" type="radio" [value]="2"  />
+                                   <span>&nbsp;&nbsp;ডাউন</span>
                                   </label>
                            </div>
                       </div>
@@ -156,6 +234,7 @@
                         bindLabel="cname" 
                         bindValue="categoryId" 
                         name="categoryId"
+                        [(ngModel)]="categoryId"
                         (change)="selectCategory($event)"
                         onselect="true" required>
                         </ng-select>
@@ -175,7 +254,7 @@
                 </div>
             <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdate(f)" #f="ngForm" novalidate action="index.html">
            
-                <div *ngIf="drestype == 0" class="row bg-light">
+                <div *ngIf="drestype == 1" class="row bg-light">
                     
 
                     <div class="col-sm-2 form-group">
@@ -233,7 +312,7 @@
  
 
                 </div>
-                <div *ngIf="drestype == 1" class="row bg-light">
+                <div *ngIf="drestype == 2" class="row bg-light">
                     
 
                     <div class="col-sm-2 form-group">
@@ -461,11 +540,28 @@
                                             </div> -->
                     </div>
                     <div class="form-group col-md-5 ">
-                        <label for="productName">মোটা মূল্য</label>
                         
+
+                        <div>
+                            <label for="productName">মোটা মূল্য</label>
+                            <input type="number"   class="form-control"value="{{grandTotal}}" name="itemRate" />
                         <!-- <input type="number" readonly class="form-control"     bindLabel="grandTotal" [(ngModel)]="grandTotal" name="grandTotal" /> -->
-                        <input style="font-size: 52px; font-weight: bold; color: red;text-align: center; background-color: white;"
-                        type="text" value="{{grandTotal}}" class="form-control" readonly />
+                        
+                        </div>
+
+                        <div>
+                            <label for="adAmunt">অগ্রিম </label>
+                            <input type="number"   class="form-control" [(ngModel)]="orderModel.adAmunt"  (blur) ="getGrandTotal()"  name="adAmunt" />
+                        <!-- <input type="number" readonly class="form-control"     bindLabel="grandTotal" [(ngModel)]="grandTotal" name="grandTotal" /> -->
+                       
+                        </div>
+                        <div>
+                            <label for="baki">বাকি </label>
+                            <input type="number"   class="form-control" bindLabel="baki" [(ngModel)]="orderModel.baki" name="baki" />
+                        <!-- <input type="number" readonly class="form-control"     bindLabel="grandTotal" [(ngModel)]="grandTotal" name="grandTotal" /> -->
+                       
+                        </div>
+                        
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                                             <div *ngIf="productName.errors.required">
                                                 productName is required
@@ -532,25 +628,24 @@
 
     </div>
     <div class="modal-footer">
-        <!-- <a [routerLink]="['/orderDetails']"(click)="bsModalRef.hide()" class="nav-link"><span  class="fas fa-funnel-dollar" > <i></i>  </span>
-           print</a> -->
+      
         <button type="submit" class="btn btn-outline-success " (click)="submitOrders()">সাবমিট </button>
         <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="bsModalRef.hide()">বাতিল </button>
       </div>
 
 
 
-      <div class="modal fade" id="myModal">
+      <!-- <div class="modal fade" id="myModal">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
           
-            <!-- Modal Header -->
+          
             <div class="modal-header">
               <h4 class="modal-title">Add Customer</h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             
-            <!-- Modal body -->
+          
             <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdates(f)" #f="ngForm"
                 novalidate action="index.html">
 
@@ -565,16 +660,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-3 ">
-                        <label for="branchId">ব্রাঞ্চ   </label>
-                        <input type="text" class="form-control" name="branchId"
-                            [(ngModel)]="customer.branchId" #branchId="ngModel" />
-                        <div *ngIf="f.submitted && branchId.invalid">
-                            <div *ngIf="branchId.errors.required">
-                                branchId is required
-                            </div>
-                        </div>
-                    </div>
+                
 
                 </div>
                 <div class="row">
@@ -585,24 +671,24 @@
                           
                           <label class="radio-inline col-md-3 p-1 col-sm-12 fontWn">
                             <input type="radio" 
-                                   class="mr-1" 
-                                   [(ngModel)]="customer.gender" 
-                                   value="M" 
-                                   name="gender"
-                                   #gender="ngModel"
-                                   required>
-                                   <span>Male</span>
-                                  </label>
-                          <label class="radio-inline col-md-5 p-1 col-sm-3 fontWn">
-                            <input type="radio" 
-                                   class="mr-1" 
-                                   [(ngModel)]="customer.gender" 
-                                   value="F" 
-                                   name="gender"
-                                   #gender="ngModel"
-                                   required>
-                                   <span>Female</span>
-                                  </label>
+                            class="mr-1" 
+                            [(ngModel)]="customer.gender" 
+                            value="পুরুষ " 
+                            name="gender"
+                            #gender="ngModel"
+                            required>
+                            <span>পুরুষ</span>
+                           </label>
+                   <label class="radio-inline col-md-5 p-1 col-sm-3 fontWn">
+                     <input type="radio" 
+                            class="mr-1" 
+                            [(ngModel)]="customer.gender" 
+                            value="মহিলা " 
+                            name="gender"
+                            #gender="ngModel"
+                            required>
+                            <span>মহিলা </span>
+                           </label>
                            </div>
                       </div>
                     <div class="form-group col-md-3">
@@ -621,8 +707,7 @@
                        
                        
                        
-                        <!-- <input type="number" class="form-control" name="mobile" [(ngModel)]="customer.mobile"  (blur) ="findUserId()"
-                            #mobile="ngModel" required /> -->
+                     
                         <div *ngIf="f.submitted && mobile.invalid">
                             <div *ngIf="mobile.errors.required">
                                 mobile is required
@@ -639,24 +724,24 @@
                             </div>
                         </div>
                     </div>
-                     
                 </div>
 
                 <div class="form-group">
  
-                    <button type="submit" class="btn btn-dark"><i class="fa fa-plus"></i>  সেভ </button>
+                    <button   (click)="createCustomre()" class="btn btn-dark"><i class="fa fa-plus"></i>  সেভ </button>
+  
 
                 </div>
 
             </form>
             
-            <!-- Modal footer -->
+        
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
             
           </div>
         </div>
-      </div>
+      </div> -->
 
 </div>

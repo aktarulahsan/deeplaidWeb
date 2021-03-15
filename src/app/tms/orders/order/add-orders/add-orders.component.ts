@@ -1,9 +1,9 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit,  ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { NgSelectComponent } from '@ng-select/ng-select';
  
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { OrderDesignDetaislModel } from 'src/app/tms/model/orderDesignDetaisl.Model';
@@ -35,12 +35,17 @@ export class AddOrdersComponent implements OnInit {
 
   name = 'Angular Html To Pdf ';
   userName: string;
-
+ 
   @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
   
   onClose: Subject<boolean>;
   purchaseDetailList: any[]=new Array();
    
+  addCustomer=0;
+  
+
+
+
   groupList: StockGroup[];
   groupName: any;
   dtOptions: DataTables.Settings = {};
@@ -82,10 +87,12 @@ export class AddOrdersComponent implements OnInit {
   maxDate: Date = new Date();
   id=0;
   grandTotal:number = 0.00;
+  baki:number = 0.00;
   designModel: any;
   sendData: any;
   customerCode: any;
   itemId: any;
+  categoryId: any;
   orderid: any;
   isupdate = null;
   designSubCategoryId = [];
@@ -116,7 +123,7 @@ export class AddOrdersComponent implements OnInit {
   mohoris: number;
   gers: number;
 
-
+  a = "";
 
 
   kof_designlist = [
@@ -126,10 +133,10 @@ export class AddOrdersComponent implements OnInit {
     { id: 4, names: '13.00' },
     ];
     kolor_designlist = [
-      { id: 1, name: '12.25' },
-      { id: 2, name: '12.50' },
-      { id: 3, name: '12.75' },
-      { id: 4, name: '13.00' },
+      { id: 1, name: 'kurthi neck' },
+      { id: 2, name: 'design 1' },
+      { id: 3, name: 'design 2' },
+      { id: 4, name: 'design 3' },
     ];
 
     button_designlist = [
@@ -162,8 +169,10 @@ export class AddOrdersComponent implements OnInit {
   
 
   loading= true;
+
+  modalRef2: BsModalRef;
   constructor(
-    
+    private modalService: BsModalService,
     public bsModalRef: BsModalRef,
     public apiService: OrderService,
     public settingService: SettingService,
@@ -176,15 +185,15 @@ export class AddOrdersComponent implements OnInit {
 
     this.onClose = new Subject();
     // this.getgList();   
-    this.getCatList();
-    this.getItemList();
-    this. getItemModelList();
+    // this.getCatList();
+    // this.getItemList();
+    // this. getItemModelList();
     this.getCustomerList();
-    this.getDesignList();
+    // this.getDesignList();
 
 
     if (this.sendData) {
-      
+      console.log("this.sendDatathis.sendDatathis.sendDatathis.sendData ",this.sendData);
       this.orderModel = this.sendData;
       this.customerCode = this.orderModel.customerCode;
       this.orderid = this.orderModel.orderNo;
@@ -199,7 +208,6 @@ export class AddOrdersComponent implements OnInit {
      
     }
   }
-
 
 
   trackItem (index, item) {
@@ -231,9 +239,9 @@ export class AddOrdersComponent implements OnInit {
       }
 
   getCustomerInfo(id){
-    this.customerService.findCustomerbyMobile(id).subscribe(data=>{
+    this.customerService.checkCustomerID(id).subscribe(data=>{
     this.customer= data.obj;
-      console.log("this.customer",this.customer); 
+      console.log("this.customer this.customer this.customer",this.customer); 
     
     })
   }
@@ -269,6 +277,9 @@ export class AddOrdersComponent implements OnInit {
     
     })
   }
+
+
+
 
   getMesurmentInfo(orderNo){
     this.apiService.findMesurementByOrderid(orderNo).subscribe(data=>{
@@ -435,6 +446,7 @@ export class AddOrdersComponent implements OnInit {
       model.id = this.id;
       model.orderd_no = this.orderModel.orderNo;
       model.i_id= this.itemId;
+      model.productName=this.orderDetailsModels.productName;
       model.qty= this.orderAccountDetails.qty;
       model.item_price= this.orderAccountDetails.itemRate;
       model.item_total_val = this.orderDetailsModels.qty * this.orderDetailsModels.item_total_val;
@@ -447,7 +459,7 @@ export class AddOrdersComponent implements OnInit {
       model.poket_design =this.orderDetailsModels.poket_design;
       model.poket_design =this.orderDetailsModels.selay_design;
       model.chain_design = this.orderDetailsModels.chain_design;
-      model.lomba = this.orderDetailsModels.lomba;
+      
       model.buk = this.orderDetailsModels.buk;
       model.pet = this.orderDetailsModels.pet;
       model.hip= this.orderDetailsModels.hip;
@@ -455,8 +467,19 @@ export class AddOrdersComponent implements OnInit {
       model.hata= this.orderDetailsModels.hata;
       model.gola= this.orderDetailsModels.gola;
       model.kaf= this.orderDetailsModels.kaf;
-      model.mohori = this.orderDetailsModels.mohori;
       model.ger= this.orderDetailsModels.ger;
+
+      model.mohori = this.orderDetailsModels.mohori;
+      model.lomba = this.orderDetailsModels.lomba;
+
+
+      model.ger= this.orderDetailsModels.komor;
+      model.ger= this.orderDetailsModels.hif;
+      model.ger= this.orderDetailsModels.thai;
+      model.ger= this.orderDetailsModels.hai;
+    
+     
+
 
       this.orderDetailList.push(model);
       console.log(" this.orderDetailList this.orderDetailList", this.orderDetailList);
@@ -479,7 +502,7 @@ updates(models, entity) {
          this.orderDetailList[i].i_id = models.i_id;
          this.orderDetailList[i].qty = this.orderAccountDetails.qty;
         //  this.orderDetailList[i].productName = models.productName;
-        
+        this.orderDetailList[i].productName= models.productName;
          this.orderDetailList[i].item_price = models.item_price;
          this.orderDetailList[i].kof_design = models.kof_design;
          this.orderDetailList[i].kolor_design = models.kolor_design ;
@@ -497,6 +520,13 @@ updates(models, entity) {
          this.orderDetailList[i].kaf= models.kaf;
          this.orderDetailList[i].mohori = models.mohori;
          this.orderDetailList[i].ger= models.ger;
+
+         this.orderDetailList[i].komor= models.komor;
+         this.orderDetailList[i].hif= models.hif;
+         this.orderDetailList[i].thai= models.thai;
+         this.orderDetailList[i].hai= models.hai;
+
+
    
       }
   }
@@ -550,6 +580,17 @@ updates(models, entity) {
     this.orderDetailsModels.mohori = entity.mohori;
     this.orderDetailsModels.ger= entity.ger;
 
+    this.orderDetailsModels.komor= entity.komor;
+    this.orderDetailsModels.hif= entity.hif;
+    this.orderDetailsModels.thai= entity.thai;
+    this.orderDetailsModels.hai= entity.hai;
+
+ 
+
+
+
+    this.orderDetailsModels.productName= entity.productName;
+
 
     // model.mobile = entity.mobile;
 
@@ -578,7 +619,9 @@ updates(models, entity) {
 
   selectCategory(category):any{
     console.log(category); 
+    this.itemId= null;
     this.settingService.findByCategoryid(category.categoryId).subscribe(data=>{
+      this.reset();
       this.subcatList= data;
        
     })
@@ -589,7 +632,7 @@ updates(models, entity) {
   onSaveOrUpdates(form: NgForm){
 
     console.log("CREATE",form);
-    this.createCustomre(form);
+    // this.createCustomre(form);
   }
 
   checkUserId(){
@@ -602,19 +645,31 @@ updates(models, entity) {
   
 }
 
-  createCustomre(form: NgForm): void {
+offd(){
+  this.addCustomer = 0;
+}
+ 
+addNewCustomer(x){
+  this.addCustomer = 1;
+  this.customer = new Customer();
+}
+  createCustomre(): void {
     console.log(this.customer); // print room obj
     // this.customer.ssCreator= this.token.getUsername();
     
      
-    this.customerService.save(this.customer).subscribe(
+    this.customerService.savecustomer(this.customer).subscribe(
       (resp) => {
         console.log('create ', resp);
         if (resp) {
-          form.resetForm();
-          //  this.toastr.success('', 'Create Successfull');
-          this.onClose.next(true);
-          this.bsModalRef.hide();
+         this.addCustomer = 0;
+         
+          this.toastr.success('', resp.mobile);
+
+          this.getCustomerfindByMobile(resp.mobile);
+
+
+            
         } else {
           //  this.toastr.success('', "Something  wrong");
         }
@@ -625,16 +680,31 @@ updates(models, entity) {
     );
   }
 
+  getCustomerfindByMobile(id){
+    this.customerService.findCustomerbyMobile(id).subscribe(data=>{
+    this.getCustomerList();
+    this.customer= data.obj;
+    
+    this.customerCode = this.customer.customerCode;
+      console.log("this.customer",this.customer); 
+    
+    })
+  }
+
+  
+
 
   selectCustomer(customer):any{  
     console.log(customer); 
+   if(customer != null){
     this.customer = customer;
-this.loading = false;
+    // this.loading = false;
     if(customer !=null){
         this.orderModel.customerCode = customer.customerCode;
         
        
     }
+   }
   }
  
 
@@ -720,6 +790,10 @@ this.loading = false;
       this.orderModel.comments = this.comments;
       this.orderModel.worker = this.worker;
       this.orderModel.deliveryDate = this.dDate;
+      this.orderModel.totalAmount =  this.grandTotal;
+
+
+
       console.log('orderdetaillist', this.orderDetailList);
       console.log('orderdetaillist', this.orderModel.orderDetailList);
 
@@ -754,7 +828,38 @@ this.loading = false;
   }
 
 
+checktype(data):any{
 
+  if(data !=null){
+    this.settingService.findDTypeList(data).subscribe(
+      (resp) => {
+        console.log('create  category type', resp);
+        if (resp) {
+        this.categoryId = null;
+        this.itemId = null;
+        this.catList = new Array();
+        this.subcatList = new Array();
+        this.reset();
+         this.catList = resp;
+          
+         this.drestype = data;
+          // this.toastr.success('', resp.message);
+          // this.onClose.next(true);
+          // this.bsModalRef.hide();
+        } else {
+        
+        }
+      },
+      (err) => {
+        this.toastr.warning('', "something wrong");
+      },
+    );
+  }else{
+    this.toastr.warning('', "something wrong");
+  }
+   
+
+}
 
    
 
@@ -764,9 +869,12 @@ this.loading = false;
     this.grandTotal=0;
     // console.log("addorder", this.orderAccountDetailsList);
     this.orderDetailList.forEach(element => {
-      this.grandTotal += element.qty*element.item_price;
+      this.grandTotal += element.qty*element.item_price ;
       //this.getVatamount();
     });  
+    if(this.orderModel.adAmunt!=null){
+     this.baki =  this.grandTotal - this.orderModel.adAmunt;
+    }
   
   }
   reset() {

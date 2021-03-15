@@ -19,6 +19,7 @@ export class OrderModel extends BaseModel {
      status: number;
      worker: string;
      comments: string;
+     baki: number;
 
      orderDetailList: OrderDetailsModel[]=new Array();
      orderAccountDetails: OrderAccountDetails;
