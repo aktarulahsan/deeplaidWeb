@@ -36,4 +36,6 @@ export class OrderDetailsModels{
       updated_by: number;
       update_date: number;
       comments: string;
+      ctype: number;
+      categoryId: number;
 }

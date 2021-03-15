@@ -205,6 +205,7 @@ export class AddOrdersComponent implements OnInit {
       // this.getAccountInfo(this.orderModel.orderNo);
       console.log("this.designList ,  item   ",this.orderModel.orderNo);
       this.getOrderDetails(this.orderModel.orderNo);
+      // this.getGrandTotal();
      
     }
   }
@@ -270,29 +271,29 @@ export class AddOrdersComponent implements OnInit {
     })
   }
 
-  getSubDesignList(id){
-    this.settingService.findSubDesignlist(id).subscribe(data=>{
-    this.subDesignList= data['data'];
-      console.log("this.subDesignList",this.customer); 
+  // getSubDesignList(id){
+  //   this.settingService.findSubDesignlist(id).subscribe(data=>{
+  //   this.subDesignList= data['data'];
+  //     console.log("this.subDesignList",this.customer); 
     
-    })
-  }
+  //   })
+  // }
 
 
 
 
-  getMesurmentInfo(orderNo){
-    this.apiService.findMesurementByOrderid(orderNo).subscribe(data=>{
-      console.log("this.mesurementList",data); 
+  // getMesurmentInfo(orderNo){
+  //   this.apiService.findMesurementByOrderid(orderNo).subscribe(data=>{
+  //     console.log("this.mesurementList",data); 
     
-      this.orderDetailsModellist = data;
-    this.mesurementList = data;
-      // this.customer= data.obj;
-      console.log("this.mesurementList",this.orderDetailsModellist); 
-      console.log("this.mesurementList",this.mesurementList); 
+  //     this.orderDetailsModellist = data;
+  //   this.mesurementList = data;
+  //     // this.customer= data.obj;
+  //     console.log("this.mesurementList",this.orderDetailsModellist); 
+  //     console.log("this.mesurementList",this.mesurementList); 
     
-    })
-  }
+  //   })
+  // }
 
   getOrderDetails(orderNo){
     this.apiService.findOrderDetailsByid(orderNo).subscribe(data=>{
@@ -329,18 +330,18 @@ export class AddOrdersComponent implements OnInit {
   }
 
 
-  getmesurementList(itemId):any{
-    // console.log(itemId); 
+  // getmesurementList(itemId):any{
+  //   // console.log(itemId); 
     
     
-    this.apiService.getMesurementlistByItemId(itemId).subscribe(data=>{
-      this.mesurementList= data;
-      // console.log(this.mesurementList); 
+  //   this.apiService.getMesurementlistByItemId(itemId).subscribe(data=>{
+  //     this.mesurementList= data;
+  //     // console.log(this.mesurementList); 
     
-    })
+  //   })
 
 
-    }
+  //   }
 
 
     getCustomerList(){
@@ -457,13 +458,13 @@ export class AddOrdersComponent implements OnInit {
       model.kolor_design= this.orderDetailsModels.kolor_design ;
       model.button_design =this.orderDetailsModels.button_design;
       model.poket_design =this.orderDetailsModels.poket_design;
-      model.poket_design =this.orderDetailsModels.selay_design;
+      model.selay_design =this.orderDetailsModels.selay_design;
       model.chain_design = this.orderDetailsModels.chain_design;
       
       model.buk = this.orderDetailsModels.buk;
       model.pet = this.orderDetailsModels.pet;
       model.hip= this.orderDetailsModels.hip;
-      model.hip = this.orderDetailsModels.kad;
+      model.kad = this.orderDetailsModels.kad;
       model.hata= this.orderDetailsModels.hata;
       model.gola= this.orderDetailsModels.gola;
       model.kaf= this.orderDetailsModels.kaf;
@@ -473,10 +474,12 @@ export class AddOrdersComponent implements OnInit {
       model.lomba = this.orderDetailsModels.lomba;
 
 
-      model.ger= this.orderDetailsModels.komor;
-      model.ger= this.orderDetailsModels.hif;
-      model.ger= this.orderDetailsModels.thai;
-      model.ger= this.orderDetailsModels.hai;
+      model.komor= this.orderDetailsModels.komor;
+      model.hif= this.orderDetailsModels.hif;
+      model.thai= this.orderDetailsModels.thai;
+      model.hai= this.orderDetailsModels.hai;
+
+      model.ctype= this.drestype;
     
      
 
@@ -508,13 +511,13 @@ updates(models, entity) {
          this.orderDetailList[i].kolor_design = models.kolor_design ;
          this.orderDetailList[i].button_design = models.button_design;
          this.orderDetailList[i].poket_design = models.poket_design;
-         this.orderDetailList[i].poket_design = models.selay_design;
+         this.orderDetailList[i].selay_design = models.selay_design;
          this.orderDetailList[i].chain_design = models.chain_design;
          this.orderDetailList[i].lomba = models.lomba;
          this.orderDetailList[i].buk = models.buk;
          this.orderDetailList[i].pet = models.pet;
          this.orderDetailList[i].hip= models.hip;
-         this.orderDetailList[i].hip = models.kad;
+         this.orderDetailList[i].kad = models.kad;
          this.orderDetailList[i].hata= models.hata;
          this.orderDetailList[i].gola= models.gola;
          this.orderDetailList[i].kaf= models.kaf;
@@ -525,6 +528,9 @@ updates(models, entity) {
          this.orderDetailList[i].hif= models.hif;
          this.orderDetailList[i].thai= models.thai;
          this.orderDetailList[i].hai= models.hai;
+         this.orderDetailList[i].ctype= models.ctype;
+
+
 
 
    
@@ -538,20 +544,67 @@ updates(models, entity) {
 
 
   selectL1Item(getItem):any{  
-
+    this.reset();
     console.log(getItem); 
     this.orderAccountDetails.itemRate= getItem.itemAmount;
     this.orderAccountDetails.itemId =getItem.itemId;
     this.orderAccountDetails.itemName = getItem.itemName;
     this.orderDetailsModels.productName = getItem.itemName;
-    this.getTotal();
+    // this.getTotal();
 
-    this.getmesurementList(getItem.itemId);
+
+    
   }
 
+  editDatas(entity, s){
+    this.getCatList();
+    this.getItemList();
+    this.editdata(entity, s);
+  }
 
-  editDatas(entity, s) {
+  checktyped(data):any{
+
+    if(data !=null){
+      this.settingService.findDTypeList(data).subscribe(
+        (resp) => {
+          console.log('create  category type', resp);
+          if (resp) {
+          this.catList = new Array();
+          this.subcatList = new Array();
+         
+           this.catList = resp;
+           this.drestype = data;
+          } else {
+          
+          }
+        },
+        (err) => {
+          this.toastr.warning('', "something wrong");
+        },
+      );
+    }else{
+      this.toastr.warning('', "something wrong");
+    }
+  }
+
+  editdata(entity, s) {
     console.log("total",entity);
+
+
+    this.drestype=   entity.ctype;
+
+    // this.checktyped(this.drestype);
+    this.categoryId = entity.categoryId;
+    // console.log("this.sssssscategoryId",this.categoryId);
+
+    // this.selectCategory(entity.categoryId);
+
+    this.itemId = entity.i_id;
+
+    console.log("this.ssaaaaaacategoryId",this.categoryId);
+
+    this.orderDetailsModels.ctype= entity.ctype;
+    this.orderDetailsModels.categoryId= entity.categoryId;
     this.orderDetailsModels.id= entity.id;
     this.orderDetailsModels.i_id = entity.i_id;
     this.orderDetailsModels.qty = entity.qty;
@@ -567,13 +620,13 @@ updates(models, entity) {
     this.orderDetailsModels.kolor_design = entity.kolor_design ;
     this.orderDetailsModels.button_design = entity.button_design;
     this.orderDetailsModels.poket_design = entity.poket_design;
-    this.orderDetailsModels.poket_design = entity.selay_design;
+    this.orderDetailsModels.selay_design = entity.selay_design;
     this.orderDetailsModels.chain_design = entity.chain_design;
     this.orderDetailsModels.lomba = entity.lomba;
     this.orderDetailsModels.buk = entity.buk;
     this.orderDetailsModels.pet = entity.pet;
     this.orderDetailsModels.hip= entity.hip;
-    this.orderDetailsModels.hip = entity.kad;
+    this.orderDetailsModels.kad = entity.kad;
     this.orderDetailsModels.hata= entity.hata;
     this.orderDetailsModels.gola= entity.gola;
     this.orderDetailsModels.kaf= entity.kaf;
@@ -585,13 +638,16 @@ updates(models, entity) {
     this.orderDetailsModels.thai= entity.thai;
     this.orderDetailsModels.hai= entity.hai;
 
- 
+    // this.orderDetailsModels.hai= entity.hai;
+    
+
+    
 
 
 
     this.orderDetailsModels.productName= entity.productName;
 
-
+    this.getGrandTotal();
     // model.mobile = entity.mobile;
 
     this.tempEdit =  this.orderDetailsModels;
@@ -618,7 +674,7 @@ updates(models, entity) {
   }
 
   selectCategory(category):any{
-    console.log(category); 
+    console.log("sdfsdddddddddddddddddddddddddddddd",category); 
     this.itemId= null;
     this.settingService.findByCategoryid(category.categoryId).subscribe(data=>{
       this.reset();
@@ -721,24 +777,19 @@ addNewCustomer(x){
   }
 
   updateOrder():any{
+    this.getGrandTotal();
 
     console.log('orderModel', this.orderModel);
     if(this.orderModel.orderNo !=null){
-      // this.orderModel.ssModifier= this.token.getUsername();
+    
       this.orderModel.status = 1;
-      // this.orderModel.deliveryStatus = "1"
+    
       this.orderModel.detailsList = this.orderDetailList;
-
-      // console.log('orderdetaillist', this.orderDetailList);
-      // console.log('orderdetaillist', this.orderModel.orderDetailList);
-
-
+      this.orderModel.totalAmount =  this.grandTotal;
+      
       if(this.orderModel.detailsList.length !=0){
 
-
-        // for (let i = 0; i < this.orderModel.orderDetailList.length; i++) {
-        //   this.orderModel.orderDetailList[i].orderId = this.orderModel.orderId;
-        // }
+ 
 
         console.log('orderdetaillist', this.orderModel.detailsList.length);
         for (let i = 0; i < this.orderModel.detailsList.length; i++) {
@@ -787,10 +838,12 @@ addNewCustomer(x){
       this.orderModel.status = 1;
       // this.orderModel.deliveryStatus = "1"
       this.orderModel.detailsList = this.orderDetailList;
-      this.orderModel.comments = this.comments;
-      this.orderModel.worker = this.worker;
+      // this.orderModel.comments = this.comments;
+      // this.orderModel.worker = this.worker;
       this.orderModel.deliveryDate = this.dDate;
+      // this.orderModel.orderDate = this.fDate;
       this.orderModel.totalAmount =  this.grandTotal;
+      this.orderModel.customerCode = this.customerCode;
 
 
 
@@ -841,11 +894,7 @@ checktype(data):any{
         this.subcatList = new Array();
         this.reset();
          this.catList = resp;
-          
          this.drestype = data;
-          // this.toastr.success('', resp.message);
-          // this.onClose.next(true);
-          // this.bsModalRef.hide();
         } else {
         
         }
@@ -867,13 +916,17 @@ checktype(data):any{
 
   getGrandTotal():any{
     this.grandTotal=0;
-    // console.log("addorder", this.orderAccountDetailsList);
+    console.log("addorder", this.grandTotal);
     this.orderDetailList.forEach(element => {
       this.grandTotal += element.qty*element.item_price ;
       //this.getVatamount();
     });  
+
+    this.orderModel.totalAmount= this.grandTotal;
+
     if(this.orderModel.adAmunt!=null){
-     this.baki =  this.grandTotal - this.orderModel.adAmunt;
+     this.orderModel.baki =  this.grandTotal - this.orderModel.adAmunt;
+     console.log("addorder", this.grandTotal);
     }
   
   }

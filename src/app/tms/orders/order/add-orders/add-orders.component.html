@@ -12,7 +12,7 @@
     <div class="modal-body crudForm" id="pdfTable" #pdfTable>
         <div class="persoanlInfoArea">
                 <div *ngIf="addCustomer == 1">
-                    <form class="form-horizontal form-signin" (ngSubmit)="f.form.valid && onSaveOrUpdates(f)" #f="ngForm"
+                    <form class="form-horizontal form-signin" 
                     novalidate action="index.html">
     
                     <div class="row">
@@ -154,7 +154,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="productName">কারিগরি </label>
-                        <input type="text" class="form-control" bindLabel="worker" [(ngModel)]="worker" name="worker" />
+                        <input type="text" class="form-control" bindLabel="worker" [(ngModel)]="orderModel.worker" name="worker" />
                         <!-- <input type="text" class="form-control" bindLabel=" "   name="mobile" /> -->
                         <!-- <div *ngIf="f.submitted && productName.invalid">
                   <div *ngIf="productName.errors.required">
@@ -172,10 +172,7 @@
                         <textarea class="form-control" rows="2" id="comment" bindLabel="customer.address" [(ngModel)]="customer.address"  name="address"></textarea>
 
                     </div>
-                    <div class="form-group col-md-2">
-                        <label for="productName">অগ্রিম টাকা </label>
-                        <input type="text"  [(ngModel)]="orderModel.adAmunt"  class="form-control"  name="adAmunt" />
-                    </div>
+                    
                     <div class="form-group col-md-4">
                         <label for="qty">অর্ডার ডেট </label>
 
@@ -457,7 +454,7 @@
                     <div class="form-group col-md-10 ">
                         <label for="purchaseRate">অন্যান্য </label>
 
-                        <textarea class="form-control" rows="2" id="comments" [(ngModel)]="comments" bindLabel="comments"   name="comments"></textarea>
+                        <textarea class="form-control" rows="2" id="comments" [(ngModel)]="orderModel.comments" bindLabel="comments"   name="comments"></textarea>
 
                     </div>
                 </div>
@@ -543,8 +540,8 @@
                         
 
                         <div>
-                            <label for="productName">মোটা মূল্য</label>
-                            <input type="number"   class="form-control"value="{{grandTotal}}" name="itemRate" />
+                            <label for="totalAmount">মোটা মূল্য</label>
+                            <input type="number"   class="form-control" [(ngModel)]="orderModel.totalAmount"   name="totalAmount" />
                         <!-- <input type="number" readonly class="form-control"     bindLabel="grandTotal" [(ngModel)]="grandTotal" name="grandTotal" /> -->
                         
                         </div>

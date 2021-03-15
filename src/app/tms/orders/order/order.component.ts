@@ -175,13 +175,13 @@ export class OrderComponent implements OnInit {
         //   name: 'ssModifier',
         // },
         
-        {
-          title: 'Action',
-          "orderable": false,
-          render: (data: any, type: any, row: any) => {
-            return '<button type="button"   class="btn btn-info fontsize  details-sloat">Details</button>';
-          }
-        },
+        // {
+        //   title: 'Action',
+        //   "orderable": false,
+        //   render: (data: any, type: any, row: any) => {
+        //     return '<button type="button"   class="btn btn-info fontsize  details-sloat">Details</button>';
+        //   }
+        // },
 
         
          
